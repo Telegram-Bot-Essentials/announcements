@@ -2,6 +2,7 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\ReplyKeys\Admin;
 
+use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Enums\Roles;
 use TelegramBotEssentials\Essence\Telegram\ReplyKeys\ReplyKey;
 
@@ -20,7 +21,6 @@ class AnnouncementsKey extends ReplyKey
 
     public function handle(): void
     {
-        debugMessage('hello');
-        // Logic to execute
+        AnnouncementsFeature::menu()->send();
     }
 }

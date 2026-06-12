@@ -1,0 +1,28 @@
+preset: package
+
+namespace: TelegramBotEssentials\Announcements
+user-auth-model: Workbench\App\Models\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+  namespace: TelegramBotEssentials\Announcements\Database\Factories
+
+migration:
+  path: database/migrations
+
+model:
+  namespace: TelegramBotEssentials\Announcements\Models
+
+provider:
+  namespace: TelegramBotEssentials\Announcements
+
+seeder:
+  path: database/seeders
+  namespace: TelegramBotEssentials\Announcements\Database\Seeders
+
+testing:
+  namespace: TelegramBotEssentials\Announcements\Tests

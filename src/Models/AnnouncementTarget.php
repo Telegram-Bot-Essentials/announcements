@@ -5,13 +5,12 @@ namespace TelegramBotEssentials\Announcements\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
-use TelegramBotEssentials\Announcements\Database\Factories\AnnouncementFactory;
+use TelegramBotEssentials\Announcements\Database\Factories\AnnouncementTargetFactory;
 use TelegramBotEssentials\Essence\Models\Bot;
 use TelegramBotEssentials\Essence\Models\BotUser;
 
-class Announcement extends Model
+class AnnouncementTarget extends Model
 {
     use BelongsToTenant;
     use HasFactory;
@@ -23,13 +22,14 @@ class Announcement extends Model
     ];
 
     protected $casts = [
-        'sent_at' => 'datetime',
-        'deleted_at' => 'datetime',
+        'is_sent' => 'boolean',
+        'is_deleted' => 'boolean',
+        'is_forbidden' => 'boolean',
     ];
 
-    public static function newFactory(): AnnouncementFactory
+    public static function newFactory(): AnnouncementTargetFactory
     {
-        return AnnouncementFactory::new();
+        return AnnouncementTargetFactory::new();
     }
 
     public function bot(): BelongsTo
@@ -37,13 +37,13 @@ class Announcement extends Model
         return $this->belongsTo(Bot::class);
     }
 
+    public function announcement(): BelongsTo
+    {
+        return $this->belongsTo(Announcement::class);
+    }
+
     public function botUser(): BelongsTo
     {
         return $this->belongsTo(BotUser::class);
-    }
-
-    public function targets(): HasMany
-    {
-        return $this->hasMany(AnnouncementTarget::class);
     }
 }

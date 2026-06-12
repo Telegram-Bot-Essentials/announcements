@@ -4,6 +4,8 @@ namespace TelegramBotEssentials\Announcements;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
+use TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin\AnnouncementsQuery;
+use TelegramBotEssentials\Announcements\Telegram\StateAnswers\Admin\AnnouncementsAnswer;
 use TelegramBotEssentials\Essence\Exceptions\LogicException;
 
 class TbeAnnouncementsServiceProvider extends ServiceProvider
@@ -25,9 +27,11 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../lang', 'tbe-announcements');
 
         callbackQueryBus()->addCallbackQueries([
+            AnnouncementsQuery::class
         ]);
 
         stateAnswerBus()->addStateAnswers([
+            AnnouncementsAnswer::class
         ]);
     }
 

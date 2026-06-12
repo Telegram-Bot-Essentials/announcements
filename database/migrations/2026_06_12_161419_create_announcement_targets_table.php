@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Essence\Models\Bot;
 use TelegramBotEssentials\Essence\Models\BotUser;
 
@@ -13,15 +14,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('announcement_targets', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Bot::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(BotUser::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Announcement::class)->constrained()->cascadeOnDelete();
 
-            $table->string('label');
-            $table->text('message');
-            $table->timestamp('sent_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->foreignIdFor(BotUser::class)->constrained()->cascadeOnDelete();
+            $table->boolean('is_sent')->default(false);
+            $table->boolean('is_deleted')->default(false);
+            $table->boolean('is_forbidden')->default(false);
+            $table->bigInteger('message_id')->nullable();
 
             $table->timestamps();
         });
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('announcement_targets');
     }
 };
