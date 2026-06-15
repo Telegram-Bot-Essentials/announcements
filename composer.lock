@@ -510,21 +510,21 @@
         },
         {
             "name": "elyar/personal-laravel-helpers",
-            "version": "v0.0.2",
+            "version": "v0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Elyar0/personal-laravel-helpers.git",
-                "reference": "add774b990e4c6d94bdbfa915890bac0454afcc4"
+                "reference": "b12417ee731fc0f8be0e5b9e93dedcf648afb00b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Elyar0/personal-laravel-helpers/zipball/add774b990e4c6d94bdbfa915890bac0454afcc4",
-                "reference": "add774b990e4c6d94bdbfa915890bac0454afcc4",
+                "url": "https://api.github.com/repos/Elyar0/personal-laravel-helpers/zipball/b12417ee731fc0f8be0e5b9e93dedcf648afb00b",
+                "reference": "b12417ee731fc0f8be0e5b9e93dedcf648afb00b",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^12 || ^11",
-                "php": "^8.0"
+                "laravel/framework": ">=10.0",
+                "php": ">=8.0"
             },
             "type": "library",
             "autoload": {
@@ -548,9 +548,9 @@
             "description": "Personal Laravel helpers and services for my projects",
             "support": {
                 "issues": "https://github.com/Elyar0/personal-laravel-helpers/issues",
-                "source": "https://github.com/Elyar0/personal-laravel-helpers/tree/v0.0.2"
+                "source": "https://github.com/Elyar0/personal-laravel-helpers/tree/v0.0.5"
             },
-            "time": "2025-09-07T11:55:53+00:00"
+            "time": "2026-05-18T07:07:26+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -1071,16 +1071,16 @@
         },
         {
             "name": "guzzlehttp/uri-template",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/uri-template.git",
-                "reference": "eef7f87bab6f204eba3c39224d8075c70c637946"
+                "reference": "7fe811c23a9e3cd712b4389eaeb50b5456d8c529"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/eef7f87bab6f204eba3c39224d8075c70c637946",
-                "reference": "eef7f87bab6f204eba3c39224d8075c70c637946",
+                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/7fe811c23a9e3cd712b4389eaeb50b5456d8c529",
+                "reference": "7fe811c23a9e3cd712b4389eaeb50b5456d8c529",
                 "shasum": ""
             },
             "require": {
@@ -1137,7 +1137,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/uri-template/issues",
-                "source": "https://github.com/guzzle/uri-template/tree/v1.0.6"
+                "source": "https://github.com/guzzle/uri-template/tree/v1.0.7"
             },
             "funding": [
                 {
@@ -1153,7 +1153,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-23T22:00:21+00:00"
+            "time": "2026-06-12T21:33:43+00:00"
         },
         {
             "name": "irazasyed/telegram-bot-sdk",
@@ -2428,16 +2428,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.11.4",
+            "version": "3.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon.git",
-                "reference": "e890471a3494740f7d9326d72ce6a8c559ffee60"
+                "reference": "6e7853a668c3107294aff38d42bf760ec02126b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/e890471a3494740f7d9326d72ce6a8c559ffee60",
-                "reference": "e890471a3494740f7d9326d72ce6a8c559ffee60",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon/zipball/6e7853a668c3107294aff38d42bf760ec02126b6",
+                "reference": "6e7853a668c3107294aff38d42bf760ec02126b6",
                 "shasum": ""
             },
             "require": {
@@ -2529,7 +2529,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-07T09:57:54+00:00"
+            "time": "2026-06-14T20:41:42+00:00"
         },
         {
             "name": "nette/schema",
@@ -6137,20 +6137,20 @@
         },
         {
             "name": "telegram-bot-essentials/essence",
-            "version": "v0.8.7",
+            "version": "v0.8.9",
             "source": {
                 "type": "git",
                 "url": "git@github.com:Elyar0/telegram-bot-essentials.git",
-                "reference": "dcf4fffb75c3971075c98007306634625f2e696a"
+                "reference": "147f1f04b126ec65e35b71f8428af826747415d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Elyar0/telegram-bot-essentials/zipball/dcf4fffb75c3971075c98007306634625f2e696a",
-                "reference": "dcf4fffb75c3971075c98007306634625f2e696a",
+                "url": "https://api.github.com/repos/Elyar0/telegram-bot-essentials/zipball/147f1f04b126ec65e35b71f8428af826747415d2",
+                "reference": "147f1f04b126ec65e35b71f8428af826747415d2",
                 "shasum": ""
             },
             "require": {
-                "elyar/personal-laravel-helpers": "^0.0.2",
+                "elyar/personal-laravel-helpers": "*",
                 "irazasyed/telegram-bot-sdk": "^3.15",
                 "laravel/framework": "^12 || ^13",
                 "laravel/telescope": "*",
@@ -6188,10 +6188,10 @@
             ],
             "description": "This is the how i like to develop my bots and handle different incoming requests",
             "support": {
-                "source": "https://github.com/Elyar0/telegram-bot-essentials/tree/v0.8.7",
+                "source": "https://github.com/Elyar0/telegram-bot-essentials/tree/v0.8.9",
                 "issues": "https://github.com/Elyar0/telegram-bot-essentials/issues"
             },
-            "time": "2026-05-18T06:53:57+00:00"
+            "time": "2026-06-15T21:22:48+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

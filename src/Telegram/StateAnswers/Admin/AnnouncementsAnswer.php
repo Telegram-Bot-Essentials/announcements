@@ -2,7 +2,6 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\StateAnswers\Admin;
 
-use Illuminate\Support\Facades\Validator;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Enums\AllowableFields;
@@ -22,55 +21,29 @@ class AnnouncementsAnswer extends StateAnswer
     // {
     // }
 
-    public function createAnnouncement(string $input): void
+    public function createAnnouncement(int $lastPage): void
     {
-        $answer = wHook()->update()->message->text;
+        $announcement = Announcement::create([
+            'bot_user_id' => wHook()->user()->id,
+            'from_chat_id' => wHook()->update()->message->from->id,
+            'message_id' => wHook()->update()->message->messageId,
+            'message_text' => wHook()->update()->message->text,
+            'label' => strlen(wHook()->update()->message->text) > 8
+                ? substr(wHook()->update()->message->text, 0, 8) . '...'
+                : wHook()->update()->message->text
+        ])->refresh();
 
-        switch ($input) {
-            case 'label':
-                $sd = stateData()->store([
-                    'label' => $answer,
-                ]);
-                wHook()->user()->addParamToState([
-                    'input' => 'message',
-                    'state_data' => $sd->id,
-                ]);
+        wHook()->user()->changeState();
 
-                wHook()->api()->sendMessage([
-                    'chat_id' => wHook()->user()->telegramUser->peer_id,
-                    'text' => 'Enter the message',
-                    'reply_markup' => wHook()->user()->getKeyboard(),
-                ]);
-                break;
-            case 'message':
-                stateData()->addData($this->stateData(), [
-                    'message' => $answer,
-                ]);
-                $sd = $this->stateData();
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->user()->telegramUser->peer_id,
+            'text' => __('tbe-announcements::announcements.main.answers.created'),
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
 
-                $announcement = Announcement::create([
-                    'bot_user_id' => wHook()->user()->id,
-
-                   'message' => $sd->data['message'],
-                   'label' => $sd->data['label'],
-                ]);
-
-                $this->stateData()->delete();
-                wHook()->user()->changeState();
-
-                wHook()->api()->sendMessage([
-                    'chat_id' => wHook()->user()->telegramUser->peer_id,
-                    'text' => 'Notification created',
-                    'reply_markup' => wHook()->user()->getKeyboard(),
-                ]);
-
-                $this->messageMeta()->updateAndContinueAction(
-                    AnnouncementsFeature::menu()
-                );
-                break;
-        }
-
-        return;
+        $this->messageMeta()->updateAndContinueAction(
+            AnnouncementsFeature::show($announcement, $lastPage)
+        );
     }
 
     function change(Announcement $announcement, string $target, int $lastPage = 1): void
@@ -82,7 +55,27 @@ class AnnouncementsAnswer extends StateAnswer
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => "Announcement updated successfully",
+            'text' => __('tbe-announcements::announcements.main.answers.updated'),
+            'parse_mode' => 'HTML',
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
+        $this->messageMeta()->updateAndContinueAction(
+            AnnouncementsFeature::show($announcement, $lastPage)
+        );
+    }
+
+    function setMessage(Announcement $announcement, int $lastPage = 1): void
+    {
+        $announcement->message_id = wHook()->update()->message->messageId;
+        $announcement->from_chat_id = wHook()->update()->message->from->id;
+        $announcement->message_text = wHook()->update()->message->text;
+        $announcement->save();
+
+        wHook()->user()->changeState();
+
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => __('tbe-announcements::announcements.main.answers.updated'),
             'parse_mode' => 'HTML',
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);

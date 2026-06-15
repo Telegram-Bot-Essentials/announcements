@@ -14,9 +14,8 @@ class AnnouncementsKey extends ReplyKey
 
     public function __construct()
     {
-        // Multilingual translations
-        // $this->text = __('');
-        // $this->response = __('');
+        $this->text = __('tbe-announcements::announcements.reply_key');
+        $this->response = __('tbe-announcements::announcements.main.answers.menuLoaded');
     }
 
     public function handle(): void

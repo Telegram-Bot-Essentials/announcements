@@ -12,37 +12,44 @@ class AnnouncementsFeature
 {
     static string $type = 'ANNOUNCEMENTS';
 
-    // TODO: Implement static functions for generating bot messages
-
     /**
      * @throws InvalidPageNumber
      */
     public static function menu(int $page = 1, int $currentPage = 0): TelegramResponse
     {
-        $text = 'menu';
-
-        $replyMarkup = Keyboard::make()
-            ->inline();
-
         $announcements = Announcement::query()->orderByDesc('id')->paginate(perPage: 10, page: $page);
 
         TelegramPaginator::validatePageNumber($page, $currentPage, $announcements);
 
+        $text = Announcement::count() === 0
+            ? __('tbe-announcements::announcements.main.text.menu_empty')
+            : __('tbe-announcements::announcements.main.text.menu');
+
+        $replyMarkup = Keyboard::make()
+            ->inline();
+
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => 'Create Announcement +',
-                'callback_data' => encodeCallback(self::$type, 'createAnnouncement'),
+                'text' => __('tbe-announcements::announcements.main.keys.create'),
+                'callback_data' => encodeCallback(self::$type, 'createAnnouncement', [$currentPage]),
             ])
         ]);
 
+        if (Announcement::count() == 0) {
+            return new TelegramResponse(
+                text: $text,
+                replyMarkup: $replyMarkup,
+                parseMode: 'HTML'
+            );
+        }
 
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => "Label",
+                'text' => __('tbe-announcements::announcements.main.keys.columnLabel'),
                 'callback_data' => encodeCallback('x', 'y')
             ]),
             Keyboard::inlineButton([
-                'text' => "Status",
+                'text' => __('tbe-announcements::announcements.main.keys.columnStatus'),
                 'callback_data' => encodeCallback('x', 'y')
             ])
         ]);
@@ -54,12 +61,12 @@ class AnnouncementsFeature
                     'callback_data' => encodeCallback(self::$type, 'show', [$announcement->id, $page])
                 ]),
                 Keyboard::inlineButton([
-                    'text' => $announcement->sent_at?->shortRelativeToNowDiffForHumans() ?? 'Not sent yet',
+                    'text' => $announcement->sent_at?->shortRelativeToNowDiffForHumans()
+                        ?? __('tbe-announcements::announcements.main.keys.notSentYet'),
                     'callback_data' => encodeCallback(self::$type, 'show', [$announcement->id, $page])
                 ]),
             ]);
         }
-
 
         $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcements->lastPage()));
 
@@ -70,34 +77,56 @@ class AnnouncementsFeature
         );
     }
 
-    public static function show(Announcement $announcement, int $lastPage)
+    public static function show(Announcement $announcement, int $lastPage = 1): TelegramResponse
     {
-        $text = "label: $announcement->label\r\nmessage: <blockquote expandable>" . htmlspecialchars($announcement->message) . "</blockquote>\r\nsent_at: $announcement->sent_at";
+        $text = __('tbe-announcements::announcements.main.text.show', [
+            'label' => $announcement->label,
+            'message' => htmlspecialchars($announcement->message_text ?: __('tbe-announcements::announcements.main.values.noMessage')),
+            'sentAt' => $announcement->sent_at?->shortRelativeToNowDiffForHumans()
+                ?? __('tbe-announcements::announcements.main.values.notSentYet'),
+            'method' => self::methodLabel($announcement->method),
+        ]);
 
         $replyMarkup = Keyboard::make()
             ->inline();
 
         $replyMarkup->row([
             Keyboard::inlineButton(array_filter([
-                'text' => 'preview',
+                'text' => __('tbe-announcements::announcements.main.keys.preview'),
                 'callback_data' => encodeCallback(self::$type, 'preview', [$announcement->id])
             ]))
         ]);
 
         $replyMarkup->row([
             Keyboard::inlineButton(array_filter([
-                'text' => 'change label',
+                'text' => __('tbe-announcements::announcements.main.keys.send'),
+                'callback_data' => encodeCallback(self::$type, 'soon', [$announcement->id])
+            ]))
+        ]);
+
+        $replyMarkup->row([
+            Keyboard::inlineButton(array_filter([
+                'text' => __('tbe-announcements::announcements.main.keys.changeLabel'),
                 'callback_data' => encodeCallback(self::$type, 'change', [$announcement->id, 'label', $lastPage])
             ])),
             Keyboard::inlineButton(array_filter([
-                'text' => 'change message',
-                'callback_data' => encodeCallback(self::$type, 'change', [$announcement->id, 'message', $lastPage])
+                'text' => __('tbe-announcements::announcements.main.keys.method', [
+                    'method' => self::methodLabel($announcement->method),
+                ]),
+                'callback_data' => encodeCallback(self::$type, 'changeMethod', [$announcement->id, $announcement->method, $lastPage])
+            ]))
+        ]);
+
+        $replyMarkup->row([
+            Keyboard::inlineButton(array_filter([
+                'text' => __('tbe-announcements::announcements.main.keys.setMessage'),
+                'callback_data' => encodeCallback(self::$type, 'setMessage', [$announcement->id, $lastPage])
             ]))
         ]);
 
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => 'back',
+                'text' => __('tbe::general.keys.back'),
                 'callback_data' => encodeCallback(self::$type, 'start', [$lastPage, 0])
             ])
         ]);
@@ -107,5 +136,10 @@ class AnnouncementsFeature
             replyMarkup: $replyMarkup,
             parseMode: 'HTML'
         );
+    }
+
+    public static function methodLabel(string $method): string
+    {
+        return __('tbe-announcements::announcements.main.methods.' . $method);
     }
 }

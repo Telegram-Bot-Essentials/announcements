@@ -24,21 +24,23 @@ class AnnouncementsQuery extends CallbackQuery
         AnnouncementsFeature::menu($page, $currentPage)->update();
     }
 
-    public function createAnnouncement(): void
+    public function createAnnouncement(int $lastPage = 1): void
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
-        $messageMeta->lockAction();
+        $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.creatingAnnouncement'));
         wHook()->user()->changeState(encodeAnswerState($this->type, 'createAnnouncement', [
-            'input' => 'label',
+            'lastPage' => $lastPage,
             'message_meta' => $messageMeta->id,
         ]));
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => 'Enter the label that you want to set to the announcement. (Is only shown to you)',
+            'text' => __('tbe-announcements::announcements.main.text.sendMessagePrompt'),
             'reply_markup' => wHook()->user()->getKeyboard(),
             'parse_mode' => 'HTML',
         ]);
+
+        $this->answer(__('tbe-announcements::announcements.main.answers.creatingAnnouncement'));
     }
 
     /**
@@ -51,14 +53,43 @@ class AnnouncementsQuery extends CallbackQuery
 
     function preview(Announcement $announcement): void
     {
-        wHook()->api()->sendMessage([
-            'chat_id' => wHook()->peerId(),
-            'text' => $announcement->message,
-            'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
-        ]);
+        switch ($announcement->method) {
+            case 'copy':
+                dependsOn($announcement->message_id);
+                dependsOn($announcement->from_chat_id);
 
-        $this->answer('Preview message sent');
+                wHook()->api()->copyMessage([
+                    'chat_id' => wHook()->peerId(),
+                    'from_chat_id' => $announcement->from_chat_id,
+                    'message_id' => $announcement->message_id,
+                ]);
+                break;
+            case 'forward':
+                dependsOn($announcement->message_id);
+                dependsOn($announcement->from_chat_id);
+
+                wHook()->api()->forwardMessage([
+                    'chat_id' => wHook()->peerId(),
+                    'from_chat_id' => $announcement->from_chat_id,
+                    'message_id' => $announcement->message_id,
+                ]);
+                break;
+            case 'html':
+                dependsOn(
+                    $announcement->message_text,
+                    __('tbe-announcements::announcements.main.text.messageRequiredForHtml')
+                );
+
+                wHook()->api()->sendMessage([
+                    'chat_id' => wHook()->peerId(),
+                    'text' => $announcement->message_text,
+                    'parse_mode' => 'HTML',
+                    'reply_markup' => wHook()->user()->getKeyboard(),
+                ]);
+                break;
+        }
+
+        $this->answer(__('tbe-announcements::announcements.main.answers.previewSent'));
     }
 
     function change(Announcement $announcement, string $target, int $lastPage = 1): void
@@ -70,13 +101,50 @@ class AnnouncementsQuery extends CallbackQuery
             'lastPage' => $lastPage,
             'message_meta' => $messageMeta->id,
         ]));
-        $messageMeta->lockAction();
+        $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.changingField', [
+            'field' => __('tbe-announcements::announcements.main.fields.' . $target),
+        ]));
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => "Enter the {$target}:",
+            'text' => __('tbe-announcements::announcements.main.text.enterField', [
+                'field' => __('tbe-announcements::announcements.main.fields.' . $target),
+            ]),
             'parse_mode' => 'HTML',
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
+    }
+
+    function setMessage(Announcement $announcement, int $lastPage = 1): void
+    {
+        $messageMeta = MessageMeta::makeWithCurrentMessage();
+
+        wHook()->user()->changeState(encodeAnswerState($this->type, 'setMessage', [
+            'announcement' => $announcement->id,
+            'lastPage' => $lastPage,
+            'message_meta' => $messageMeta->id,
+        ]));
+
+        $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.settingMessage'));
+
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => __('tbe-announcements::announcements.main.text.sendMessagePrompt'),
+            'parse_mode' => 'HTML',
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
+    }
+
+    function changeMethod(Announcement $announcement, string $method, int $lastPage = 1): void
+    {
+        $methods = ['html', 'copy', 'forward'];
+        $announcement->method = nextInArray($methods, $method);
+        $announcement->save();
+
+        AnnouncementsFeature::show($announcement, $lastPage)
+            ->answer(__('tbe-announcements::announcements.main.answers.methodChanged', [
+                'method' => AnnouncementsFeature::methodLabel($announcement->method),
+            ]))
+            ->update();
     }
 }
