@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('is_forbidden')->default(false);
             $table->bigInteger('message_id')->nullable();
 
+            $table->unique(['announcement_id', 'bot_user_id']);
             $table->timestamps();
         });
     }

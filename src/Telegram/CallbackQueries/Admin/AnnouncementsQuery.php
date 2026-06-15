@@ -4,9 +4,11 @@ namespace TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin;
 
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Models\Announcement;
+use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Enums\Roles;
 use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
+use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Models\MessageMeta;
 use TelegramBotEssentials\Essence\Telegram\CallbackQueries\CallbackQuery;
 
@@ -146,5 +148,77 @@ class AnnouncementsQuery extends CallbackQuery
                 'method' => AnnouncementsFeature::methodLabel($announcement->method),
             ]))
             ->update();
+    }
+
+    function sendingAnnouncement(Announcement $announcement, int $page = 1, int $currentPage = 0): void
+    {
+        AnnouncementsFeature::sendingAnnouncement($announcement, $page, $currentPage)->update();
+    }
+
+    function reloadTargetUsers(Announcement $announcement, int $page = 1): void
+    {
+        $now = now();
+
+        $rows = BotUser::query()
+            ->pluck('id')
+            ->map(fn(int $botUserId) => [
+                'bot_id' => $announcement->bot_id,
+                'announcement_id' => $announcement->id,
+                'bot_user_id' => $botUserId,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ])
+            ->all();
+
+        if ($rows !== []) {
+            AnnouncementTarget::query()->insertOrIgnore($rows);
+        }
+
+        AnnouncementsFeature::sendingAnnouncement($announcement, $page)->update();
+    }
+
+    function announcementTargetSend(AnnouncementTarget $announcementTarget, int $page)
+    {
+        $announcement = $announcementTarget->announcement;
+        switch ($announcement->method) {
+            case 'copy':
+                dependsOn($announcement->message_id);
+                dependsOn($announcement->from_chat_id);
+
+                wHook()->api()->copyMessage([
+                    'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
+                    'from_chat_id' => $announcement->from_chat_id,
+                    'message_id' => $announcement->message_id,
+                ]);
+                break;
+            case 'forward':
+                dependsOn($announcement->message_id);
+                dependsOn($announcement->from_chat_id);
+
+                wHook()->api()->forwardMessage([
+                    'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
+                    'from_chat_id' => $announcement->from_chat_id,
+                    'message_id' => $announcement->message_id,
+                ]);
+                break;
+            case 'html':
+                dependsOn(
+                    $announcement->message_text,
+                    __('tbe-announcements::announcements.main.text.messageRequiredForHtml')
+                );
+
+                wHook()->api()->sendMessage([
+                    'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
+                    'text' => $announcement->message_text,
+                    'parse_mode' => 'HTML',
+                    'reply_markup' => wHook()->user()->getKeyboard(),
+                ]);
+                break;
+        }
+    }
+
+    function announcementTargetDelete(AnnouncementTarget $announcementTarget, int $page)
+    {
+
     }
 }

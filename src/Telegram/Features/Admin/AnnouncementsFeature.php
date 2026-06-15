@@ -4,6 +4,7 @@ namespace TelegramBotEssentials\Announcements\Telegram\Features\Admin;
 
 use Telegram\Bot\Keyboard\Keyboard;
 use TelegramBotEssentials\Announcements\Models\Announcement;
+use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
 use TelegramBotEssentials\Essence\Services\TelegramPaginator;
 use TelegramBotEssentials\Essence\Telegram\TelegramResponse;
@@ -100,7 +101,7 @@ class AnnouncementsFeature
         $replyMarkup->row([
             Keyboard::inlineButton(array_filter([
                 'text' => __('tbe-announcements::announcements.main.keys.send'),
-                'callback_data' => encodeCallback(self::$type, 'soon', [$announcement->id])
+                'callback_data' => encodeCallback(self::$type, 'sendingAnnouncement', [$announcement->id])
             ]))
         ]);
 
@@ -141,5 +142,76 @@ class AnnouncementsFeature
     public static function methodLabel(string $method): string
     {
         return __('tbe-announcements::announcements.main.methods.' . $method);
+    }
+
+    /**
+     * @throws InvalidPageNumber
+     */
+    public static function sendingAnnouncement(Announcement $announcement, int $page = 1, int $currentPage = 0): TelegramResponse
+    {
+        $text = 'test' . uniqid();
+        $replyMarkup = Keyboard::make()->inline();
+
+        $replyMarkup->row([
+            Keyboard::inlineButton([
+                'text' => 'apply filters',
+                'callback_data' => encodeCallback(self::$type, 'soon', [$announcement->id])
+            ]),
+            Keyboard::inlineButton([
+                'text' => 'ReLoad target users',
+                'callback_data' => encodeCallback(self::$type, 'reloadTargetUsers', [$announcement->id, $page])
+            ])
+        ]);
+
+        $announcementTargets = $announcement->targets()->paginate(perPage: 10, page: $page);
+
+        TelegramPaginator::validatePageNumber($page, $currentPage, $announcementTargets);
+
+        if (AnnouncementTarget::count() > 0) {
+            $replyMarkup->row([
+                Keyboard::inlineButton([
+                    'text' => __('tbe-announcements::announcements.main.keys.columnLabel'),
+                    'callback_data' => encodeCallback('x', 'y')
+                ]),
+                Keyboard::inlineButton([
+                    'text' => __('tbe-announcements::announcements.main.keys.columnStatus'),
+                    'callback_data' => encodeCallback('x', 'y')
+                ])
+            ]);
+
+            foreach ($announcementTargets as $announcementTarget) {
+                $replyMarkup->row([
+                    Keyboard::inlineButton([
+                        'text' => empty($announcementTarget->botUser->telegramUser->full_name) ? '???' : $announcementTarget->botUser->telegramUser->full_name,
+                        'callback_data' => encodeCallback(self::$type, 'show', [$announcementTarget->id, $page])
+                    ]),
+                    Keyboard::inlineButton([
+                        'text' => $announcementTarget->is_sent ? __('tbe::general.status.removeEmoji') : __('tbe::general.status.addEmoji'),
+                        'style' => $announcementTarget->is_sent ? 'danger' : 'success',
+                        'callback_data' => encodeCallback(
+                            self::$type,
+                            $announcementTarget->is_sent ? 'announcementTargetDelete' : 'announcementTargetSend',
+                            [$announcementTarget->id,$page]
+                        )
+                    ]),
+                ]);
+            }
+
+            $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncement', extraParams: [$announcement->id]));
+        }
+
+
+        $replyMarkup->row([
+            Keyboard::inlineButton([
+                'text' => __('tbe::general.keys.back'),
+                'callback_data' => encodeCallback(self::$type, 'show', [$announcement->id])
+            ])
+        ]);
+
+        return new TelegramResponse(
+            text: $text,
+            replyMarkup: $replyMarkup,
+            parseMode: 'HTML'
+        );
     }
 }
