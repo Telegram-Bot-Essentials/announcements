@@ -80,12 +80,23 @@ class AnnouncementsFeature
 
     public static function show(Announcement $announcement, int $lastPage = 1): TelegramResponse
     {
+        $total = $announcement->targets()->count();
+        $sent = $announcement->targets()->where('status', 'sent')->count();
+        $pending = $announcement->targets()->whereNull('status')->count();
+        $deleted = $announcement->targets()->where('status', 'deleted')->count();
+        $forbidden = $announcement->targets()->where('status', 'forbidden')->count();
+
         $text = __('tbe-announcements::announcements.main.text.show', [
             'label' => $announcement->label,
             'message' => htmlspecialchars($announcement->message_text ?: __('tbe-announcements::announcements.main.values.noMessage')),
             'sentAt' => $announcement->sent_at?->shortRelativeToNowDiffForHumans()
                 ?? __('tbe-announcements::announcements.main.values.notSentYet'),
             'method' => self::methodLabel($announcement->method),
+            'total' => $total,
+            'sent' => $sent,
+            'pending' => $pending,
+            'deleted' => $deleted,
+            'forbidden' => $forbidden,
         ]);
 
         $replyMarkup = Keyboard::make()
@@ -252,5 +263,72 @@ class AnnouncementsFeature
                 'action' => 'announcementTargetSend',
             ],
         };
+    }
+
+    public static function makeProgressBar(int $percent, int $width = 15): string
+    {
+        $completed = (int) round(($percent / 100) * $width);
+        $remaining = $width - $completed;
+
+        return str_repeat('█', $completed) . str_repeat('░', $remaining);
+    }
+
+    public static function getSendingProgressText(Announcement $announcement): string
+    {
+        $total = $announcement->targets()->count();
+        $sent = $announcement->targets()->where('status', 'sent')->count();
+        $forbidden = $announcement->targets()->where('status', 'forbidden')->count();
+        $processed = $sent + $forbidden;
+
+        $percent = $total > 0 ? (int) round(($processed / $total) * 100) : 0;
+        $progressBar = self::makeProgressBar($percent);
+
+        $isFinished = $processed >= $total;
+
+        return __('tbe-announcements::announcements.main.text.sendingProgressTemplate', [
+            'status' => $isFinished
+                ? __('tbe-announcements::announcements.main.status.sendingCompleted')
+                : __('tbe-announcements::announcements.main.status.sendingInProgress'),
+            'label' => $announcement->label,
+            'percent' => $percent,
+            'progressBar' => $progressBar,
+            'total' => $total,
+            'sent' => $sent,
+            'pending' => max(0, $total - $processed),
+            'forbidden' => $forbidden,
+            'footer' => $isFinished
+                ? __('tbe-announcements::announcements.main.status.sendingFooterCompleted')
+                : __('tbe-announcements::announcements.main.status.sendingFooterProgress'),
+        ]);
+    }
+
+    public static function getDeletingProgressText(Announcement $announcement): string
+    {
+        $total = $announcement->targets()->count();
+        $deleted = $announcement->targets()->where('status', 'deleted')->count();
+        $forbidden = $announcement->targets()->where('status', 'forbidden')->count();
+        $pending = $announcement->targets()->where('status', 'sent')->count();
+        $processed = $total - $pending;
+
+        $percent = $total > 0 ? (int) round(($processed / $total) * 100) : 0;
+        $progressBar = self::makeProgressBar($percent);
+
+        $isFinished = $pending === 0;
+
+        return __('tbe-announcements::announcements.main.text.deletingProgressTemplate', [
+            'status' => $isFinished
+                ? __('tbe-announcements::announcements.main.status.deletingCompleted')
+                : __('tbe-announcements::announcements.main.status.deletingInProgress'),
+            'label' => $announcement->label,
+            'percent' => $percent,
+            'progressBar' => $progressBar,
+            'total' => $total,
+            'deleted' => $deleted,
+            'pending' => $pending,
+            'forbidden' => $forbidden,
+            'footer' => $isFinished
+                ? __('tbe-announcements::announcements.main.status.deletingFooterCompleted')
+                : __('tbe-announcements::announcements.main.status.deletingFooterProgress'),
+        ]);
     }
 }

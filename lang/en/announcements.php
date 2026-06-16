@@ -14,8 +14,15 @@ return [
                 . "\r\n🏷 <b>Label:</b> <i>:label</i>"
                 . "\r\n💬 <b>Message:</b>"
                 . "\r\n<blockquote expandable>:message</blockquote>"
-                . "\r\n🕐 <b>Sent at:</b> <i>:sentAt</i>"
                 . "\r\n📡 <b>Method:</b> <i>:method</i>"
+                . "\r\n🕐 <b>Sent at:</b> <i>:sentAt</i>"
+                . "\r\n"
+                . "\r\n📊 <b>Statistics:</b>"
+                . "\r\n👥 <b>Total targets:</b> <code>:total</code>"
+                . "\r\n✅ <b>Sent:</b> <code>:sent</code>"
+                . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
+                . "\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
+                . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
                 . "\r\n"
                 . "\r\nManage this announcement using the options below 👇",
             'sendMessagePrompt' => '💬 Send the announcement message:',
@@ -28,6 +35,28 @@ return [
                 . "\r\nManage target users and control send/delete status from the list below 👇",
             'sendingProgressInitial' => '📤 Sending: 0/:total',
             'deletingProgressInitial' => '🗑 Deleting: 0/:total',
+            'sendingProgressTemplate' => ':status'
+                . "\r\n━━━━━━━━━━━━━━━━━━━━"
+                . "\r\n🏷 <b>Label:</b> <i>:label</i>"
+                . "\r\n📊 <b>Progress:</b> :percent% [<code>:progressBar</code>]"
+                . "\r\n"
+                . "\r\n👥 <b>Total targets:</b> <code>:total</code>"
+                . "\r\n✅ <b>Sent:</b> <code>:sent</code>"
+                . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
+                . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                . "\r\n━━━━━━━━━━━━━━━━━━━━"
+                . "\r\n:footer",
+            'deletingProgressTemplate' => ':status'
+                . "\r\n━━━━━━━━━━━━━━━━━━━━"
+                . "\r\n🏷 <b>Label:</b> <i>:label</i>"
+                . "\r\n📊 <b>Progress:</b> :percent% [<code>:progressBar</code>]"
+                . "\r\n"
+                . "\r\n👥 <b>Total targets:</b> <code>:total</code>"
+                . "\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
+                . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
+                . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                . "\r\n━━━━━━━━━━━━━━━━━━━━"
+                . "\r\n:footer",
         ],
         'answers' => [
             'menuLoaded' => '📋 Announcements loaded.',
@@ -81,6 +110,16 @@ return [
             'creatingAnnouncement' => 'Creating announcement',
             'changingField' => 'Changing :field',
             'settingMessage' => 'Setting announcement message',
+        ],
+        'status' => [
+            'sendingInProgress' => '📤 <b>Sending Announcement...</b>',
+            'sendingCompleted' => '✅ <b>Sending Completed!</b>',
+            'sendingFooterProgress' => '⏳ Processing batches, please wait...',
+            'sendingFooterCompleted' => '✨ All messages have been processed.',
+            'deletingInProgress' => '🗑 <b>Deleting Announcement...</b>',
+            'deletingCompleted' => '✅ <b>Deleting Completed!</b>',
+            'deletingFooterProgress' => '⏳ Deleting sent messages, please wait...',
+            'deletingFooterCompleted' => '✨ All target messages have been deleted.',
         ],
     ],
     'reply_key' => '📢 Announcements',

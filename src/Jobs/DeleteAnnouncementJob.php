@@ -6,6 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
+use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Support\WebhookContext;
 
 class DeleteAnnouncementJob implements ShouldQueue
@@ -83,11 +84,8 @@ class DeleteAnnouncementJob implements ShouldQueue
                 wHook()->api()->editMessageText([
                     'chat_id' => $announcement->action_status_chat_id,
                     'message_id' => $announcement->action_status_message_id,
-                    'text' => __('tbe-announcements::announcements.main.answers.deletingProgress', [
-                        'deleted' => $announcement->targets()->where('status', 'deleted')->count(),
-                        'total' => $announcement->targets()->count(),
-                        'forbidden' => $announcement->targets()->where('status', 'forbidden')->count(),
-                    ]),
+                    'text' => AnnouncementsFeature::getDeletingProgressText($announcement),
+                    'parse_mode' => 'HTML',
                 ]);
             } catch (\Throwable $e) {
                 // Ignore API failures or unchanged message errors

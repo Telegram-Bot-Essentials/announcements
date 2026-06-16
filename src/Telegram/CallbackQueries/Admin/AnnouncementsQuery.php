@@ -210,9 +210,7 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $statusMessage = wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => __('tbe-announcements::announcements.main.text.sendingProgressInitial', [
-                'total' => $announcement->targets()->count(),
-            ]),
+            'text' => AnnouncementsFeature::getSendingProgressText($announcement),
             'parse_mode' => 'HTML',
         ]);
 
@@ -244,9 +242,7 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $statusMessage = wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => __('tbe-announcements::announcements.main.text.deletingProgressInitial', [
-                'total' => $announcement->targets()->count(),
-            ]),
+            'text' => AnnouncementsFeature::getDeletingProgressText($announcement),
             'parse_mode' => 'HTML',
         ]);
 
