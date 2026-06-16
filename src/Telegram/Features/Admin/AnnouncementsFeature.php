@@ -156,25 +156,25 @@ class AnnouncementsFeature
 
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => 'apply filters',
+                'text' => __('tbe-announcements::announcements.main.keys.applyFilters'),
                 'callback_data' => encodeCallback(self::$type, 'soon', [$announcement->id])
             ]),
             Keyboard::inlineButton([
-                'text' => 'ReLoad target users',
+                'text' => __('tbe-announcements::announcements.main.keys.reloadTargetUsers'),
                 'callback_data' => encodeCallback(self::$type, 'reloadTargetUsers', [$announcement->id, $page])
             ])
         ]);
 
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => 'Start Sending Messages',
+                'text' => __('tbe-announcements::announcements.main.keys.startSendingMessages'),
                 'callback_data' => encodeCallback(self::$type, 'startSendingMessages', [$announcement->id])
             ]),
         ]);
 
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => 'Delete Sent Messages',
+                'text' => __('tbe-announcements::announcements.main.keys.deleteSentMessages'),
                 'callback_data' => encodeCallback(self::$type, 'deleteSentMessages', [$announcement->id])
             ]),
         ]);

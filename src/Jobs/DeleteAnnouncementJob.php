@@ -48,7 +48,11 @@ class DeleteAnnouncementJob implements ShouldQueue
         wHook()->api()->editMessageText([
             'chat_id' => $announcement->action_status_chat_id,
             'message_id' => $announcement->action_status_message_id,
-            'text' => $announcement->targets()->where('status', 'deleted')->count() . '/' . $announcement->targets()->count() . ' | ' . $announcement->targets()->where('status', 'forbidden')->count(),
+            'text' => __('tbe-announcements::announcements.main.answers.deletingProgress', [
+                'deleted' => $announcement->targets()->where('status', 'deleted')->count(),
+                'total' => $announcement->targets()->count(),
+                'forbidden' => $announcement->targets()->where('status', 'forbidden')->count(),
+            ]),
         ]);
     }
 }

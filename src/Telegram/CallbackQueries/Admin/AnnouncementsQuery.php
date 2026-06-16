@@ -210,7 +210,9 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $statusMessage = wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => 'sending 0/'. $announcement->targets()->count(),
+            'text' => __('tbe-announcements::announcements.main.text.sendingProgressInitial', [
+                'total' => $announcement->targets()->count(),
+            ]),
             'parse_mode' => 'HTML',
         ]);
 
@@ -222,7 +224,7 @@ class AnnouncementsQuery extends CallbackQuery
         $announcement->targets()
             ->where(fn ($query) => $query->whereNull('status')->orWhere('status', '!=', 'forbidden'))
             ->each(fn (AnnouncementTarget $target) => SendAnnouncementJob::dispatch(wHook()->exportContext(), $target));
-        $this->answer('Announcement sending process started');
+        $this->answer(__('tbe-announcements::announcements.main.answers.sendingStarted'));
     }
 
     /**
@@ -232,7 +234,9 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $statusMessage = wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => 'deleting 0/'. $announcement->targets()->count(),
+            'text' => __('tbe-announcements::announcements.main.text.deletingProgressInitial', [
+                'total' => $announcement->targets()->count(),
+            ]),
             'parse_mode' => 'HTML',
         ]);
 
@@ -244,6 +248,6 @@ class AnnouncementsQuery extends CallbackQuery
         $announcement->targets()
             ->where('status', 'sent')
             ->each(fn (AnnouncementTarget $target) => DeleteAnnouncementJob::dispatch(wHook()->exportContext(), $target));
-        $this->answer('Announcement deleting process started');
+        $this->answer(__('tbe-announcements::announcements.main.answers.deletingStarted'));
     }
 }
