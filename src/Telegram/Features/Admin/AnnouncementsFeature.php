@@ -32,7 +32,7 @@ class AnnouncementsFeature
         $replyMarkup->row([
             Keyboard::inlineButton([
                 'text' => __('tbe-announcements::announcements.main.keys.create'),
-                'callback_data' => encodeCallback(self::$type, 'createAnnouncement', [$currentPage]),
+                'callback_data' => encodeCallback(self::$type, 'createAnnouncement', [$page]),
             ])
         ]);
 
@@ -80,6 +80,8 @@ class AnnouncementsFeature
 
     public static function show(Announcement $announcement, int $lastPage = 1): TelegramResponse
     {
+        $lastPage = max(1, $lastPage);
+
         $total = $announcement->targets()->count();
         $sent = $announcement->targets()->where('status', 'sent')->count();
         $pending = $announcement->targets()->whereNull('status')->count();

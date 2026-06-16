@@ -27,7 +27,7 @@ class AnnouncementsQuery extends CallbackQuery
      */
     public function start(int $page = 1, int $currentPage = 0): void
     {
-        AnnouncementsFeature::menu($page, $currentPage)->update();
+        AnnouncementsFeature::menu(max(1, $page), $currentPage)->update();
     }
 
     public function createAnnouncement(int $lastPage = 1): void
