@@ -149,6 +149,11 @@ class AnnouncementsQuery extends CallbackQuery
 
     function announcementTargetSend(AnnouncementTarget $announcementTarget, int $page)
     {
+        dependsOn(
+            $announcementTarget->status !== 'sent',
+            __('tbe-announcements::announcements.main.errors.alreadySent')
+        );
+
         try {
             $message = $announcementTarget->announcement->sendTo($announcementTarget->botUser->telegramUser->peer_id);
             $announcementTarget->update([
@@ -177,6 +182,11 @@ class AnnouncementsQuery extends CallbackQuery
      */
     function announcementTargetDelete(AnnouncementTarget $announcementTarget, int $page)
     {
+        dependsOn(
+            $announcementTarget->status === 'sent',
+            __('tbe-announcements::announcements.main.errors.cannotDelete')
+        );
+
         try {
             wHook()->api()->deleteMessage([
                 'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,

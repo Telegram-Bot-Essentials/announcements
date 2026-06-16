@@ -121,6 +121,10 @@ return [
             'deletingFooterProgress' => '⏳ Deleting sent messages, please wait...',
             'deletingFooterCompleted' => '✨ All target messages have been deleted.',
         ],
+        'errors' => [
+            'alreadySent' => '⚠️ Announcement has already been sent to this user.',
+            'cannotDelete' => '⚠️ Announcement cannot be deleted (either not sent or already deleted).',
+        ],
     ],
     'reply_key' => '📢 Announcements',
 ];
