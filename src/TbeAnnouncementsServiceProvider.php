@@ -12,7 +12,7 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-
+        $this->mergeConfigFrom(__DIR__ . '/../config/tbe-announcements.php', 'tbe-announcements');
     }
 
     /**
@@ -38,6 +38,10 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
     protected function registerPublishing(): void
     {
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/tbe-announcements.php' => config_path('tbe-announcements.php'),
+            ], 'tbe-announcements-config');
+
             $this->publishes([
                 __DIR__ . '/../lang' => resource_path('lang/vendor/tbe-announcements'),
             ], 'tbe-announcements-translations');

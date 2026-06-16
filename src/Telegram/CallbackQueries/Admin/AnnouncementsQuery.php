@@ -221,9 +221,19 @@ class AnnouncementsQuery extends CallbackQuery
             'action_status_message_id' => $statusMessage->messageId,
         ]);
 
-        $announcement->targets()
+        $targetIds = $announcement->targets()
             ->where(fn ($query) => $query->whereNull('status')->orWhere('status', '!=', 'forbidden'))
-            ->each(fn (AnnouncementTarget $target) => SendAnnouncementJob::dispatch(wHook()->exportContext(), $target));
+            ->pluck('id')
+            ->toArray();
+
+        $batchSize = config('tbe-announcements.batch_size', 100);
+        $chunks = array_chunk($targetIds, $batchSize);
+
+        $context = wHook()->exportContext();
+        foreach ($chunks as $chunk) {
+            SendAnnouncementJob::dispatch($context, $chunk);
+        }
+
         $this->answer(__('tbe-announcements::announcements.main.answers.sendingStarted'));
     }
 
@@ -245,9 +255,19 @@ class AnnouncementsQuery extends CallbackQuery
             'action_status_message_id' => $statusMessage->messageId,
         ]);
 
-        $announcement->targets()
+        $targetIds = $announcement->targets()
             ->where('status', 'sent')
-            ->each(fn (AnnouncementTarget $target) => DeleteAnnouncementJob::dispatch(wHook()->exportContext(), $target));
+            ->pluck('id')
+            ->toArray();
+
+        $batchSize = config('tbe-announcements.batch_size', 100);
+        $chunks = array_chunk($targetIds, $batchSize);
+
+        $context = wHook()->exportContext();
+        foreach ($chunks as $chunk) {
+            DeleteAnnouncementJob::dispatch($context, $chunk);
+        }
+
         $this->answer(__('tbe-announcements::announcements.main.answers.deletingStarted'));
     }
 }
