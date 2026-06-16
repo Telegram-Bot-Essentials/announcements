@@ -20,9 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Announcement::class)->constrained()->cascadeOnDelete();
 
             $table->foreignIdFor(BotUser::class)->constrained()->cascadeOnDelete();
-            $table->boolean('is_sent')->default(false);
-            $table->boolean('is_deleted')->default(false);
-            $table->boolean('is_forbidden')->default(false);
+            $table->enum('status', ['sent', 'deleted', 'forbidden'])->nullable();
             $table->bigInteger('message_id')->nullable();
 
             $table->unique(['announcement_id', 'bot_user_id']);

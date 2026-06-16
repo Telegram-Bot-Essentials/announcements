@@ -22,9 +22,7 @@ class AnnouncementTarget extends Model
     ];
 
     protected $casts = [
-        'is_sent' => 'boolean',
-        'is_deleted' => 'boolean',
-        'is_forbidden' => 'boolean',
+        'status' => 'string',
     ];
 
     public static function newFactory(): AnnouncementTargetFactory

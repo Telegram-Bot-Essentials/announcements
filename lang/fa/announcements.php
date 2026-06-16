@@ -21,6 +21,11 @@ return [
             'sendMessagePrompt' => '❓ پیام اعلان رو بفرستید:',
             'enterField' => '❓ مقدار جدید :field رو وارد کنید:',
             'messageRequiredForHtml' => 'برای پیش‌نمایش در حالت HTML باید پیام تنظیم شده باشد.',
+            'sendingAnnouncement' => '📤 <b><i>ارسال اعلان</i></b>'
+                . "\r\n"
+                . "\r\n❔ <b>برچسب:</b> <i>:label</i>"
+                . "\r\n"
+                . "\r\nکاربرهای هدف را مدیریت کنید و وضعیت ارسال/حذف را از لیست پایین کنترل کنید 👇",
         ],
         'answers' => [
             'menuLoaded' => 'اعلان‌ها بارگذاری شد.',
@@ -29,6 +34,9 @@ return [
             'methodChanged' => 'روش به :method تغییر کرد.',
             'created' => '✅ اعلان با موفقیت ساخته شد.',
             'updated' => '✅ اعلان با موفقیت به‌روزرسانی شد.',
+            'targetSent' => '✅ اعلان برای :user ارسال شد.',
+            'targetDeleted' => '🗑 اعلان برای :user حذف شد.',
+            'targetForbidden' => '⛔ عملیات برای :user ناموفق بود (forbidden).',
         ],
         'keys' => [
             'create' => '➕ ساخت اعلان',
@@ -40,6 +48,12 @@ return [
             'changeLabel' => 'تغییر برچسب 🏷',
             'method' => 'روش: :method',
             'setMessage' => 'تنظیم پیام ✉️',
+            'targetStatus' => [
+                'pending' => 'ارسال ➕',
+                'sent' => 'حذف 🗑',
+                'deleted' => 'ارسال مجدد 🔁',
+                'forbidden' => 'تلاش شد (ممنوع) ⛔',
+            ],
         ],
         'fields' => [
             'label' => 'برچسب',

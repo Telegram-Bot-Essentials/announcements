@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
+use Telegram\Bot\Objects\Message;
 use TelegramBotEssentials\Announcements\Database\Factories\AnnouncementFactory;
 use TelegramBotEssentials\Essence\Models\Bot;
 use TelegramBotEssentials\Essence\Models\BotUser;
@@ -45,5 +46,44 @@ class Announcement extends Model
     public function targets(): HasMany
     {
         return $this->hasMany(AnnouncementTarget::class);
+    }
+
+    public function sendTo(int $chatId): Message
+    {
+        switch ($this->method) {
+            case 'copy':
+                dependsOn($this->message_id);
+                dependsOn($this->from_chat_id);
+
+                return wHook()->api()->copyMessage([
+                    'chat_id' => $chatId,
+                    'from_chat_id' => $this->from_chat_id,
+                    'message_id' => $this->message_id,
+                ]);
+                break;
+            case 'forward':
+                dependsOn($this->message_id);
+                dependsOn($this->from_chat_id);
+
+                return wHook()->api()->forwardMessage([
+                    'chat_id' => $chatId,
+                    'from_chat_id' => $this->from_chat_id,
+                    'message_id' => $this->message_id,
+                ]);
+                break;
+            case 'html':
+                dependsOn(
+                    $this->message_text,
+                    __('tbe-announcements::announcements.main.text.messageRequiredForHtml')
+                );
+
+                return wHook()->api()->sendMessage([
+                    'chat_id' => $chatId,
+                    'text' => $this->message_text,
+                    'parse_mode' => 'HTML',
+                    'reply_markup' => wHook()->user()->getKeyboard(),
+                ]);
+                break;
+        }
     }
 }

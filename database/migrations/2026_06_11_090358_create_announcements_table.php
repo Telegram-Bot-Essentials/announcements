@@ -31,6 +31,9 @@ return new class extends Migration
             $table->timestamp('sent_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
 
+            $table->bigInteger('action_status_chat_id')->nullable();
+            $table->bigInteger('action_status_message_id')->nullable();
+
             $table->timestamps();
         });
     }

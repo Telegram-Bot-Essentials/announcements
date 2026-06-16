@@ -149,7 +149,9 @@ class AnnouncementsFeature
      */
     public static function sendingAnnouncement(Announcement $announcement, int $page = 1, int $currentPage = 0): TelegramResponse
     {
-        $text = 'test' . uniqid();
+        $text = __('tbe-announcements::announcements.main.text.sendingAnnouncement', [
+            'label' => $announcement->label,
+        ]);
         $replyMarkup = Keyboard::make()->inline();
 
         $replyMarkup->row([
@@ -161,6 +163,20 @@ class AnnouncementsFeature
                 'text' => 'ReLoad target users',
                 'callback_data' => encodeCallback(self::$type, 'reloadTargetUsers', [$announcement->id, $page])
             ])
+        ]);
+
+        $replyMarkup->row([
+            Keyboard::inlineButton([
+                'text' => 'Start Sending Messages',
+                'callback_data' => encodeCallback(self::$type, 'startSendingMessages', [$announcement->id])
+            ]),
+        ]);
+
+        $replyMarkup->row([
+            Keyboard::inlineButton([
+                'text' => 'Delete Sent Messages',
+                'callback_data' => encodeCallback(self::$type, 'deleteSentMessages', [$announcement->id])
+            ]),
         ]);
 
         $announcementTargets = $announcement->targets()->paginate(perPage: 10, page: $page);
@@ -180,19 +196,16 @@ class AnnouncementsFeature
             ]);
 
             foreach ($announcementTargets as $announcementTarget) {
+                $button = self::targetStatusButtonState($announcementTarget);
                 $replyMarkup->row([
                     Keyboard::inlineButton([
                         'text' => empty($announcementTarget->botUser->telegramUser->full_name) ? '???' : $announcementTarget->botUser->telegramUser->full_name,
                         'callback_data' => encodeCallback(self::$type, 'show', [$announcementTarget->id, $page])
                     ]),
                     Keyboard::inlineButton([
-                        'text' => $announcementTarget->is_sent ? __('tbe::general.status.removeEmoji') : __('tbe::general.status.addEmoji'),
-                        'style' => $announcementTarget->is_sent ? 'danger' : 'success',
-                        'callback_data' => encodeCallback(
-                            self::$type,
-                            $announcementTarget->is_sent ? 'announcementTargetDelete' : 'announcementTargetSend',
-                            [$announcementTarget->id,$page]
-                        )
+                        'text' => $button['text'],
+                        'style' => $button['style'],
+                        'callback_data' => encodeCallback(self::$type, $button['action'], [$announcementTarget->id, $page]),
                     ]),
                 ]);
             }
@@ -213,5 +226,31 @@ class AnnouncementsFeature
             replyMarkup: $replyMarkup,
             parseMode: 'HTML'
         );
+    }
+
+    protected static function targetStatusButtonState(AnnouncementTarget $announcementTarget): array
+    {
+        return match ($announcementTarget->status) {
+            'sent' => [
+                'text' => __('tbe-announcements::announcements.main.keys.targetStatus.sent'),
+                'style' => 'danger',
+                'action' => 'announcementTargetDelete',
+            ],
+            'deleted' => [
+                'text' => __('tbe-announcements::announcements.main.keys.targetStatus.deleted'),
+                'style' => 'success',
+                'action' => 'announcementTargetSend',
+            ],
+            'forbidden' => [
+                'text' => __('tbe-announcements::announcements.main.keys.targetStatus.forbidden'),
+                'style' => 'primary',
+                'action' => 'announcementTargetSend',
+            ],
+            default => [
+                'text' => __('tbe-announcements::announcements.main.keys.targetStatus.pending'),
+                'style' => 'success',
+                'action' => 'announcementTargetSend',
+            ],
+        };
     }
 }

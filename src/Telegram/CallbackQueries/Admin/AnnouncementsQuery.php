@@ -2,6 +2,10 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin;
 
+use SebastianBergmann\CodeCoverage\Test\Target\Target;
+use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
+use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
+use Throwable;
 use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
@@ -55,41 +59,7 @@ class AnnouncementsQuery extends CallbackQuery
 
     function preview(Announcement $announcement): void
     {
-        switch ($announcement->method) {
-            case 'copy':
-                dependsOn($announcement->message_id);
-                dependsOn($announcement->from_chat_id);
-
-                wHook()->api()->copyMessage([
-                    'chat_id' => wHook()->peerId(),
-                    'from_chat_id' => $announcement->from_chat_id,
-                    'message_id' => $announcement->message_id,
-                ]);
-                break;
-            case 'forward':
-                dependsOn($announcement->message_id);
-                dependsOn($announcement->from_chat_id);
-
-                wHook()->api()->forwardMessage([
-                    'chat_id' => wHook()->peerId(),
-                    'from_chat_id' => $announcement->from_chat_id,
-                    'message_id' => $announcement->message_id,
-                ]);
-                break;
-            case 'html':
-                dependsOn(
-                    $announcement->message_text,
-                    __('tbe-announcements::announcements.main.text.messageRequiredForHtml')
-                );
-
-                wHook()->api()->sendMessage([
-                    'chat_id' => wHook()->peerId(),
-                    'text' => $announcement->message_text,
-                    'parse_mode' => 'HTML',
-                    'reply_markup' => wHook()->user()->getKeyboard(),
-                ]);
-                break;
-        }
+        $announcement->sendTo(wHook()->peerId());
 
         $this->answer(__('tbe-announcements::announcements.main.answers.previewSent'));
     }
@@ -179,46 +149,101 @@ class AnnouncementsQuery extends CallbackQuery
 
     function announcementTargetSend(AnnouncementTarget $announcementTarget, int $page)
     {
-        $announcement = $announcementTarget->announcement;
-        switch ($announcement->method) {
-            case 'copy':
-                dependsOn($announcement->message_id);
-                dependsOn($announcement->from_chat_id);
+        try {
+            $message = $announcementTarget->announcement->sendTo($announcementTarget->botUser->telegramUser->peer_id);
+            $announcementTarget->update([
+                'message_id' => $message->messageId,
+                'status' => 'sent',
+            ]);
 
-                wHook()->api()->copyMessage([
-                    'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
-                    'from_chat_id' => $announcement->from_chat_id,
-                    'message_id' => $announcement->message_id,
-                ]);
-                break;
-            case 'forward':
-                dependsOn($announcement->message_id);
-                dependsOn($announcement->from_chat_id);
+            $this->answer(__('tbe-announcements::announcements.main.answers.targetSent', [
+                'user' => $announcementTarget->botUser->telegramUser->full_name,
+            ]));
+        } catch (Throwable) {
+            $announcementTarget->update([
+                'status' => 'forbidden',
+            ]);
 
-                wHook()->api()->forwardMessage([
-                    'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
-                    'from_chat_id' => $announcement->from_chat_id,
-                    'message_id' => $announcement->message_id,
-                ]);
-                break;
-            case 'html':
-                dependsOn(
-                    $announcement->message_text,
-                    __('tbe-announcements::announcements.main.text.messageRequiredForHtml')
-                );
-
-                wHook()->api()->sendMessage([
-                    'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
-                    'text' => $announcement->message_text,
-                    'parse_mode' => 'HTML',
-                    'reply_markup' => wHook()->user()->getKeyboard(),
-                ]);
-                break;
+            $this->answer(__('tbe-announcements::announcements.main.answers.targetForbidden', [
+                'user' => $announcementTarget->botUser->telegramUser->full_name,
+            ]));
         }
+
+        AnnouncementsFeature::sendingAnnouncement($announcementTarget->announcement, $page)->update();
     }
 
+    /**
+     * @throws TelegramSDKException
+     */
     function announcementTargetDelete(AnnouncementTarget $announcementTarget, int $page)
     {
+        try {
+            wHook()->api()->deleteMessage([
+                'chat_id' => $announcementTarget->botUser->telegramUser->peer_id,
+                'message_id' => $announcementTarget->message_id,
+            ]);
+            $announcementTarget->update([
+                'message_id' => null,
+                'status' => 'deleted',
+            ]);
 
+            $this->answer(__('tbe-announcements::announcements.main.answers.targetDeleted', [
+                'user' => $announcementTarget->botUser->telegramUser->full_name,
+            ]));
+        } catch (Throwable) {
+            $announcementTarget->update([
+                'status' => 'forbidden',
+            ]);
+
+            $this->answer(__('tbe-announcements::announcements.main.answers.targetForbidden', [
+                'user' => $announcementTarget->botUser->telegramUser->full_name,
+            ]));
+        }
+
+        AnnouncementsFeature::sendingAnnouncement($announcementTarget->announcement, $page)->update();
+    }
+
+    /**
+     * @throws TelegramSDKException
+     */
+    function startSendingMessages(Announcement $announcement): void
+    {
+        $statusMessage = wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => 'sending 0/'. $announcement->targets()->count(),
+            'parse_mode' => 'HTML',
+        ]);
+
+        $announcement->update([
+            'action_status_chat_id' => $statusMessage->chat->id,
+            'action_status_message_id' => $statusMessage->messageId,
+        ]);
+
+        $announcement->targets()
+            ->where(fn ($query) => $query->whereNull('status')->orWhere('status', '!=', 'forbidden'))
+            ->each(fn (AnnouncementTarget $target) => SendAnnouncementJob::dispatch(wHook()->exportContext(), $target));
+        $this->answer('Announcement sending process started');
+    }
+
+    /**
+     * @throws TelegramSDKException
+     */
+    function deleteSentMessages(Announcement $announcement): void
+    {
+        $statusMessage = wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => 'deleting 0/'. $announcement->targets()->count(),
+            'parse_mode' => 'HTML',
+        ]);
+
+        $announcement->update([
+            'action_status_chat_id' => $statusMessage->chat->id,
+            'action_status_message_id' => $statusMessage->messageId,
+        ]);
+
+        $announcement->targets()
+            ->where('status', 'sent')
+            ->each(fn (AnnouncementTarget $target) => DeleteAnnouncementJob::dispatch(wHook()->exportContext(), $target));
+        $this->answer('Announcement deleting process started');
     }
 }
