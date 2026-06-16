@@ -2,6 +2,7 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\StateAnswers\Admin;
 
+use Illuminate\Support\Str;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Enums\AllowableFields;
@@ -28,9 +29,7 @@ class AnnouncementsAnswer extends StateAnswer
             'from_chat_id' => wHook()->update()->message->from->id,
             'message_id' => wHook()->update()->message->messageId,
             'message_text' => wHook()->update()->message->text,
-            'label' => strlen(wHook()->update()->message->text) > 8
-                ? substr(wHook()->update()->message->text, 0, 8) . '...'
-                : wHook()->update()->message->text
+            'label' => Str::limit(wHook()->update()->message->text, 8)
         ])->refresh();
 
         wHook()->user()->changeState();

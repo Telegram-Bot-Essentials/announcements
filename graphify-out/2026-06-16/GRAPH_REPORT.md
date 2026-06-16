@@ -1,18 +1,12 @@
-# Graph Report - tbe-announcements  (2026-06-16)
+# Graph Report - .  (2026-06-16)
 
 ## Corpus Check
-- 28 files · ~5,336 words
-- Verdict: corpus is large enough that graph structure adds value.
+- Corpus is ~3,904 words - fits in a single context window. You may not need a graph.
 
 ## Summary
-- 204 nodes · 317 edges · 22 communities (21 shown, 1 thin omitted)
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 24 edges (avg confidence: 0.83)
+- 183 nodes · 290 edges · 20 communities (19 shown, 1 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 20 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
-
-## Graph Freshness
-- Built from commit: `c3cc00f0`
-- Run `git rev-parse HEAD` and compare to check if the graph is stale.
-- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Composer Package Configuration|Composer Package Configuration]]
@@ -26,21 +20,22 @@
 - [[_COMMUNITY_Telegram Admin Answer Handler|Telegram Admin Answer Handler]]
 - [[_COMMUNITY_Telegram Admin Reply Key|Telegram Admin Reply Key]]
 - [[_COMMUNITY_Workbench Routing and Bootstrap|Workbench Routing and Bootstrap]]
-- [[_COMMUNITY_Community 20|Community 20]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `AnnouncementsFeature` - 29 edges
-2. `AnnouncementsQuery` - 22 edges
+1. `AnnouncementsQuery` - 22 edges
+2. `AnnouncementsFeature` - 22 edges
 3. `Announcement` - 18 edges
 4. `AnnouncementTarget` - 16 edges
 5. `TbeAnnouncementsServiceProvider` - 12 edges
 6. `AnnouncementFactory` - 11 edges
 7. `AnnouncementTargetFactory` - 11 edges
-8. `DeleteAnnouncementJob` - 11 edges
-9. `SendAnnouncementJob` - 11 edges
+8. `DeleteAnnouncementJob` - 10 edges
+9. `SendAnnouncementJob` - 10 edges
 10. `Announcement` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Canvas Config` --references--> `User`  [EXTRACTED]
+  canvas.yaml → workbench/app/Models/User.php
 - `WorkbenchServiceProvider` --references--> `Canvas Config`  [INFERRED]
   workbench/app/Providers/WorkbenchServiceProvider.php → canvas.yaml
 - `Testbench Config` --references--> `DatabaseSeeder`  [EXTRACTED]
@@ -49,8 +44,6 @@
   database/migrations/2026_06_11_090358_create_announcements_table.php → src/Models/Announcement.php
 - `Create Announcement Targets Table Migration` --rationale_for--> `AnnouncementTarget`  [INFERRED]
   database/migrations/2026_06_12_161419_create_announcement_targets_table.php → src/Models/AnnouncementTarget.php
-- `Canvas Config` --references--> `User`  [EXTRACTED]
-  canvas.yaml → workbench/app/Models/User.php
 
 ## Import Cycles
 - None detected.
@@ -62,54 +55,50 @@
 - **Admin Announcements Interaction Flow** — admin_announcementskey_announcementskey, admin_announcementsfeature_announcementsfeature, admin_announcementsquery_announcementsquery, admin_announcementsanswer_announcementsanswer [INFERRED 0.95]
 - **Workbench Testing Environment** — providers_workbenchserviceprovider_workbenchserviceprovider, seeders_databaseseeder_databaseseeder, factories_userfactory_userfactory, models_user_user, testbench_config, canvas_config [INFERRED 0.85]
 
-## Communities (22 total, 1 thin omitted)
+## Communities (20 total, 1 thin omitted)
 
 ### Community 0 - "Composer Package Configuration"
 Cohesion: 0.06
 Nodes (32): authors, autoload, classmap, autoload-dev, psr-4, files, psr-4, description (+24 more)
 
 ### Community 1 - "Telegram Admin UI and Features"
-Cohesion: 0.13
+Cohesion: 0.15
 Nodes (8): AnnouncementsFeature, AnnouncementsQuery, CallbackQuery, Announcement, AnnouncementTarget, Announcement, AnnouncementTarget, TelegramResponse
 
 ### Community 2 - "Announcements Models and Factories"
-Cohesion: 0.17
-Nodes (11): AnnouncementFactory, AnnouncementTargetFactory, BelongsToTenant, HasFactory, HasMany, Message, Model, Announcement (+3 more)
+Cohesion: 0.13
+Nodes (14): AnnouncementFactory, AnnouncementTargetFactory, Authenticatable, BelongsToTenant, HasFactory, HasMany, Message, Model (+6 more)
 
 ### Community 3 - "Service Provider, Jobs, and Translations"
-Cohesion: 0.17
-Nodes (10): AnnouncementsAnswer, Canvas Working Path Bootstrapper, Composer Package Configuration, English Announcement Translations, Persian Announcement Translations, Create Announcements Table Migration, Create Announcement Targets Table Migration, TbeAnnouncementsServiceProvider (+2 more)
+Cohesion: 0.15
+Nodes (11): Canvas Working Path Bootstrapper, Composer Package Configuration, English Announcement Translations, Persian Announcement Translations, DeleteAnnouncementJob, SendAnnouncementJob, Create Announcements Table Migration, Create Announcement Targets Table Migration (+3 more)
 
 ### Community 4 - "Database Seeders and User Factory"
-Cohesion: 0.35
-Nodes (6): Bot, BotUser, Seeder, AnnouncementSeeder, DatabaseSeeder, WithoutModelEvents
+Cohesion: 0.19
+Nodes (9): Bot, BotUser, UserFactory, Factory, Seeder, AnnouncementSeeder, DatabaseSeeder, WithoutModelEvents (+1 more)
 
 ### Community 5 - "Announcement Factory Configuration"
 Cohesion: 0.29
 Nodes (4): Bot, BotUser, static, AnnouncementFactory
 
 ### Community 6 - "Announcement Target Factory States"
-Cohesion: 0.18
-Nodes (6): BotUser, static, AnnouncementTargetFactory, UserFactory, Factory, static
+Cohesion: 0.31
+Nodes (3): BotUser, static, AnnouncementTargetFactory
 
 ### Community 7 - "Workbench Testbench Setup"
-Cohesion: 0.19
-Nodes (7): Authenticatable, Canvas Config, User, Notifiable, WorkbenchServiceProvider, ServiceProvider, Testbench Config
+Cohesion: 0.32
+Nodes (4): Canvas Config, WorkbenchServiceProvider, ServiceProvider, Testbench Config
 
 ### Community 8 - "Telegram Admin Answer Handler"
-Cohesion: 0.22
-Nodes (6): DeleteAnnouncementJob, SendAnnouncementJob, Queueable, ShouldQueue, Announcement, Announcement
+Cohesion: 0.48
+Nodes (3): AnnouncementsAnswer, Announcement, StateAnswer
 
 ### Community 10 - "Workbench Routing and Bootstrap"
 Cohesion: 0.67
 Nodes (3): Workbench Bootstrap, Console Routes, Web Routes
 
-### Community 20 - "Community 20"
-Cohesion: 0.15
-Nodes (12): 1. Menu & Announcement Details, 2. Previews, 3. Broadcasting, 4. Message Retraction (Deletion), Admin Interfaces, Configuration, Features, Installation (+4 more)
-
 ## Knowledge Gaps
-- **35 isolated node(s):** `name`, `description`, `type`, `php`, `laravel/framework` (+30 more)
+- **26 isolated node(s):** `name`, `description`, `type`, `php`, `laravel/framework` (+21 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -117,16 +106,16 @@ Nodes (12): 1. Menu & Announcement Details, 2. Previews, 3. Broadcasting, 4. Mes
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Announcement` connect `Announcements Models and Factories` to `Telegram Admin UI and Features`, `Service Provider, Jobs, and Translations`, `Database Seeders and User Factory`, `Announcement Factory Configuration`, `Telegram Admin Answer Handler`?**
-  _High betweenness centrality (0.158) - this node is a cross-community bridge._
-- **Why does `AnnouncementsFeature` connect `Telegram Admin UI and Features` to `Telegram Admin Answer Handler`, `Telegram Admin Reply Key`, `Announcements Models and Factories`, `Service Provider, Jobs, and Translations`?**
-  _High betweenness centrality (0.150) - this node is a cross-community bridge._
-- **Why does `AnnouncementTarget` connect `Announcements Models and Factories` to `Telegram Admin UI and Features`, `Service Provider, Jobs, and Translations`, `Database Seeders and User Factory`, `Announcement Target Factory States`, `Telegram Admin Answer Handler`?**
-  _High betweenness centrality (0.128) - this node is a cross-community bridge._
-- **Are the 15 inferred relationships involving `AnnouncementsFeature` (e.g. with `.change()` and `.createAnnouncement()`) actually correct?**
-  _`AnnouncementsFeature` has 15 INFERRED edges - model-reasoned connections that need verification._
+  _High betweenness centrality (0.182) - this node is a cross-community bridge._
+- **Why does `AnnouncementTarget` connect `Announcements Models and Factories` to `Telegram Admin UI and Features`, `Service Provider, Jobs, and Translations`, `Database Seeders and User Factory`, `Announcement Target Factory States`?**
+  _High betweenness centrality (0.147) - this node is a cross-community bridge._
+- **Why does `AnnouncementsFeature` connect `Telegram Admin UI and Features` to `Telegram Admin Answer Handler`, `Telegram Admin Reply Key`, `Announcements Models and Factories`?**
+  _High betweenness centrality (0.140) - this node is a cross-community bridge._
+- **Are the 11 inferred relationships involving `AnnouncementsFeature` (e.g. with `.change()` and `.createAnnouncement()`) actually correct?**
+  _`AnnouncementsFeature` has 11 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `description`, `type` to the rest of the system?**
-  _35 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _26 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Composer Package Configuration` be split into smaller, more focused modules?**
   _Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected._
 - **Should `Telegram Admin UI and Features` be split into smaller, more focused modules?**
-  _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1455026455026455 - nodes in this community are weakly interconnected._

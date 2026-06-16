@@ -417,16 +417,6 @@
       "norm_label": "serve"
     },
     {
-      "label": "tbe-announcements.php",
-      "file_type": "code",
-      "source_file": "config/tbe-announcements.php",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "config_tbe_announcements",
-      "community": 21,
-      "norm_label": "tbe-announcements.php"
-    },
-    {
       "label": "AnnouncementFactory.php",
       "file_type": "code",
       "source_file": "database/factories/AnnouncementFactory.php",
@@ -453,7 +443,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "factory",
-      "community": 6,
+      "community": 4,
       "norm_label": "factory"
     },
     {
@@ -813,17 +803,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "jobs_deleteannouncementjob",
-      "community": 8,
+      "community": 3,
       "norm_label": "deleteannouncementjob.php"
     },
     {
       "label": "DeleteAnnouncementJob",
       "file_type": "code",
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L12",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "jobs_deleteannouncementjob_deleteannouncementjob",
-      "community": 8,
+      "community": 3,
       "norm_label": "deleteannouncementjob"
     },
     {
@@ -833,7 +823,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "shouldqueue",
-      "community": 8,
+      "community": 3,
       "norm_label": "shouldqueue"
     },
     {
@@ -843,48 +833,28 @@
       "source_location": "",
       "_origin": "ast",
       "id": "queueable",
-      "community": 8,
+      "community": 3,
       "norm_label": "queueable"
     },
     {
       "label": ".__construct()",
       "file_type": "code",
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L22",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "jobs_deleteannouncementjob_deleteannouncementjob_construct",
-      "community": 8,
+      "community": 3,
       "norm_label": ".__construct()"
     },
     {
       "label": ".handle()",
       "file_type": "code",
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L32",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "jobs_deleteannouncementjob_deleteannouncementjob_handle",
-      "community": 8,
+      "community": 3,
       "norm_label": ".handle()"
-    },
-    {
-      "label": ".updateProgress()",
-      "file_type": "code",
-      "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "jobs_deleteannouncementjob_deleteannouncementjob_updateprogress",
-      "community": 8,
-      "norm_label": ".updateprogress()"
-    },
-    {
-      "label": "Announcement",
-      "file_type": "code",
-      "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "src_jobs_deleteannouncementjob_php_announcement",
-      "community": 8,
-      "norm_label": "announcement"
     },
     {
       "label": "SendAnnouncementJob.php",
@@ -893,58 +863,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "jobs_sendannouncementjob",
-      "community": 8,
+      "community": 3,
       "norm_label": "sendannouncementjob.php"
     },
     {
       "label": "SendAnnouncementJob",
       "file_type": "code",
       "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L12",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "jobs_sendannouncementjob_sendannouncementjob",
-      "community": 8,
+      "community": 3,
       "norm_label": "sendannouncementjob"
     },
     {
       "label": ".__construct()",
       "file_type": "code",
       "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L22",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "jobs_sendannouncementjob_sendannouncementjob_construct",
-      "community": 8,
+      "community": 3,
       "norm_label": ".__construct()"
     },
     {
       "label": ".handle()",
       "file_type": "code",
       "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L32",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "jobs_sendannouncementjob_sendannouncementjob_handle",
-      "community": 8,
+      "community": 3,
       "norm_label": ".handle()"
-    },
-    {
-      "label": ".updateProgress()",
-      "file_type": "code",
-      "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "jobs_sendannouncementjob_sendannouncementjob_updateprogress",
-      "community": 8,
-      "norm_label": ".updateprogress()"
-    },
-    {
-      "label": "Announcement",
-      "file_type": "code",
-      "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "src_jobs_sendannouncementjob_php_announcement",
-      "community": 8,
-      "norm_label": "announcement"
     },
     {
       "label": "Announcement.php",
@@ -1380,7 +1330,7 @@
       "label": ".announcementTargetDelete()",
       "file_type": "code",
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
-      "source_location": "L183",
+      "source_location": "L178",
       "_origin": "ast",
       "id": "admin_announcementsquery_announcementsquery_announcementtargetdelete",
       "community": 1,
@@ -1390,7 +1340,7 @@
       "label": ".startSendingMessages()",
       "file_type": "code",
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
-      "source_location": "L219",
+      "source_location": "L209",
       "_origin": "ast",
       "id": "admin_announcementsquery_announcementsquery_startsendingmessages",
       "community": 1,
@@ -1400,7 +1350,7 @@
       "label": ".deleteSentMessages()",
       "file_type": "code",
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
-      "source_location": "L251",
+      "source_location": "L233",
       "_origin": "ast",
       "id": "admin_announcementsquery_announcementsquery_deletesentmessages",
       "community": 1,
@@ -1470,7 +1420,7 @@
       "label": ".methodLabel()",
       "file_type": "code",
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L153",
+      "source_location": "L142",
       "_origin": "ast",
       "id": "admin_announcementsfeature_announcementsfeature_methodlabel",
       "community": 1,
@@ -1480,7 +1430,7 @@
       "label": ".sendingAnnouncement()",
       "file_type": "code",
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L161",
+      "source_location": "L150",
       "_origin": "ast",
       "id": "admin_announcementsfeature_announcementsfeature_sendingannouncement",
       "community": 1,
@@ -1490,7 +1440,7 @@
       "label": ".targetStatusButtonState()",
       "file_type": "code",
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L242",
+      "source_location": "L231",
       "_origin": "ast",
       "id": "admin_announcementsfeature_announcementsfeature_targetstatusbuttonstate",
       "community": 1,
@@ -1500,41 +1450,11 @@
       "label": "AnnouncementTarget",
       "file_type": "code",
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L242",
+      "source_location": "L231",
       "_origin": "ast",
       "id": "src_telegram_features_admin_announcementsfeature_php_announcementtarget",
       "community": 1,
       "norm_label": "announcementtarget"
-    },
-    {
-      "label": ".makeProgressBar()",
-      "file_type": "code",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L268",
-      "_origin": "ast",
-      "id": "admin_announcementsfeature_announcementsfeature_makeprogressbar",
-      "community": 1,
-      "norm_label": ".makeprogressbar()"
-    },
-    {
-      "label": ".getSendingProgressText()",
-      "file_type": "code",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L276",
-      "_origin": "ast",
-      "id": "admin_announcementsfeature_announcementsfeature_getsendingprogresstext",
-      "community": 1,
-      "norm_label": ".getsendingprogresstext()"
-    },
-    {
-      "label": ".getDeletingProgressText()",
-      "file_type": "code",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L305",
-      "_origin": "ast",
-      "id": "admin_announcementsfeature_announcementsfeature_getdeletingprogresstext",
-      "community": 1,
-      "norm_label": ".getdeletingprogresstext()"
     },
     {
       "label": "AnnouncementsKey.php",
@@ -1593,17 +1513,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_announcementsanswer",
-      "community": 3,
+      "community": 8,
       "norm_label": "announcementsanswer.php"
     },
     {
       "label": "AnnouncementsAnswer",
       "file_type": "code",
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
-      "source_location": "L12",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "admin_announcementsanswer_announcementsanswer",
-      "community": 3,
+      "community": 8,
       "norm_label": "announcementsanswer"
     },
     {
@@ -1613,47 +1533,47 @@
       "source_location": "",
       "_origin": "ast",
       "id": "stateanswer",
-      "community": 3,
+      "community": 8,
       "norm_label": "stateanswer"
     },
     {
       "label": ".createAnnouncement()",
       "file_type": "code",
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
-      "source_location": "L25",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "admin_announcementsanswer_announcementsanswer_createannouncement",
-      "community": 3,
+      "community": 8,
       "norm_label": ".createannouncement()"
     },
     {
       "label": ".change()",
       "file_type": "code",
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "admin_announcementsanswer_announcementsanswer_change",
-      "community": 3,
+      "community": 8,
       "norm_label": ".change()"
     },
     {
       "label": "Announcement",
       "file_type": "code",
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement",
-      "community": 3,
+      "community": 8,
       "norm_label": "announcement"
     },
     {
       "label": ".setMessage()",
       "file_type": "code",
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
-      "source_location": "L66",
+      "source_location": "L67",
       "_origin": "ast",
       "id": "admin_announcementsanswer_announcementsanswer_setmessage",
-      "community": 3,
+      "community": 8,
       "norm_label": ".setmessage()"
     },
     {
@@ -1673,7 +1593,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_user",
-      "community": 7,
+      "community": 2,
       "norm_label": "user.php"
     },
     {
@@ -1683,7 +1603,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "models_user_user",
-      "community": 7,
+      "community": 2,
       "norm_label": "user"
     },
     {
@@ -1693,7 +1613,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "authenticatable",
-      "community": 7,
+      "community": 2,
       "norm_label": "authenticatable"
     },
     {
@@ -1703,7 +1623,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "notifiable",
-      "community": 7,
+      "community": 2,
       "norm_label": "notifiable"
     },
     {
@@ -1713,7 +1633,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "models_user_user_casts",
-      "community": 7,
+      "community": 2,
       "norm_label": ".casts()"
     },
     {
@@ -1773,7 +1693,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "factories_userfactory",
-      "community": 6,
+      "community": 4,
       "norm_label": "userfactory.php"
     },
     {
@@ -1783,7 +1703,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "factories_userfactory_userfactory",
-      "community": 6,
+      "community": 4,
       "norm_label": "userfactory"
     },
     {
@@ -1793,7 +1713,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "factories_userfactory_userfactory_definition",
-      "community": 6,
+      "community": 4,
       "norm_label": ".definition()"
     },
     {
@@ -1803,7 +1723,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "factories_userfactory_userfactory_unverified",
-      "community": 6,
+      "community": 4,
       "norm_label": ".unverified()"
     },
     {
@@ -1813,7 +1733,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "workbench_database_factories_userfactory_php_static",
-      "community": 6,
+      "community": 4,
       "norm_label": "static"
     },
     {
@@ -1853,7 +1773,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "seeders_databaseseeder_databaseseeder_run",
-      "community": 6,
+      "community": 4,
       "norm_label": ".run()"
     },
     {
@@ -1877,136 +1797,6 @@
       "norm_label": "web.php"
     },
     {
-      "label": "README.md",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "readme",
-      "community": 20,
-      "norm_label": "readme.md"
-    },
-    {
-      "label": "Telegram Bot Essentials - Announcements",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "readme_telegram_bot_essentials_announcements",
-      "community": 20,
-      "norm_label": "telegram bot essentials - announcements"
-    },
-    {
-      "label": "Features",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L10",
-      "_origin": "ast",
-      "id": "readme_features",
-      "community": 20,
-      "norm_label": "features"
-    },
-    {
-      "label": "Installation",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "readme_installation",
-      "community": 20,
-      "norm_label": "installation"
-    },
-    {
-      "label": "Configuration",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L38",
-      "_origin": "ast",
-      "id": "readme_configuration",
-      "community": 20,
-      "norm_label": "configuration"
-    },
-    {
-      "label": "Usage",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L70",
-      "_origin": "ast",
-      "id": "readme_usage",
-      "community": 20,
-      "norm_label": "usage"
-    },
-    {
-      "label": "Admin Interfaces",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L76",
-      "_origin": "ast",
-      "id": "readme_admin_interfaces",
-      "community": 20,
-      "norm_label": "admin interfaces"
-    },
-    {
-      "label": "1. Menu & Announcement Details",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "readme_1_menu_announcement_details",
-      "community": 20,
-      "norm_label": "1. menu & announcement details"
-    },
-    {
-      "label": "2. Previews",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L84",
-      "_origin": "ast",
-      "id": "readme_2_previews",
-      "community": 20,
-      "norm_label": "2. previews"
-    },
-    {
-      "label": "3. Broadcasting",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L87",
-      "_origin": "ast",
-      "id": "readme_3_broadcasting",
-      "community": 20,
-      "norm_label": "3. broadcasting"
-    },
-    {
-      "label": "4. Message Retraction (Deletion)",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L90",
-      "_origin": "ast",
-      "id": "readme_4_message_retraction_deletion",
-      "community": 20,
-      "norm_label": "4. message retraction (deletion)"
-    },
-    {
-      "label": "Translation & Localization",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L95",
-      "_origin": "ast",
-      "id": "readme_translation_localization",
-      "community": 20,
-      "norm_label": "translation & localization"
-    },
-    {
-      "label": "License",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L105",
-      "_origin": "ast",
-      "id": "readme_license",
-      "community": 20,
-      "norm_label": "license"
-    },
-    {
       "label": "Canvas Working Path Bootstrapper",
       "file_type": "code",
       "source_file": "bootstrap/canvas.php",
@@ -2015,9 +1805,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "bootstrap_canvas_working_path",
       "community": 3,
-      "norm_label": "canvas working path bootstrapper",
-      "id": "bootstrap_canvas_working_path"
+      "norm_label": "canvas working path bootstrapper"
     },
     {
       "label": "Composer Package Configuration",
@@ -2028,9 +1818,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "composer_package",
       "community": 3,
-      "norm_label": "composer package configuration",
-      "id": "composer_package"
+      "norm_label": "composer package configuration"
     },
     {
       "label": "Create Announcements Table Migration",
@@ -2041,9 +1831,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "migrations_2026_06_11_090358_create_announcements_table_announcements_table",
       "community": 3,
-      "norm_label": "create announcements table migration",
-      "id": "migrations_2026_06_11_090358_create_announcements_table_announcements_table"
+      "norm_label": "create announcements table migration"
     },
     {
       "label": "Create Announcement Targets Table Migration",
@@ -2054,9 +1844,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "migrations_2026_06_12_161419_create_announcement_targets_table_announcement_targets_table",
       "community": 3,
-      "norm_label": "create announcement targets table migration",
-      "id": "migrations_2026_06_12_161419_create_announcement_targets_table_announcement_targets_table"
+      "norm_label": "create announcement targets table migration"
     },
     {
       "label": "English Announcement Translations",
@@ -2067,9 +1857,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "en_announcements_translations",
       "community": 3,
-      "norm_label": "english announcement translations",
-      "id": "en_announcements_translations"
+      "norm_label": "english announcement translations"
     },
     {
       "label": "Persian Announcement Translations",
@@ -2080,9 +1870,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "fa_announcements_translations",
       "community": 3,
-      "norm_label": "persian announcement translations",
-      "id": "fa_announcements_translations"
+      "norm_label": "persian announcement translations"
     },
     {
       "label": "Workbench Bootstrap",
@@ -2093,9 +1883,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "bootstrap_app_bootstrap",
       "community": 10,
-      "norm_label": "workbench bootstrap",
-      "id": "bootstrap_app_bootstrap"
+      "norm_label": "workbench bootstrap"
     },
     {
       "label": "Console Routes",
@@ -2106,9 +1896,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "routes_console_routes",
       "community": 10,
-      "norm_label": "console routes",
-      "id": "routes_console_routes"
+      "norm_label": "console routes"
     },
     {
       "label": "Web Routes",
@@ -2119,9 +1909,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "routes_web_routes",
       "community": 10,
-      "norm_label": "web routes",
-      "id": "routes_web_routes"
+      "norm_label": "web routes"
     },
     {
       "label": "Canvas Config",
@@ -2132,9 +1922,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "canvas_config",
       "community": 7,
-      "norm_label": "canvas config",
-      "id": "canvas_config"
+      "norm_label": "canvas config"
     },
     {
       "label": "Testbench Config",
@@ -2145,9 +1935,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
+      "id": "testbench_config",
       "community": 7,
-      "norm_label": "testbench config",
-      "id": "testbench_config"
+      "norm_label": "testbench config"
     }
   ],
   "links": [
@@ -2157,9 +1947,9 @@
       "source_file": "composer.json",
       "source_location": "L24",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_authors"
+      "target": "composer_authors",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2167,9 +1957,9 @@
       "source_file": "composer.json",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_autoload"
+      "target": "composer_autoload",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2177,9 +1967,9 @@
       "source_file": "composer.json",
       "source_location": "L47",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_autoload_dev"
+      "target": "composer_autoload_dev",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2187,9 +1977,9 @@
       "source_file": "composer.json",
       "source_location": "L3",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_description"
+      "target": "composer_description",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2197,9 +1987,9 @@
       "source_file": "composer.json",
       "source_location": "L37",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_extra"
+      "target": "composer_extra",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2207,9 +1997,9 @@
       "source_file": "composer.json",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_license"
+      "target": "composer_license",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2217,9 +2007,9 @@
       "source_file": "composer.json",
       "source_location": "L30",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_minimum_stability"
+      "target": "composer_minimum_stability",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2227,9 +2017,9 @@
       "source_file": "composer.json",
       "source_location": "L2",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_name"
+      "target": "composer_name",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2237,9 +2027,9 @@
       "source_file": "composer.json",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_repositories"
+      "target": "composer_repositories",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2247,9 +2037,9 @@
       "source_file": "composer.json",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_require"
+      "target": "composer_require",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2257,9 +2047,9 @@
       "source_file": "composer.json",
       "source_location": "L44",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_require_dev"
+      "target": "composer_require_dev",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2267,9 +2057,9 @@
       "source_file": "composer.json",
       "source_location": "L54",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_scripts"
+      "target": "composer_scripts",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2277,9 +2067,9 @@
       "source_file": "composer.json",
       "source_location": "L4",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer",
-      "target": "composer_type"
+      "target": "composer_type",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2287,9 +2077,9 @@
       "source_file": "composer.json",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_require",
-      "target": "composer_require_laravel_framework"
+      "target": "composer_require_laravel_framework",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2297,9 +2087,9 @@
       "source_file": "composer.json",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_require",
-      "target": "composer_require_php"
+      "target": "composer_require_php",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2307,9 +2097,9 @@
       "source_file": "composer.json",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_require",
-      "target": "composer_require_telegram_bot_essentials_essence"
+      "target": "composer_require_telegram_bot_essentials_essence",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2317,9 +2107,9 @@
       "source_file": "composer.json",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload",
-      "target": "composer_autoload_classmap"
+      "target": "composer_autoload_classmap",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2327,9 +2117,9 @@
       "source_file": "composer.json",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload",
-      "target": "composer_autoload_files"
+      "target": "composer_autoload_files",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2337,9 +2127,9 @@
       "source_file": "composer.json",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload",
-      "target": "composer_autoload_psr_4"
+      "target": "composer_autoload_psr_4",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2347,9 +2137,9 @@
       "source_file": "composer.json",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload_psr_4",
-      "target": "composer_psr_4_telegrambotessentials_announcements"
+      "target": "composer_psr_4_telegrambotessentials_announcements",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2357,9 +2147,9 @@
       "source_file": "composer.json",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_extra",
-      "target": "composer_extra_laravel"
+      "target": "composer_extra_laravel",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2367,9 +2157,9 @@
       "source_file": "composer.json",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_extra_laravel",
-      "target": "composer_laravel_providers"
+      "target": "composer_laravel_providers",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2377,9 +2167,9 @@
       "source_file": "composer.json",
       "source_location": "L45",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_require_dev",
-      "target": "composer_require_dev_orchestra_testbench"
+      "target": "composer_require_dev_orchestra_testbench",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2387,9 +2177,9 @@
       "source_file": "composer.json",
       "source_location": "L48",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload_dev",
-      "target": "composer_autoload_dev_psr_4"
+      "target": "composer_autoload_dev_psr_4",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2397,9 +2187,9 @@
       "source_file": "composer.json",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload_dev_psr_4",
-      "target": "composer_psr_4_workbench_app"
+      "target": "composer_psr_4_workbench_app",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2407,9 +2197,9 @@
       "source_file": "composer.json",
       "source_location": "L50",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload_dev_psr_4",
-      "target": "composer_psr_4_workbench_database_factories"
+      "target": "composer_psr_4_workbench_database_factories",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2417,9 +2207,9 @@
       "source_file": "composer.json",
       "source_location": "L51",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_autoload_dev_psr_4",
-      "target": "composer_psr_4_workbench_database_seeders"
+      "target": "composer_psr_4_workbench_database_seeders",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2427,9 +2217,9 @@
       "source_file": "composer.json",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_scripts",
-      "target": "composer_scripts_build"
+      "target": "composer_scripts_build",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2437,9 +2227,9 @@
       "source_file": "composer.json",
       "source_location": "L59",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_scripts",
-      "target": "composer_scripts_clear"
+      "target": "composer_scripts_clear",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2447,9 +2237,9 @@
       "source_file": "composer.json",
       "source_location": "L55",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_scripts",
-      "target": "composer_scripts_post_autoload_dump"
+      "target": "composer_scripts_post_autoload_dump",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2457,9 +2247,9 @@
       "source_file": "composer.json",
       "source_location": "L60",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_scripts",
-      "target": "composer_scripts_prepare"
+      "target": "composer_scripts_prepare",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2467,9 +2257,9 @@
       "source_file": "composer.json",
       "source_location": "L65",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "composer_scripts",
-      "target": "composer_scripts_serve"
+      "target": "composer_scripts_serve",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2478,9 +2268,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory",
-      "target": "database_factories_announcementfactory_php_bot"
+      "target": "database_factories_announcementfactory_php_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2489,9 +2279,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory",
-      "target": "database_factories_announcementfactory_php_botuser"
+      "target": "database_factories_announcementfactory_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2499,9 +2289,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory"
+      "target": "factories_announcementfactory_announcementfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2510,9 +2300,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory",
-      "target": "factory"
+      "target": "factory",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2520,9 +2310,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory_configure"
+      "target": "factories_announcementfactory_announcementfactory_configure",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2530,9 +2320,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory_createbot"
+      "target": "factories_announcementfactory_announcementfactory_createbot",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2540,9 +2330,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L80",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory_createbotuser"
+      "target": "factories_announcementfactory_announcementfactory_createbotuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2550,9 +2340,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L40",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory_definition"
+      "target": "factories_announcementfactory_announcementfactory_definition",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2560,9 +2350,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory_deleted"
+      "target": "factories_announcementfactory_announcementfactory_deleted",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2570,9 +2360,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L56",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factories_announcementfactory_announcementfactory_hastargets"
+      "target": "factories_announcementfactory_announcementfactory_hastargets",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2590,9 +2380,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory",
-      "target": "factory"
+      "target": "factory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2621,9 +2411,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory",
-      "target": "factory"
+      "target": "factory",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -2631,9 +2421,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factory"
+      "target": "factory",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2642,9 +2432,9 @@
       "source_file": "workbench/database/factories/UserFactory.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_userfactory",
-      "target": "factory"
+      "target": "factory",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -2652,9 +2442,9 @@
       "source_file": "workbench/database/factories/UserFactory.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_userfactory_userfactory",
-      "target": "factory"
+      "target": "factory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2663,9 +2453,9 @@
       "source_location": "L20",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_configure",
-      "target": "database_factories_announcementfactory_php_static"
+      "target": "database_factories_announcementfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2674,9 +2464,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L28",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_configure",
-      "target": "factories_announcementfactory_announcementfactory_createbot"
+      "target": "factories_announcementfactory_announcementfactory_createbot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2685,9 +2475,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_configure",
-      "target": "factories_announcementfactory_announcementfactory_createbotuser"
+      "target": "factories_announcementfactory_announcementfactory_createbotuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2696,9 +2486,9 @@
       "source_location": "L49",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_deleted",
-      "target": "database_factories_announcementfactory_php_static"
+      "target": "database_factories_announcementfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2707,9 +2497,9 @@
       "source_location": "L56",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_hastargets",
-      "target": "database_factories_announcementfactory_php_static"
+      "target": "database_factories_announcementfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2718,9 +2508,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_createbot",
-      "target": "database_factories_announcementfactory_php_bot"
+      "target": "database_factories_announcementfactory_php_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2729,9 +2519,9 @@
       "source_file": "database/factories/AnnouncementFactory.php",
       "source_location": "L80",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementfactory_announcementfactory_createbotuser",
-      "target": "database_factories_announcementfactory_php_botuser"
+      "target": "database_factories_announcementfactory_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2740,9 +2530,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory",
-      "target": "database_factories_announcementtargetfactory_php_botuser"
+      "target": "database_factories_announcementtargetfactory_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2750,9 +2540,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2760,9 +2550,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_configure"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_configure",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2770,9 +2560,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L73",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_createbotuser"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_createbotuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2780,9 +2570,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_definition"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_definition",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2790,9 +2580,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L57",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_deleted"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_deleted",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2800,9 +2590,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L64",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_forbidden"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_forbidden",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -2810,9 +2600,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_sent"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_sent",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2841,9 +2631,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory_configure",
-      "target": "database_factories_announcementtargetfactory_php_static"
+      "target": "database_factories_announcementtargetfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -2852,9 +2642,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory_configure",
-      "target": "factories_announcementtargetfactory_announcementtargetfactory_createbotuser"
+      "target": "factories_announcementtargetfactory_announcementtargetfactory_createbotuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2863,9 +2653,9 @@
       "source_location": "L57",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory_deleted",
-      "target": "database_factories_announcementtargetfactory_php_static"
+      "target": "database_factories_announcementtargetfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2874,9 +2664,9 @@
       "source_location": "L64",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory_forbidden",
-      "target": "database_factories_announcementtargetfactory_php_static"
+      "target": "database_factories_announcementtargetfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2885,9 +2675,9 @@
       "source_location": "L49",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory_sent",
-      "target": "database_factories_announcementtargetfactory_php_static"
+      "target": "database_factories_announcementtargetfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -2896,9 +2686,9 @@
       "source_file": "database/factories/AnnouncementTargetFactory.php",
       "source_location": "L73",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_announcementtargetfactory_announcementtargetfactory_createbotuser",
-      "target": "database_factories_announcementtargetfactory_php_botuser"
+      "target": "database_factories_announcementtargetfactory_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2906,9 +2696,9 @@
       "source_file": "database/migrations/2026_06_11_090358_create_announcements_table.php",
       "source_location": "L44",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "migrations_2026_06_11_090358_create_announcements_table",
-      "target": "migrations_2026_06_11_090358_create_announcements_table_down"
+      "target": "migrations_2026_06_11_090358_create_announcements_table_down",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2916,9 +2706,9 @@
       "source_file": "database/migrations/2026_06_11_090358_create_announcements_table.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "migrations_2026_06_11_090358_create_announcements_table",
-      "target": "migrations_2026_06_11_090358_create_announcements_table_up"
+      "target": "migrations_2026_06_11_090358_create_announcements_table_up",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2926,9 +2716,9 @@
       "source_file": "database/migrations/2026_06_12_161419_create_announcement_targets_table.php",
       "source_location": "L34",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "migrations_2026_06_12_161419_create_announcement_targets_table",
-      "target": "migrations_2026_06_12_161419_create_announcement_targets_table_down"
+      "target": "migrations_2026_06_12_161419_create_announcement_targets_table_down",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2936,9 +2726,9 @@
       "source_file": "database/migrations/2026_06_12_161419_create_announcement_targets_table.php",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "migrations_2026_06_12_161419_create_announcement_targets_table",
-      "target": "migrations_2026_06_12_161419_create_announcement_targets_table_up"
+      "target": "migrations_2026_06_12_161419_create_announcement_targets_table_up",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2947,9 +2737,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder",
-      "target": "database_seeders_announcementseeder_php_bot"
+      "target": "database_seeders_announcementseeder_php_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2958,9 +2748,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder",
-      "target": "database_seeders_announcementseeder_php_botuser"
+      "target": "database_seeders_announcementseeder_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -2969,9 +2759,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder",
-      "target": "seeder"
+      "target": "seeder",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2979,9 +2769,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder",
-      "target": "seeders_announcementseeder_announcementseeder"
+      "target": "seeders_announcementseeder_announcementseeder",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3009,9 +2799,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder",
-      "target": "seeder"
+      "target": "seeder",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3019,9 +2809,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L53",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder",
-      "target": "seeders_announcementseeder_announcementseeder_createbot"
+      "target": "seeders_announcementseeder_announcementseeder_createbot",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3029,9 +2819,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L65",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder",
-      "target": "seeders_announcementseeder_announcementseeder_createbotuser"
+      "target": "seeders_announcementseeder_announcementseeder_createbotuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3039,9 +2829,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder",
-      "target": "seeders_announcementseeder_announcementseeder_run"
+      "target": "seeders_announcementseeder_announcementseeder_run",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3050,9 +2840,9 @@
       "source_file": "workbench/database/seeders/DatabaseSeeder.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_databaseseeder",
-      "target": "seeder"
+      "target": "seeder",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -3060,9 +2850,9 @@
       "source_file": "workbench/database/seeders/DatabaseSeeder.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_databaseseeder_databaseseeder",
-      "target": "seeder"
+      "target": "seeder",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3071,9 +2861,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder_run",
-      "target": "database_seeders_announcementseeder_php_bot"
+      "target": "database_seeders_announcementseeder_php_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3082,9 +2872,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder_run",
-      "target": "database_seeders_announcementseeder_php_botuser"
+      "target": "database_seeders_announcementseeder_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3093,9 +2883,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L20",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder_run",
-      "target": "seeders_announcementseeder_announcementseeder_createbot"
+      "target": "seeders_announcementseeder_announcementseeder_createbot",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3104,9 +2894,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L24",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder_run",
-      "target": "seeders_announcementseeder_announcementseeder_createbotuser"
+      "target": "seeders_announcementseeder_announcementseeder_createbotuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3115,9 +2905,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L53",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder_createbot",
-      "target": "database_seeders_announcementseeder_php_bot"
+      "target": "database_seeders_announcementseeder_php_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3126,9 +2916,9 @@
       "source_file": "database/seeders/AnnouncementSeeder.php",
       "source_location": "L65",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_announcementseeder_announcementseeder_createbotuser",
-      "target": "database_seeders_announcementseeder_php_botuser"
+      "target": "database_seeders_announcementseeder_php_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3136,9 +2926,9 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob",
-      "target": "jobs_deleteannouncementjob_deleteannouncementjob"
+      "target": "jobs_deleteannouncementjob_deleteannouncementjob",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3147,9 +2937,9 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob",
-      "target": "queueable"
+      "target": "queueable",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3158,19 +2948,8 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob",
-      "target": "shouldqueue"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "jobs_deleteannouncementjob",
-      "target": "src_jobs_deleteannouncementjob_php_announcement",
+      "target": "shouldqueue",
       "confidence_score": 1.0
     },
     {
@@ -3210,9 +2989,9 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob_deleteannouncementjob",
-      "target": "jobs_deleteannouncementjob_deleteannouncementjob_construct"
+      "target": "jobs_deleteannouncementjob_deleteannouncementjob_construct",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3220,18 +2999,8 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L27",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob_deleteannouncementjob",
-      "target": "jobs_deleteannouncementjob_deleteannouncementjob_handle"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L78",
-      "weight": 1.0,
-      "source": "jobs_deleteannouncementjob_deleteannouncementjob",
-      "target": "jobs_deleteannouncementjob_deleteannouncementjob_updateprogress",
+      "target": "jobs_deleteannouncementjob_deleteannouncementjob_handle",
       "confidence_score": 1.0
     },
     {
@@ -3260,9 +3029,9 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob_deleteannouncementjob",
-      "target": "queueable"
+      "target": "queueable",
+      "confidence_score": 1.0
     },
     {
       "relation": "implements",
@@ -3270,9 +3039,9 @@
       "source_file": "src/Jobs/DeleteAnnouncementJob.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_deleteannouncementjob_deleteannouncementjob",
-      "target": "shouldqueue"
+      "target": "shouldqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3281,9 +3050,9 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob",
-      "target": "shouldqueue"
+      "target": "shouldqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "implements",
@@ -3291,9 +3060,9 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob_sendannouncementjob",
-      "target": "shouldqueue"
+      "target": "shouldqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3302,9 +3071,9 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob",
-      "target": "queueable"
+      "target": "queueable",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -3312,30 +3081,8 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob_sendannouncementjob",
-      "target": "queueable"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L87",
-      "weight": 1.0,
-      "source": "jobs_deleteannouncementjob_deleteannouncementjob_updateprogress",
-      "target": "admin_announcementsfeature_announcementsfeature"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Jobs/DeleteAnnouncementJob.php",
-      "source_location": "L78",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "source": "jobs_deleteannouncementjob_deleteannouncementjob_updateprogress",
-      "target": "src_jobs_deleteannouncementjob_php_announcement",
+      "target": "queueable",
       "confidence_score": 1.0
     },
     {
@@ -3344,19 +3091,8 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob",
-      "target": "jobs_sendannouncementjob_sendannouncementjob"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "jobs_sendannouncementjob",
-      "target": "src_jobs_sendannouncementjob_php_announcement",
+      "target": "jobs_sendannouncementjob_sendannouncementjob",
       "confidence_score": 1.0
     },
     {
@@ -3396,9 +3132,9 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob_sendannouncementjob",
-      "target": "jobs_sendannouncementjob_sendannouncementjob_construct"
+      "target": "jobs_sendannouncementjob_sendannouncementjob_construct",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3406,18 +3142,8 @@
       "source_file": "src/Jobs/SendAnnouncementJob.php",
       "source_location": "L27",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "jobs_sendannouncementjob_sendannouncementjob",
-      "target": "jobs_sendannouncementjob_sendannouncementjob_handle"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L75",
-      "weight": 1.0,
-      "source": "jobs_sendannouncementjob_sendannouncementjob",
-      "target": "jobs_sendannouncementjob_sendannouncementjob_updateprogress",
+      "target": "jobs_sendannouncementjob_sendannouncementjob_handle",
       "confidence_score": 1.0
     },
     {
@@ -3441,37 +3167,15 @@
       "target": "models_announcementtarget_announcementtarget"
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L84",
-      "weight": 1.0,
-      "source": "jobs_sendannouncementjob_sendannouncementjob_updateprogress",
-      "target": "admin_announcementsfeature_announcementsfeature"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Jobs/SendAnnouncementJob.php",
-      "source_location": "L75",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "source": "jobs_sendannouncementjob_sendannouncementjob_updateprogress",
-      "target": "src_jobs_sendannouncementjob_php_announcement",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/Models/Announcement.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "announcementfactory"
+      "target": "announcementfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3480,9 +3184,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "belongstotenant"
+      "target": "belongstotenant",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3491,9 +3195,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "hasfactory"
+      "target": "hasfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3502,9 +3206,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "hasmany"
+      "target": "hasmany",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3513,9 +3217,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "message"
+      "target": "message",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3524,9 +3228,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "model"
+      "target": "model",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3534,9 +3238,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "models_announcement_announcement"
+      "target": "models_announcement_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3545,9 +3249,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement",
-      "target": "src_models_announcement_php_belongsto"
+      "target": "src_models_announcement_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3595,9 +3299,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "belongstotenant"
+      "target": "belongstotenant",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -3605,9 +3309,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "hasfactory"
+      "target": "hasfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -3615,9 +3319,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "model"
+      "target": "model",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3625,9 +3329,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L36",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "models_announcement_announcement_bot"
+      "target": "models_announcement_announcement_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3635,9 +3339,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L41",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "models_announcement_announcement_botuser"
+      "target": "models_announcement_announcement_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3645,9 +3349,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "models_announcement_announcement_newfactory"
+      "target": "models_announcement_announcement_newfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3655,9 +3359,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L51",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "models_announcement_announcement_sendto"
+      "target": "models_announcement_announcement_sendto",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3665,9 +3369,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L46",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement",
-      "target": "models_announcement_announcement_targets"
+      "target": "models_announcement_announcement_targets",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3686,9 +3390,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget",
-      "target": "model"
+      "target": "model",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -3696,9 +3400,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "model"
+      "target": "model",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3707,9 +3411,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L8",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget",
-      "target": "belongstotenant"
+      "target": "belongstotenant",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -3717,9 +3421,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "belongstotenant"
+      "target": "belongstotenant",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3728,9 +3432,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget",
-      "target": "hasfactory"
+      "target": "hasfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -3738,9 +3442,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "hasfactory"
+      "target": "hasfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3749,9 +3453,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user",
-      "target": "hasfactory"
+      "target": "hasfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -3759,9 +3463,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user_user",
-      "target": "hasfactory"
+      "target": "hasfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3770,9 +3474,9 @@
       "source_file": "src/Models/Announcement.php",
       "source_location": "L31",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement_newfactory",
-      "target": "announcementfactory"
+      "target": "announcementfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3781,9 +3485,9 @@
       "source_location": "L36",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement_bot",
-      "target": "src_models_announcement_php_belongsto"
+      "target": "src_models_announcement_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3792,9 +3496,9 @@
       "source_location": "L41",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement_botuser",
-      "target": "src_models_announcement_php_belongsto"
+      "target": "src_models_announcement_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3803,9 +3507,9 @@
       "source_location": "L46",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement_targets",
-      "target": "hasmany"
+      "target": "hasmany",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3814,9 +3518,9 @@
       "source_location": "L51",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcement_announcement_sendto",
-      "target": "message"
+      "target": "message",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3825,9 +3529,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget",
-      "target": "announcementtargetfactory"
+      "target": "announcementtargetfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3835,9 +3539,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget",
-      "target": "models_announcementtarget_announcementtarget"
+      "target": "models_announcementtarget_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3846,9 +3550,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget",
-      "target": "src_models_announcementtarget_php_belongsto"
+      "target": "src_models_announcementtarget_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3886,9 +3590,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "models_announcementtarget_announcementtarget_announcement"
+      "target": "models_announcementtarget_announcementtarget_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3896,9 +3600,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L33",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "models_announcementtarget_announcementtarget_bot"
+      "target": "models_announcementtarget_announcementtarget_bot",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3906,9 +3610,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L43",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "models_announcementtarget_announcementtarget_botuser"
+      "target": "models_announcementtarget_announcementtarget_botuser",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -3916,9 +3620,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L28",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget",
-      "target": "models_announcementtarget_announcementtarget_newfactory"
+      "target": "models_announcementtarget_announcementtarget_newfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3927,9 +3631,9 @@
       "source_file": "src/Models/AnnouncementTarget.php",
       "source_location": "L28",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget_newfactory",
-      "target": "announcementtargetfactory"
+      "target": "announcementtargetfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3938,9 +3642,9 @@
       "source_location": "L33",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget_bot",
-      "target": "src_models_announcementtarget_php_belongsto"
+      "target": "src_models_announcementtarget_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3949,9 +3653,9 @@
       "source_location": "L38",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget_announcement",
-      "target": "src_models_announcementtarget_php_belongsto"
+      "target": "src_models_announcementtarget_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3960,9 +3664,9 @@
       "source_location": "L43",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "models_announcementtarget_announcementtarget_botuser",
-      "target": "src_models_announcementtarget_php_belongsto"
+      "target": "src_models_announcementtarget_php_belongsto",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -3971,9 +3675,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider",
-      "target": "serviceprovider"
+      "target": "serviceprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3981,9 +3685,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider",
-      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider"
+      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4061,9 +3765,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider",
-      "target": "serviceprovider"
+      "target": "serviceprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4071,9 +3775,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L22",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider",
-      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_boot"
+      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_boot",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4081,9 +3785,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider",
-      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_register"
+      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_register",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4091,9 +3795,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L38",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider",
-      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_registerpublishing"
+      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_registerpublishing",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4102,9 +3806,9 @@
       "source_file": "workbench/app/Providers/WorkbenchServiceProvider.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "providers_workbenchserviceprovider",
-      "target": "serviceprovider"
+      "target": "serviceprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -4112,9 +3816,9 @@
       "source_file": "workbench/app/Providers/WorkbenchServiceProvider.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "providers_workbenchserviceprovider_workbenchserviceprovider",
-      "target": "serviceprovider"
+      "target": "serviceprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4123,9 +3827,9 @@
       "source_file": "src/TbeAnnouncementsServiceProvider.php",
       "source_location": "L24",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_boot",
-      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_registerpublishing"
+      "target": "src_tbeannouncementsserviceprovider_tbeannouncementsserviceprovider_registerpublishing",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4133,9 +3837,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery"
+      "target": "admin_announcementsquery_announcementsquery",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4144,9 +3848,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L17",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery",
-      "target": "callbackquery"
+      "target": "callbackquery",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4155,9 +3859,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4166,9 +3870,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "conceptually_related_to",
@@ -4196,9 +3900,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L178",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_announcementtargetdelete"
+      "target": "admin_announcementsquery_announcementsquery_announcementtargetdelete",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4206,9 +3910,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L150",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_announcementtargetsend"
+      "target": "admin_announcementsquery_announcementsquery_announcementtargetsend",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4216,9 +3920,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L67",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_change"
+      "target": "admin_announcementsquery_announcementsquery_change",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4226,9 +3930,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L110",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_changemethod"
+      "target": "admin_announcementsquery_announcementsquery_changemethod",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4236,9 +3940,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L33",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_createannouncement"
+      "target": "admin_announcementsquery_announcementsquery_createannouncement",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4246,9 +3950,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L233",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_deletesentmessages"
+      "target": "admin_announcementsquery_announcementsquery_deletesentmessages",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4256,9 +3960,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L60",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_preview"
+      "target": "admin_announcementsquery_announcementsquery_preview",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4266,9 +3970,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L128",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_reloadtargetusers"
+      "target": "admin_announcementsquery_announcementsquery_reloadtargetusers",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4276,9 +3980,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L123",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_sendingannouncement"
+      "target": "admin_announcementsquery_announcementsquery_sendingannouncement",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4286,9 +3990,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L90",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_setmessage"
+      "target": "admin_announcementsquery_announcementsquery_setmessage",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4296,9 +4000,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L55",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_show"
+      "target": "admin_announcementsquery_announcementsquery_show",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4306,9 +4010,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L28",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_start"
+      "target": "admin_announcementsquery_announcementsquery_start",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4316,9 +4020,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L209",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "admin_announcementsquery_announcementsquery_startsendingmessages"
+      "target": "admin_announcementsquery_announcementsquery_startsendingmessages",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -4326,9 +4030,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery",
-      "target": "callbackquery"
+      "target": "callbackquery",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4359,9 +4063,9 @@
       "source_location": "L55",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_show",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4370,9 +4074,9 @@
       "source_location": "L67",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_change",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4381,9 +4085,9 @@
       "source_location": "L110",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_changemethod",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4392,9 +4096,9 @@
       "source_location": "L233",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_deletesentmessages",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4403,9 +4107,9 @@
       "source_location": "L60",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_preview",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4414,9 +4118,9 @@
       "source_location": "L128",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_reloadtargetusers",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4425,9 +4129,9 @@
       "source_location": "L123",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_sendingannouncement",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4436,9 +4140,9 @@
       "source_location": "L90",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_setmessage",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4447,9 +4151,9 @@
       "source_location": "L209",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_startsendingmessages",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4491,9 +4195,9 @@
       "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
       "source_location": "L144",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_reloadtargetusers",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4513,9 +4217,9 @@
       "source_location": "L150",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_announcementtargetsend",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4524,9 +4228,9 @@
       "source_location": "L178",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsquery_announcementsquery_announcementtargetdelete",
-      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget"
+      "target": "src_telegram_callbackqueries_admin_announcementsquery_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4540,36 +4244,14 @@
       "target": "admin_announcementsfeature_announcementsfeature"
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
-      "source_location": "L223",
-      "weight": 1.0,
-      "source": "admin_announcementsquery_announcementsquery_startsendingmessages",
-      "target": "admin_announcementsfeature_announcementsfeature"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php",
-      "source_location": "L255",
-      "weight": 1.0,
-      "source": "admin_announcementsquery_announcementsquery_deletesentmessages",
-      "target": "admin_announcementsfeature_announcementsfeature"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L12",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature"
+      "target": "admin_announcementsfeature_announcementsfeature",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4578,9 +4260,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L6",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcement"
+      "target": "src_telegram_features_admin_announcementsfeature_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4589,9 +4271,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcementtarget"
+      "target": "src_telegram_features_admin_announcementsfeature_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4600,9 +4282,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L10",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature",
-      "target": "telegramresponse"
+      "target": "telegramresponse",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4651,41 +4333,11 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L305",
-      "weight": 1.0,
-      "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_getdeletingprogresstext",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L276",
-      "weight": 1.0,
-      "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_getsendingprogresstext",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L268",
-      "weight": 1.0,
-      "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_makeprogressbar",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_menu"
+      "target": "admin_announcementsfeature_announcementsfeature_menu",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4693,9 +4345,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L142",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_methodlabel"
+      "target": "admin_announcementsfeature_announcementsfeature_methodlabel",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4703,9 +4355,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L150",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_sendingannouncement"
+      "target": "admin_announcementsfeature_announcementsfeature_sendingannouncement",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4713,9 +4365,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L81",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_show"
+      "target": "admin_announcementsfeature_announcementsfeature_show",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4723,9 +4375,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L231",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature",
-      "target": "admin_announcementsfeature_announcementsfeature_targetstatusbuttonstate"
+      "target": "admin_announcementsfeature_announcementsfeature_targetstatusbuttonstate",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4755,9 +4407,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_menu",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcement"
+      "target": "src_telegram_features_admin_announcementsfeature_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4766,9 +4418,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_menu",
-      "target": "telegramresponse"
+      "target": "telegramresponse",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4777,9 +4429,9 @@
       "source_location": "L150",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_sendingannouncement",
-      "target": "telegramresponse"
+      "target": "telegramresponse",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4788,9 +4440,9 @@
       "source_location": "L81",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_show",
-      "target": "telegramresponse"
+      "target": "telegramresponse",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4799,29 +4451,7 @@
       "source_location": "L81",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_show",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcement"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L305",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "source": "admin_announcementsfeature_announcementsfeature_getdeletingprogresstext",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcement",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
-      "source_location": "L276",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "source": "admin_announcementsfeature_announcementsfeature_getsendingprogresstext",
       "target": "src_telegram_features_admin_announcementsfeature_php_announcement",
       "confidence_score": 1.0
     },
@@ -4832,9 +4462,9 @@
       "source_location": "L150",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_sendingannouncement",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcement"
+      "target": "src_telegram_features_admin_announcementsfeature_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4843,9 +4473,9 @@
       "source_file": "src/Telegram/Features/Admin/AnnouncementsFeature.php",
       "source_location": "L186",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_sendingannouncement",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcementtarget"
+      "target": "src_telegram_features_admin_announcementsfeature_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4854,9 +4484,9 @@
       "source_location": "L231",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsfeature_announcementsfeature_targetstatusbuttonstate",
-      "target": "src_telegram_features_admin_announcementsfeature_php_announcementtarget"
+      "target": "src_telegram_features_admin_announcementsfeature_php_announcementtarget",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4864,9 +4494,9 @@
       "source_file": "src/Telegram/ReplyKeys/Admin/AnnouncementsKey.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementskey",
-      "target": "admin_announcementskey_announcementskey"
+      "target": "admin_announcementskey_announcementskey",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4875,9 +4505,9 @@
       "source_file": "src/Telegram/ReplyKeys/Admin/AnnouncementsKey.php",
       "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementskey",
-      "target": "replykey"
+      "target": "replykey",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4885,9 +4515,9 @@
       "source_file": "src/Telegram/ReplyKeys/Admin/AnnouncementsKey.php",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementskey_announcementskey",
-      "target": "admin_announcementskey_announcementskey_construct"
+      "target": "admin_announcementskey_announcementskey_construct",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4895,9 +4525,9 @@
       "source_file": "src/Telegram/ReplyKeys/Admin/AnnouncementsKey.php",
       "source_location": "L21",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementskey_announcementskey",
-      "target": "admin_announcementskey_announcementskey_handle"
+      "target": "admin_announcementskey_announcementskey_handle",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -4905,9 +4535,9 @@
       "source_file": "src/Telegram/ReplyKeys/Admin/AnnouncementsKey.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementskey_announcementskey",
-      "target": "replykey"
+      "target": "replykey",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4915,9 +4545,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer",
-      "target": "admin_announcementsanswer_announcementsanswer"
+      "target": "admin_announcementsanswer_announcementsanswer",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4926,9 +4556,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer",
-      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement"
+      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -4937,9 +4567,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer",
-      "target": "stateanswer"
+      "target": "stateanswer",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4947,9 +4577,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer",
-      "target": "admin_announcementsanswer_announcementsanswer_change"
+      "target": "admin_announcementsanswer_announcementsanswer_change",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4957,9 +4587,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L24",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer",
-      "target": "admin_announcementsanswer_announcementsanswer_createannouncement"
+      "target": "admin_announcementsanswer_announcementsanswer_createannouncement",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -4967,9 +4597,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L67",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer",
-      "target": "admin_announcementsanswer_announcementsanswer_setmessage"
+      "target": "admin_announcementsanswer_announcementsanswer_setmessage",
+      "confidence_score": 1.0
     },
     {
       "relation": "inherits",
@@ -4977,9 +4607,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer",
-      "target": "stateanswer"
+      "target": "stateanswer",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -4988,9 +4618,9 @@
       "source_file": "src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php",
       "source_location": "L26",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer_createannouncement",
-      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement"
+      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -4999,9 +4629,9 @@
       "source_location": "L49",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer_change",
-      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement"
+      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5010,9 +4640,9 @@
       "source_location": "L67",
       "weight": 1.0,
       "context": "parameter_type",
-      "confidence_score": 1.0,
       "source": "admin_announcementsanswer_announcementsanswer_setmessage",
-      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement"
+      "target": "src_telegram_stateanswers_admin_announcementsanswer_php_announcement",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5020,9 +4650,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user",
-      "target": "models_user_user"
+      "target": "models_user_user",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5031,9 +4661,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user",
-      "target": "notifiable"
+      "target": "notifiable",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5061,9 +4691,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user_user",
-      "target": "authenticatable"
+      "target": "authenticatable",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -5071,9 +4701,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user_user",
-      "target": "models_user_user_casts"
+      "target": "models_user_user_casts",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -5081,9 +4711,9 @@
       "source_file": "workbench/app/Models/User.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "models_user_user",
-      "target": "notifiable"
+      "target": "notifiable",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5091,9 +4721,9 @@
       "source_file": "workbench/app/Providers/WorkbenchServiceProvider.php",
       "source_location": "L14",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "providers_workbenchserviceprovider",
-      "target": "providers_workbenchserviceprovider_workbenchserviceprovider"
+      "target": "providers_workbenchserviceprovider_workbenchserviceprovider",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5111,9 +4741,9 @@
       "source_file": "workbench/app/Providers/WorkbenchServiceProvider.php",
       "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "providers_workbenchserviceprovider_workbenchserviceprovider",
-      "target": "providers_workbenchserviceprovider_workbenchserviceprovider_boot"
+      "target": "providers_workbenchserviceprovider_workbenchserviceprovider_boot",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -5121,9 +4751,9 @@
       "source_file": "workbench/app/Providers/WorkbenchServiceProvider.php",
       "source_location": "L19",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "providers_workbenchserviceprovider_workbenchserviceprovider",
-      "target": "providers_workbenchserviceprovider_workbenchserviceprovider_register"
+      "target": "providers_workbenchserviceprovider_workbenchserviceprovider_register",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5141,9 +4771,9 @@
       "source_file": "workbench/database/factories/UserFactory.php",
       "source_location": "L13",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_userfactory",
-      "target": "factories_userfactory_userfactory"
+      "target": "factories_userfactory_userfactory",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -5151,9 +4781,9 @@
       "source_file": "workbench/database/factories/UserFactory.php",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_userfactory_userfactory",
-      "target": "factories_userfactory_userfactory_definition"
+      "target": "factories_userfactory_userfactory_definition",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -5161,9 +4791,9 @@
       "source_file": "workbench/database/factories/UserFactory.php",
       "source_location": "L46",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "factories_userfactory_userfactory",
-      "target": "factories_userfactory_userfactory_unverified"
+      "target": "factories_userfactory_userfactory_unverified",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5203,9 +4833,9 @@
       "source_location": "L46",
       "weight": 1.0,
       "context": "return_type",
-      "confidence_score": 1.0,
       "source": "factories_userfactory_userfactory_unverified",
-      "target": "workbench_database_factories_userfactory_php_static"
+      "target": "workbench_database_factories_userfactory_php_static",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5213,9 +4843,9 @@
       "source_file": "workbench/database/seeders/DatabaseSeeder.php",
       "source_location": "L9",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_databaseseeder",
-      "target": "seeders_databaseseeder_databaseseeder"
+      "target": "seeders_databaseseeder_databaseseeder",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5224,9 +4854,9 @@
       "source_file": "workbench/database/seeders/DatabaseSeeder.php",
       "source_location": "L5",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_databaseseeder",
-      "target": "withoutmodelevents"
+      "target": "withoutmodelevents",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -5234,9 +4864,9 @@
       "source_file": "workbench/database/seeders/DatabaseSeeder.php",
       "source_location": "L16",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_databaseseeder_databaseseeder",
-      "target": "seeders_databaseseeder_databaseseeder_run"
+      "target": "seeders_databaseseeder_databaseseeder_run",
+      "confidence_score": 1.0
     },
     {
       "relation": "mixes_in",
@@ -5244,9 +4874,9 @@
       "source_file": "workbench/database/seeders/DatabaseSeeder.php",
       "source_location": "L11",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "seeders_databaseseeder_databaseseeder",
-      "target": "withoutmodelevents"
+      "target": "withoutmodelevents",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5257,126 +4887,6 @@
       "weight": 1.0,
       "source": "testbench_config",
       "target": "seeders_databaseseeder_databaseseeder"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "readme",
-      "target": "readme_telegram_bot_essentials_announcements",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L38",
-      "weight": 1.0,
-      "source": "readme_telegram_bot_essentials_announcements",
-      "target": "readme_configuration",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "readme_telegram_bot_essentials_announcements",
-      "target": "readme_features",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "readme_telegram_bot_essentials_announcements",
-      "target": "readme_installation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L105",
-      "weight": 1.0,
-      "source": "readme_telegram_bot_essentials_announcements",
-      "target": "readme_license",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L95",
-      "weight": 1.0,
-      "source": "readme_telegram_bot_essentials_announcements",
-      "target": "readme_translation_localization",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L70",
-      "weight": 1.0,
-      "source": "readme_telegram_bot_essentials_announcements",
-      "target": "readme_usage",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L76",
-      "weight": 1.0,
-      "source": "readme_usage",
-      "target": "readme_admin_interfaces",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L78",
-      "weight": 1.0,
-      "source": "readme_admin_interfaces",
-      "target": "readme_1_menu_announcement_details",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L84",
-      "weight": 1.0,
-      "source": "readme_admin_interfaces",
-      "target": "readme_2_previews",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L87",
-      "weight": 1.0,
-      "source": "readme_admin_interfaces",
-      "target": "readme_3_broadcasting",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L90",
-      "weight": 1.0,
-      "source": "readme_admin_interfaces",
-      "target": "readme_4_message_retraction_deletion",
-      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -5511,5 +5021,5 @@
       "source_file": "testbench.yaml"
     }
   ],
-  "built_at_commit": "c3cc00f09010bc3d796b47950792fb5299e02067"
+  "built_at_commit": "990c07844c3c0a6463a973af2acaa95a5327b4b2"
 }
