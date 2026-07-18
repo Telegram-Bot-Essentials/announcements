@@ -107,6 +107,18 @@ class AnnouncementsQuery extends CallbackQuery
         ]);
     }
 
+    /**
+     * @throws InvalidPageNumber
+     */
+    function delete(Announcement $announcement, int $lastPage = 1): void
+    {
+        $announcement->delete();
+
+        AnnouncementsFeature::menu(max(1, $lastPage))
+            ->answer(__('tbe-announcements::announcements.main.answers.deleted'))
+            ->update();
+    }
+
     function changeMethod(Announcement $announcement, string $method, int $lastPage = 1): void
     {
         $methods = ['html', 'copy', 'forward'];

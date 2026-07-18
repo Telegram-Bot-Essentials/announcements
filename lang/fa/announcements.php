@@ -28,6 +28,7 @@ return [
             'sendMessagePrompt' => '💬 پیام اعلان رو بفرستید:',
             'enterField' => '✏️ مقدار جدید :field رو وارد کنید:',
             'enterPagePrompt' => '🔢 شماره صفحه را وارد کنید:',
+            'deleteConfirmation' => 'مطمئنید می‌خواهید اعلان ":label" را حذف کنید؟',
             'messageRequiredForHtml' => '⚠️ برای پیش‌نمایش در حالت HTML باید پیام تنظیم شده باشد.',
             'sendingAnnouncement' => '📤 <b><i>ارسال اعلان</i></b>'
                 . "\r\n"
@@ -66,6 +67,7 @@ return [
             'methodChanged' => '🔄 روش به :method تغییر کرد.',
             'created' => '✅ اعلان با موفقیت ساخته شد.',
             'updated' => '✅ اعلان با موفقیت به‌روزرسانی شد.',
+            'deleted' => '🗑 اعلان با موفقیت حذف شد.',
             'targetSent' => '✅ اعلان برای :user ارسال شد.',
             'targetDeleted' => '🗑 اعلان برای :user حذف شد.',
             'targetForbidden' => '⛔ عملیات برای :user ناموفق بود (ربات بلاک شده).',

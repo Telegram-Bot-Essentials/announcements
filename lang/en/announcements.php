@@ -28,6 +28,7 @@ return [
             'sendMessagePrompt' => '💬 Send the announcement message:',
             'enterField' => '✏️ Enter the new :field:',
             'enterPagePrompt' => '🔢 Enter page number:',
+            'deleteConfirmation' => 'Are you sure you want to delete the announcement ":label"?',
             'messageRequiredForHtml' => '⚠️ You must set a message before previewing in HTML mode.',
             'sendingAnnouncement' => '📤 <b><i>Send Announcement</i></b>'
                 . "\r\n"
@@ -66,6 +67,7 @@ return [
             'methodChanged' => '🔄 Method changed to :method.',
             'created' => '✅ Announcement created successfully.',
             'updated' => '✅ Announcement updated successfully.',
+            'deleted' => '🗑 Announcement deleted successfully.',
             'targetSent' => '✅ Announcement sent to :user.',
             'targetDeleted' => '🗑 Announcement deleted for :user.',
             'targetForbidden' => '⛔ Action failed for :user (user blocked the bot).',

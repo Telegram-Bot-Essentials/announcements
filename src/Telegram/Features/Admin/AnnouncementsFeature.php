@@ -139,6 +139,15 @@ class AnnouncementsFeature
         ]);
 
         $replyMarkup->row([
+            inlineConfirmationKey(
+                __('tbe::general.keys.delete'),
+                encodeCallback(self::$type, 'delete', [$announcement->id, $lastPage]),
+                encodeCallback(self::$type, 'show', [$announcement->id, $lastPage]),
+                __('tbe-announcements::announcements.main.text.deleteConfirmation', ['label' => $announcement->label])
+            ),
+        ]);
+
+        $replyMarkup->row([
             Keyboard::inlineButton([
                 'text' => __('tbe::general.keys.back'),
                 'callback_data' => encodeCallback(self::$type, 'start', [$lastPage, 0])
