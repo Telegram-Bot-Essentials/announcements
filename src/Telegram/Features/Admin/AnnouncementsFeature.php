@@ -223,7 +223,7 @@ class AnnouncementsFeature
                 ]);
             }
 
-            $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncement', extraParams: [$announcement->id]));
+            $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncement', customPageMethod: 'sendingSetPage', extraParams: [$announcement->id]));
         }
 
 

@@ -125,6 +125,28 @@ class AnnouncementsQuery extends CallbackQuery
         AnnouncementsFeature::sendingAnnouncement($announcement, $page, $currentPage)->update();
     }
 
+    /**
+     * @throws TelegramSDKException
+     */
+    public function sendingSetPage(Announcement $announcement): void
+    {
+        $messageMeta = MessageMeta::makeWithCurrentMessage();
+        $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.settingPage'));
+        wHook()->user()->changeState(encodeAnswerState($this->type, 'sendingSetPage', [
+            'message_meta' => $messageMeta->id,
+            'announcement' => $announcement->id,
+        ]));
+
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => __('tbe-announcements::announcements.main.text.enterPagePrompt'),
+            'parse_mode' => 'HTML',
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
+
+        $this->answer(__('tbe-announcements::announcements.main.answers.settingPage'));
+    }
+
     function reloadTargetUsers(Announcement $announcement, int $page = 1): void
     {
         $now = now();

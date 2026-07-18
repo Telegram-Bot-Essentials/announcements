@@ -112,4 +112,29 @@ class AnnouncementsAnswer extends StateAnswer
 
         $this->messageMeta()->updateAndContinueAction($data);
     }
+
+    /**
+     * @throws LogicException
+     * @throws TelegramSDKException
+     * @throws BindingResolutionException
+     * @throws InvalidPageNumber
+     */
+    public function sendingSetPage(Announcement $announcement): void
+    {
+        $page = wHook()->update()->message->text;
+        $lastPage = $announcement->targets()->paginate(perPage: 10)->lastPage();
+
+        TelegramPaginator::validatePageInput($page, $lastPage);
+
+        $data = AnnouncementsFeature::sendingAnnouncement($announcement, intval($page));
+
+        wHook()->user()->changeState();
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => __('tbe-announcements::announcements.main.answers.pageLoaded', ['page' => $page]),
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
+
+        $this->messageMeta()->updateAndContinueAction($data);
+    }
 }
