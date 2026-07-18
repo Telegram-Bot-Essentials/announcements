@@ -248,6 +248,27 @@ class AnnouncementsQuery extends CallbackQuery
     /**
      * @throws TelegramSDKException
      */
+    public function setStartPage(): void
+    {
+        $messageMeta = MessageMeta::makeWithCurrentMessage();
+        $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.settingPage'));
+        wHook()->user()->changeState(encodeAnswerState($this->type, 'setStartPage', [
+            'message_meta' => $messageMeta->id,
+        ]));
+
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => __('tbe-announcements::announcements.main.text.enterPagePrompt'),
+            'parse_mode' => 'HTML',
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
+
+        $this->answer(__('tbe-announcements::announcements.main.answers.settingPage'));
+    }
+
+    /**
+     * @throws TelegramSDKException
+     */
     function deleteSentMessages(Announcement $announcement): void
     {
         $statusMessage = wHook()->api()->sendMessage([

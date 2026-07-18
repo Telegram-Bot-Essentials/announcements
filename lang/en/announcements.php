@@ -27,6 +27,7 @@ return [
                 . "\r\nManage this announcement using the options below 👇",
             'sendMessagePrompt' => '💬 Send the announcement message:',
             'enterField' => '✏️ Enter the new :field:',
+            'enterPagePrompt' => '🔢 Enter page number:',
             'messageRequiredForHtml' => '⚠️ You must set a message before previewing in HTML mode.',
             'sendingAnnouncement' => '📤 <b><i>Send Announcement</i></b>'
                 . "\r\n"
@@ -70,6 +71,8 @@ return [
             'targetForbidden' => '⛔ Action failed for :user (user blocked the bot).',
             'sendingStarted' => '📤 Sending process started.',
             'deletingStarted' => '🗑 Deleting process started.',
+            'settingPage' => '⏳ Waiting for page number...',
+            'pageLoaded' => '📄 Page :page loaded.',
             'sendingProgress' => '📤 Sent: :sent/:total | ⛔ Failed: :forbidden',
             'deletingProgress' => '🗑 Deleted: :deleted/:total | ⛔ Failed: :forbidden',
         ],
@@ -110,6 +113,7 @@ return [
             'creatingAnnouncement' => 'Creating announcement',
             'changingField' => 'Changing :field',
             'settingMessage' => 'Setting announcement message',
+            'settingPage' => 'Waiting for page number',
         ],
         'status' => [
             'sendingInProgress' => '📤 <b>Sending Announcement...</b>',

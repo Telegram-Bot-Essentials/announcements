@@ -27,6 +27,7 @@ return [
                 . "\r\nاز دکمه‌های پایین این اعلان رو مدیریت کنید 👇",
             'sendMessagePrompt' => '💬 پیام اعلان رو بفرستید:',
             'enterField' => '✏️ مقدار جدید :field رو وارد کنید:',
+            'enterPagePrompt' => '🔢 شماره صفحه را وارد کنید:',
             'messageRequiredForHtml' => '⚠️ برای پیش‌نمایش در حالت HTML باید پیام تنظیم شده باشد.',
             'sendingAnnouncement' => '📤 <b><i>ارسال اعلان</i></b>'
                 . "\r\n"
@@ -70,6 +71,8 @@ return [
             'targetForbidden' => '⛔ عملیات برای :user ناموفق بود (ربات بلاک شده).',
             'sendingStarted' => '📤 فرایند ارسال شروع شد.',
             'deletingStarted' => '🗑 فرایند حذف شروع شد.',
+            'settingPage' => '⏳ در انتظار شماره صفحه...',
+            'pageLoaded' => '📄 صفحه :page بارگذاری شد.',
             'sendingProgress' => '📤 ارسال‌شده: :sent/:total | ⛔ ناموفق: :forbidden',
             'deletingProgress' => '🗑 حذف‌شده: :deleted/:total | ⛔ ناموفق: :forbidden',
         ],
@@ -110,6 +113,7 @@ return [
             'creatingAnnouncement' => 'در حال ساخت اعلان',
             'changingField' => 'در حال تغییر :field',
             'settingMessage' => 'در حال تنظیم پیام اعلان',
+            'settingPage' => 'در انتظار شماره صفحه',
         ],
         'status' => [
             'sendingInProgress' => '📤 <b>در حال ارسال اعلان...</b>',

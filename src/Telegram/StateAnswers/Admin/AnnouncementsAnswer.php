@@ -2,11 +2,16 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\StateAnswers\Admin;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Str;
+use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Enums\AllowableFields;
 use TelegramBotEssentials\Essence\Enums\Roles;
+use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
+use TelegramBotEssentials\Essence\Exceptions\LogicException;
+use TelegramBotEssentials\Essence\Services\TelegramPaginator;
 use TelegramBotEssentials\Essence\Telegram\StateAnswers\StateAnswer;
 
 class AnnouncementsAnswer extends StateAnswer
@@ -81,5 +86,30 @@ class AnnouncementsAnswer extends StateAnswer
         $this->messageMeta()->updateAndContinueAction(
             AnnouncementsFeature::show($announcement, $lastPage)
         );
+    }
+
+    /**
+     * @throws LogicException
+     * @throws TelegramSDKException
+     * @throws BindingResolutionException
+     * @throws InvalidPageNumber
+     */
+    public function setStartPage(): void
+    {
+        $page = wHook()->update()->message->text;
+        $lastPage = Announcement::query()->paginate(perPage: 10)->lastPage();
+
+        TelegramPaginator::validatePageInput($page, $lastPage);
+
+        $data = AnnouncementsFeature::menu(intval($page));
+
+        wHook()->user()->changeState();
+        wHook()->api()->sendMessage([
+            'chat_id' => wHook()->peerId(),
+            'text' => __('tbe-announcements::announcements.main.answers.pageLoaded', ['page' => $page]),
+            'reply_markup' => wHook()->user()->getKeyboard(),
+        ]);
+
+        $this->messageMeta()->updateAndContinueAction($data);
     }
 }
