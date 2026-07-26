@@ -62,12 +62,24 @@ class DeleteAnnouncementJob implements ShouldQueue
                 $target->update([
                     'status' => 'forbidden',
                 ]);
+                tbeLog('announcements')->debug('Failed to delete announcement message: ' . $exception->getMessage(), [
+                    'announcement_id' => $announcement->getKey(),
+                    'target_id' => $target->getKey(),
+                    'peer_id' => $target->botUser->telegramUser->peer_id,
+                ]);
             }
         }
 
         $hasPending = $announcement->targets()
             ->where('status', 'sent')
             ->exists();
+
+        if (!$hasPending) {
+            tbeLog('announcements')->info('Announcement deletion completed', [
+                'announcement_id' => $announcement->getKey(),
+                'deleted_count' => $announcement->targets()->where('status', 'deleted')->count(),
+            ]);
+        }
 
         self::updateProgress($announcement, !$hasPending);
     }

@@ -59,12 +59,25 @@ class SendAnnouncementJob implements ShouldQueue
                 $target->update([
                     'status' => 'forbidden',
                 ]);
+                tbeLog('announcements')->debug('Failed to send announcement to user: ' . $exception->getMessage(), [
+                    'announcement_id' => $announcement->getKey(),
+                    'target_id' => $target->getKey(),
+                    'peer_id' => $target->botUser->telegramUser->peer_id,
+                ]);
             }
         }
 
         $hasPending = $announcement->targets()
             ->whereNull('status')
             ->exists();
+
+        if (!$hasPending) {
+            tbeLog('announcements')->info('Announcement fully sent', [
+                'announcement_id' => $announcement->getKey(),
+                'sent_count' => $announcement->targets()->where('status', 'sent')->count(),
+                'forbidden_count' => $announcement->targets()->where('status', 'forbidden')->count(),
+            ]);
+        }
 
         self::updateProgress($announcement, !$hasPending);
     }
