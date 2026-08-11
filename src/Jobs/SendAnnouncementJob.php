@@ -72,6 +72,8 @@ class SendAnnouncementJob implements ShouldQueue
             ->exists();
 
         if (!$hasPending) {
+            $announcement->update(['sent_at' => now()]);
+
             tbeLog('announcements')->info('Announcement fully sent', [
                 'announcement_id' => $announcement->getKey(),
                 'sent_count' => $announcement->targets()->where('status', 'sent')->count(),
