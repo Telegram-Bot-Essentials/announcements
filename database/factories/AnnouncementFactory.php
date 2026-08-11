@@ -40,16 +40,16 @@ class AnnouncementFactory extends Factory
     public function definition(): array
     {
         return [
-            'message' => fake()->paragraph(),
-            'sent_at' => fake()->dateTimeBetween('-1 month', 'now'),
-            'deleted_at' => now()->addYear(),
+            'label' => fake()->words(2, true),
+            'message_text' => fake()->paragraph(),
+            'sent_at' => null,
         ];
     }
 
-    public function deleted(): static
+    public function sent(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'deleted_at' => fake()->dateTimeBetween($attributes['sent_at'], 'now'),
+        return $this->state(fn () => [
+            'sent_at' => fake()->dateTimeBetween('-1 month', 'now'),
         ]);
     }
 

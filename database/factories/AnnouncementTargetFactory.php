@@ -39,17 +39,15 @@ class AnnouncementTargetFactory extends Factory
     public function definition(): array
     {
         return [
-            'is_sent' => fake()->boolean(70),
-            'is_deleted' => false,
-            'is_forbidden' => false,
-            'message_id' => fake()->optional(0.7)->randomNumber(8),
+            'status' => null,
+            'message_id' => null,
         ];
     }
 
     public function sent(): static
     {
         return $this->state(fn () => [
-            'is_sent' => true,
+            'status' => 'sent',
             'message_id' => fake()->randomNumber(8),
         ]);
     }
@@ -57,15 +55,15 @@ class AnnouncementTargetFactory extends Factory
     public function deleted(): static
     {
         return $this->state(fn () => [
-            'is_deleted' => true,
+            'status' => 'deleted',
+            'message_id' => null,
         ]);
     }
 
     public function forbidden(): static
     {
         return $this->state(fn () => [
-            'is_forbidden' => true,
-            'is_sent' => false,
+            'status' => 'forbidden',
             'message_id' => null,
         ]);
     }
