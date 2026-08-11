@@ -22,11 +22,6 @@ class AnnouncementsAnswer extends StateAnswer
         AllowableFields::TEXT->value
     ];
 
-    // TODO: Implement cancel() method for custom cancellation logic
-    // function cancel(): void
-    // {
-    // }
-
     public function createAnnouncement(int $lastPage): void
     {
         $announcement = Announcement::create([
