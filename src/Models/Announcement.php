@@ -25,7 +25,6 @@ class Announcement extends Model
 
     protected $casts = [
         'sent_at' => 'datetime',
-        'deleted_at' => 'datetime',
     ];
 
     public static function newFactory(): AnnouncementFactory
