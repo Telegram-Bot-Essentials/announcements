@@ -2,7 +2,6 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin;
 
-use SebastianBergmann\CodeCoverage\Test\Target\Target;
 use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
 use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
 use Throwable;
