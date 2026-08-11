@@ -26,28 +26,28 @@ class AnnouncementSeeder extends Seeder
         $recipients = collect(range(1, 8))
             ->map(fn () => $this->createBotUser($bot->id));
 
+        $targetStates = ['pending', 'sent', 'deleted', 'forbidden'];
+
         Announcement::factory()
             ->count(3)
             ->for($bot)
             ->for($creator, 'botUser')
             ->create()
-            ->each(function (Announcement $announcement) use ($bot, $recipients) {
-                $recipients->random(rand(3, 6))->each(function (BotUser $recipient) use ($announcement, $bot) {
-                    AnnouncementTarget::factory()
+            ->each(function (Announcement $announcement) use ($bot, $recipients, $targetStates) {
+                $recipients->random(rand(3, 6))->each(function (BotUser $recipient) use ($announcement, $bot, $targetStates) {
+                    $factory = AnnouncementTarget::factory()
                         ->for($bot)
                         ->for($announcement)
-                        ->for($recipient, 'botUser')
-                        ->create();
+                        ->for($recipient, 'botUser');
+
+                    $state = fake()->randomElement($targetStates);
+                    if ($state !== 'pending') {
+                        $factory = $factory->$state();
+                    }
+
+                    $factory->create();
                 });
             });
-
-        Announcement::factory()
-            ->count(2)
-            ->deleted()
-            ->for($bot)
-            ->for($creator, 'botUser')
-            ->hasTargets(rand(2, 5))
-            ->create();
     }
 
     private function createBot(): Bot
