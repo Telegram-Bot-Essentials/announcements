@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 use Telegram\Bot\Objects\Message;
 use TelegramBotEssentials\Announcements\Database\Factories\AnnouncementFactory;
+use TelegramBotEssentials\Essence\Exceptions\LogicException;
 use TelegramBotEssentials\Essence\Models\Bot;
 use TelegramBotEssentials\Essence\Models\BotUser;
 
@@ -47,6 +48,9 @@ class Announcement extends Model
         return $this->hasMany(AnnouncementTarget::class);
     }
 
+    /**
+     * @throws LogicException
+     */
     public function sendTo(int $chatId): Message
     {
         switch ($this->method) {
@@ -83,6 +87,8 @@ class Announcement extends Model
                     'reply_markup' => wHook()->user()->getKeyboard(),
                 ]);
                 break;
+            default:
+                throw new LogicException("Unsupported announcement method: {$this->method}");
         }
     }
 }
