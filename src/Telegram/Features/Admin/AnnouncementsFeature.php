@@ -226,7 +226,7 @@ class AnnouncementsFeature
                 $replyMarkup->row([
                     Keyboard::inlineButton([
                         'text' => empty($announcementTarget->botUser->telegramUser->full_name) ? '???' : $announcementTarget->botUser->telegramUser->full_name,
-                        'callback_data' => encodeCallback(self::$type, 'show', [$announcementTarget->id, $page])
+                        'callback_data' => encodeCallback('x', 'y')
                     ]),
                     Keyboard::inlineButton([
                         'text' => $button['text'],
@@ -236,7 +236,7 @@ class AnnouncementsFeature
                 ]);
             }
 
-            $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncement', customPageMethod: 'sendingSetPage', extraParams: [$announcement->id]));
+            $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncementPage', customPageMethod: 'sendingSetPage', extraParams: [$announcement->id]));
         }
 
 

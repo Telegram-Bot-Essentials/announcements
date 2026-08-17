@@ -137,6 +137,19 @@ class AnnouncementsQuery extends CallbackQuery
     }
 
     /**
+     * Navigation buttons put the page arguments first, so the announcement
+     * arrives last. Keep it separate from sendingAnnouncement() rather than
+     * reshuffling that signature for every other caller.
+     *
+     * @throws InvalidPageNumber
+     * @throws TelegramSDKException
+     */
+    public function sendingAnnouncementPage(int $page, int $currentPage, Announcement $announcement): void
+    {
+        AnnouncementsFeature::sendingAnnouncement($announcement, $page, $currentPage)->update();
+    }
+
+    /**
      * @throws TelegramSDKException
      */
     public function sendingSetPage(Announcement $announcement): void
