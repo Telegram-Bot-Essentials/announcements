@@ -48,21 +48,40 @@ class SendAnnouncementJob implements ShouldQueue
         }
 
         foreach ($targets as $target) {
+            $botUser = $target->botUser;
+
+            // Checked here rather than when the targets were built, so that a
+            // user who unblocked the bot in the meantime still receives this.
+            if (!$botUser?->isReachable()) {
+                $target->update(['status' => 'skipped']);
+
+                continue;
+            }
+
             try {
-                $message = $announcement->sendTo($target->botUser->telegramUser->peer_id);
+                $message = $announcement->sendTo($botUser->telegramUser->peer_id);
 
                 $target->update([
                     'message_id' => $message->messageId,
                     'status' => 'sent',
                 ]);
             } catch (\Throwable $exception) {
+                // Only failures Telegram attributes to the user count as
+                // forbidden. Everything else (rate limits, outages, markup
+                // errors) is recorded as failed instead, because marking a
+                // reachable user blocked is now self-reinforcing: they would be
+                // skipped from every later announcement as well.
+                $status = botUserStatus()->reportFailure($botUser, $exception);
+
                 $target->update([
-                    'status' => 'forbidden',
+                    'status' => $status === null ? 'failed' : 'forbidden',
                 ]);
+
                 tbeLog('announcements')->debug('Failed to send announcement to user: ' . $exception->getMessage(), [
                     'announcement_id' => $announcement->getKey(),
                     'target_id' => $target->getKey(),
-                    'peer_id' => $target->botUser->telegramUser->peer_id,
+                    'peer_id' => $botUser->telegramUser->peer_id,
+                    'user_status' => $status,
                 ]);
             }
         }
@@ -78,6 +97,8 @@ class SendAnnouncementJob implements ShouldQueue
                 'announcement_id' => $announcement->getKey(),
                 'sent_count' => $announcement->targets()->where('status', 'sent')->count(),
                 'forbidden_count' => $announcement->targets()->where('status', 'forbidden')->count(),
+                'skipped_count' => $announcement->targets()->where('status', 'skipped')->count(),
+                'failed_count' => $announcement->targets()->where('status', 'failed')->count(),
             ]);
         }
 

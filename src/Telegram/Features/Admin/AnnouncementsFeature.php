@@ -87,6 +87,8 @@ class AnnouncementsFeature
         $pending = $announcement->targets()->whereNull('status')->count();
         $deleted = $announcement->targets()->where('status', 'deleted')->count();
         $forbidden = $announcement->targets()->where('status', 'forbidden')->count();
+        $skipped = $announcement->targets()->where('status', 'skipped')->count();
+        $failed = $announcement->targets()->where('status', 'failed')->count();
 
         $text = __('tbe-announcements::announcements.main.text.show', [
             'label' => $announcement->label,
@@ -99,6 +101,8 @@ class AnnouncementsFeature
             'pending' => $pending,
             'deleted' => $deleted,
             'forbidden' => $forbidden,
+            'skipped' => $skipped,
+            'failed' => $failed,
         ]);
 
         $replyMarkup = Keyboard::make()
@@ -268,6 +272,16 @@ class AnnouncementsFeature
                 'style' => 'primary',
                 'action' => 'announcementTargetSend',
             ],
+            'skipped' => [
+                'text' => __('tbe-announcements::announcements.main.keys.targetStatus.skipped'),
+                'style' => 'primary',
+                'action' => 'announcementTargetSend',
+            ],
+            'failed' => [
+                'text' => __('tbe-announcements::announcements.main.keys.targetStatus.failed'),
+                'style' => 'primary',
+                'action' => 'announcementTargetSend',
+            ],
             default => [
                 'text' => __('tbe-announcements::announcements.main.keys.targetStatus.pending'),
                 'style' => 'success',
@@ -289,7 +303,9 @@ class AnnouncementsFeature
         $total = $announcement->targets()->count();
         $sent = $announcement->targets()->where('status', 'sent')->count();
         $forbidden = $announcement->targets()->where('status', 'forbidden')->count();
-        $processed = $sent + $forbidden;
+        $skipped = $announcement->targets()->where('status', 'skipped')->count();
+        $failed = $announcement->targets()->where('status', 'failed')->count();
+        $processed = $sent + $forbidden + $skipped + $failed;
 
         $percent = $total > 0 ? (int) round(($processed / $total) * 100) : 0;
         $progressBar = self::makeProgressBar($percent);
@@ -307,6 +323,8 @@ class AnnouncementsFeature
             'sent' => $sent,
             'pending' => max(0, $total - $processed),
             'forbidden' => $forbidden,
+            'skipped' => $skipped,
+            'failed' => $failed,
             'footer' => $isFinished
                 ? __('tbe-announcements::announcements.main.status.sendingFooterCompleted')
                 : __('tbe-announcements::announcements.main.status.sendingFooterProgress'),

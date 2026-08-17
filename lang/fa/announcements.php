@@ -23,6 +23,8 @@ return [
                 . "\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
                 . "\r\n🗑 <b>حذف شده:</b> <code>:deleted</code>"
                 . "\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
+                . "\r\n🚫 <b>رد شده:</b> <code>:skipped</code>"
+                . "\r\n⚠️ <b>ناموفق:</b> <code>:failed</code>"
                 . "\r\n"
                 . "\r\nاز دکمه‌های پایین این اعلان رو مدیریت کنید 👇",
             'sendMessagePrompt' => '💬 پیام اعلان رو بفرستید:',
@@ -46,6 +48,8 @@ return [
                 . "\r\n✅ <b>ارسال شده:</b> <code>:sent</code>"
                 . "\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
                 . "\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
+                . "\r\n🚫 <b>رد شده:</b> <code>:skipped</code>"
+                . "\r\n⚠️ <b>ناموفق:</b> <code>:failed</code>"
                 . "\r\n━━━━━━━━━━━━━━━━━━━━"
                 . "\r\n:footer",
             'deletingProgressTemplate' => ':status'
@@ -71,6 +75,7 @@ return [
             'targetSent' => '✅ اعلان برای :user ارسال شد.',
             'targetDeleted' => '🗑 اعلان برای :user حذف شد.',
             'targetForbidden' => '⛔ عملیات برای :user ناموفق بود (ربات بلاک شده).',
+            'targetFailed' => '⚠️ عملیات برای :user به دلیلی موقتی ناموفق بود. دوباره تلاش کنید.',
             'sendingStarted' => '📤 فرایند ارسال شروع شد.',
             'deletingStarted' => '🗑 فرایند حذف شروع شد.',
             'settingPage' => '⏳ در انتظار شماره صفحه...',
@@ -97,6 +102,8 @@ return [
                 'sent' => '🗑 حذف',
                 'deleted' => '🔁 ارسال مجدد',
                 'forbidden' => '⛔ بلاک شده',
+                'skipped' => '🚫 رد شده',
+                'failed' => '⚠️ ناموفق',
             ],
         ],
         'fields' => [

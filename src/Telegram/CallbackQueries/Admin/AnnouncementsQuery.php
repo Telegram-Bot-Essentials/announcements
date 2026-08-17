@@ -187,6 +187,8 @@ class AnnouncementsQuery extends CallbackQuery
             __('tbe-announcements::announcements.main.errors.alreadySent')
         );
 
+        // Deliberately attempted even for a skipped target: forcing one send is
+        // how an admin overrules, or re-tests, what we believe about a user.
         try {
             $message = $announcementTarget->announcement->sendTo($announcementTarget->botUser->telegramUser->peer_id);
             $announcementTarget->update([
@@ -194,17 +196,24 @@ class AnnouncementsQuery extends CallbackQuery
                 'status' => 'sent',
             ]);
 
+            botUserStatus()->reportSuccess($announcementTarget->botUser);
+
             $this->answer(__('tbe-announcements::announcements.main.answers.targetSent', [
                 'user' => $announcementTarget->botUser->telegramUser->full_name,
             ]));
-        } catch (Throwable) {
+        } catch (Throwable $exception) {
+            $status = botUserStatus()->reportFailure($announcementTarget->botUser, $exception);
+
             $announcementTarget->update([
-                'status' => 'forbidden',
+                'status' => $status === null ? 'failed' : 'forbidden',
             ]);
 
-            $this->answer(__('tbe-announcements::announcements.main.answers.targetForbidden', [
-                'user' => $announcementTarget->botUser->telegramUser->full_name,
-            ]));
+            $this->answer(__(
+                $status === null
+                    ? 'tbe-announcements::announcements.main.answers.targetFailed'
+                    : 'tbe-announcements::announcements.main.answers.targetForbidden',
+                ['user' => $announcementTarget->botUser->telegramUser->full_name]
+            ));
         }
 
         AnnouncementsFeature::sendingAnnouncement($announcementTarget->announcement, $page)->update();

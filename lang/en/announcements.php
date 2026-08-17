@@ -23,6 +23,8 @@ return [
                 . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
                 . "\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
                 . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                . "\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
+                . "\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
                 . "\r\n"
                 . "\r\nManage this announcement using the options below 👇",
             'sendMessagePrompt' => '💬 Send the announcement message:',
@@ -46,6 +48,8 @@ return [
                 . "\r\n✅ <b>Sent:</b> <code>:sent</code>"
                 . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
                 . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                . "\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
+                . "\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
                 . "\r\n━━━━━━━━━━━━━━━━━━━━"
                 . "\r\n:footer",
             'deletingProgressTemplate' => ':status'
@@ -71,6 +75,7 @@ return [
             'targetSent' => '✅ Announcement sent to :user.',
             'targetDeleted' => '🗑 Announcement deleted for :user.',
             'targetForbidden' => '⛔ Action failed for :user (user blocked the bot).',
+            'targetFailed' => '⚠️ Action failed for :user for a temporary reason. Try again.',
             'sendingStarted' => '📤 Sending process started.',
             'deletingStarted' => '🗑 Deleting process started.',
             'settingPage' => '⏳ Waiting for page number...',
@@ -97,6 +102,8 @@ return [
                 'sent' => '🗑 Delete',
                 'deleted' => '🔁 Re-send',
                 'forbidden' => '⛔ Blocked',
+                'skipped' => '🚫 Skipped',
+                'failed' => '⚠️ Failed',
             ],
         ],
         'fields' => [
