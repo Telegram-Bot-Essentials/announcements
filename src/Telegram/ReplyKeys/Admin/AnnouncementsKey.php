@@ -8,10 +8,17 @@ use TelegramBotEssentials\Essence\Telegram\ReplyKeys\ReplyKey;
 
 class AnnouncementsKey extends ReplyKey
 {
-    protected string $textKey = 'tbe-announcements::announcements.reply_key';
     protected int $perm = Roles::ADMIN->value;
-    protected string $responseKey = 'tbe-announcements::announcements.main.answers.menuLoaded';
 
+    protected function text(): string
+    {
+        return __('tbe-announcements::announcements.reply_key');
+    }
+
+    protected function response(): string
+    {
+        return __('tbe-announcements::announcements.main.answers.menuLoaded');
+    }
 
     public function handle(): void
     {
