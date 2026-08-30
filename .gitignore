@@ -7,3 +7,11 @@
 /.zed
 .env.testing
 /graphify-out/
+
+# Test and analysis artefacts.
+/.phpunit.cache
+/.phpunit.result.cache
+/build
+
+# Testbench syncs the package migrations here for `serve`.
+/workbench/database/migrations
