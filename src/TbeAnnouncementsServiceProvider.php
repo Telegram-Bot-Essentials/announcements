@@ -12,7 +12,7 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/tbe-announcements.php', 'tbe-announcements');
+        $this->mergeConfigFrom(__DIR__.'/../config/tbe-announcements.php', 'tbe-announcements');
     }
 
     /**
@@ -23,15 +23,15 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
     {
         $this->registerPublishing();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'tbe-announcements');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'tbe-announcements');
 
         callbackQueryBus()->addCallbackQueries([
-            AnnouncementsQuery::class
+            AnnouncementsQuery::class,
         ]);
 
         stateAnswerBus()->addStateAnswers([
-            AnnouncementsAnswer::class
+            AnnouncementsAnswer::class,
         ]);
     }
 
@@ -39,11 +39,11 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/tbe-announcements.php' => config_path('tbe-announcements.php'),
+                __DIR__.'/../config/tbe-announcements.php' => config_path('tbe-announcements.php'),
             ], 'tbe-announcements-config');
 
             $this->publishes([
-                __DIR__ . '/../lang' => resource_path('lang/vendor/tbe-announcements'),
+                __DIR__.'/../lang' => resource_path('lang/vendor/tbe-announcements'),
             ], 'tbe-announcements-translations');
         }
     }

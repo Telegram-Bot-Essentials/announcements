@@ -17,9 +17,11 @@ use TelegramBotEssentials\Essence\Telegram\StateAnswers\StateAnswer;
 class AnnouncementsAnswer extends StateAnswer
 {
     protected string $type = 'ANNOUNCEMENTS';
+
     protected int $perm = Roles::ADMIN->value;
+
     protected array $allowedFields = [
-        AllowableFields::TEXT->value
+        AllowableFields::TEXT->value,
     ];
 
     public function createAnnouncement(int $lastPage): void
@@ -29,7 +31,7 @@ class AnnouncementsAnswer extends StateAnswer
             'from_chat_id' => wHook()->update()->message->from->id,
             'message_id' => wHook()->update()->message->messageId,
             'message_text' => wHook()->update()->message->text,
-            'label' => Str::limit(wHook()->update()->message->text, 8)
+            'label' => Str::limit(wHook()->update()->message->text, 8),
         ])->refresh();
 
         wHook()->user()->changeState();
@@ -45,7 +47,7 @@ class AnnouncementsAnswer extends StateAnswer
         );
     }
 
-    function change(Announcement $announcement, string $target, int $lastPage = 1): void
+    public function change(Announcement $announcement, string $target, int $lastPage = 1): void
     {
         $answer = wHook()->update()->message->text;
         $announcement->$target = $answer;
@@ -63,7 +65,7 @@ class AnnouncementsAnswer extends StateAnswer
         );
     }
 
-    function setMessage(Announcement $announcement, int $lastPage = 1): void
+    public function setMessage(Announcement $announcement, int $lastPage = 1): void
     {
         $announcement->message_id = wHook()->update()->message->messageId;
         $announcement->from_chat_id = wHook()->update()->message->from->id;

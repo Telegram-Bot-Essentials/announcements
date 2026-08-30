@@ -2,10 +2,9 @@
 
 namespace TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin;
 
+use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
 use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
-use Throwable;
-use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
@@ -14,10 +13,12 @@ use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
 use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Models\MessageMeta;
 use TelegramBotEssentials\Essence\Telegram\CallbackQueries\CallbackQuery;
+use Throwable;
 
 class AnnouncementsQuery extends CallbackQuery
 {
     protected string $type = 'ANNOUNCEMENTS';
+
     protected int $perm = Roles::ADMIN->value;
 
     /**
@@ -51,19 +52,19 @@ class AnnouncementsQuery extends CallbackQuery
     /**
      * @throws TelegramSDKException
      */
-    function show(Announcement $announcement, int $lastPage = 1): void
+    public function show(Announcement $announcement, int $lastPage = 1): void
     {
         AnnouncementsFeature::show($announcement, $lastPage)->update();
     }
 
-    function preview(Announcement $announcement): void
+    public function preview(Announcement $announcement): void
     {
         $announcement->sendTo(wHook()->peerId());
 
         $this->answer(__('tbe-announcements::announcements.main.answers.previewSent'));
     }
 
-    function change(Announcement $announcement, string $target, int $lastPage = 1): void
+    public function change(Announcement $announcement, string $target, int $lastPage = 1): void
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
         wHook()->user()->changeState(encodeAnswerState($this->type, 'change', [
@@ -73,20 +74,20 @@ class AnnouncementsQuery extends CallbackQuery
             'message_meta' => $messageMeta->id,
         ]));
         $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.changingField', [
-            'field' => __('tbe-announcements::announcements.main.fields.' . $target),
+            'field' => __('tbe-announcements::announcements.main.fields.'.$target),
         ]));
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.text.enterField', [
-                'field' => __('tbe-announcements::announcements.main.fields.' . $target),
+                'field' => __('tbe-announcements::announcements.main.fields.'.$target),
             ]),
             'parse_mode' => 'HTML',
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
     }
 
-    function setMessage(Announcement $announcement, int $lastPage = 1): void
+    public function setMessage(Announcement $announcement, int $lastPage = 1): void
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
 
@@ -109,7 +110,7 @@ class AnnouncementsQuery extends CallbackQuery
     /**
      * @throws InvalidPageNumber
      */
-    function delete(Announcement $announcement, int $lastPage = 1): void
+    public function delete(Announcement $announcement, int $lastPage = 1): void
     {
         $announcement->delete();
 
@@ -118,7 +119,7 @@ class AnnouncementsQuery extends CallbackQuery
             ->update();
     }
 
-    function changeMethod(Announcement $announcement, string $method, int $lastPage = 1): void
+    public function changeMethod(Announcement $announcement, string $method, int $lastPage = 1): void
     {
         $methods = ['html', 'copy', 'forward'];
         $announcement->method = nextInArray($methods, $method);
@@ -131,7 +132,7 @@ class AnnouncementsQuery extends CallbackQuery
             ->update();
     }
 
-    function sendingAnnouncement(Announcement $announcement, int $page = 1, int $currentPage = 0): void
+    public function sendingAnnouncement(Announcement $announcement, int $page = 1, int $currentPage = 0): void
     {
         AnnouncementsFeature::sendingAnnouncement($announcement, $page, $currentPage)->update();
     }
@@ -171,13 +172,13 @@ class AnnouncementsQuery extends CallbackQuery
         $this->answer(__('tbe-announcements::announcements.main.answers.settingPage'));
     }
 
-    function reloadTargetUsers(Announcement $announcement, int $page = 1): void
+    public function reloadTargetUsers(Announcement $announcement, int $page = 1): void
     {
         $now = now();
 
         $rows = BotUser::query()
             ->pluck('id')
-            ->map(fn(int $botUserId) => [
+            ->map(fn (int $botUserId) => [
                 'bot_id' => $announcement->bot_id,
                 'announcement_id' => $announcement->id,
                 'bot_user_id' => $botUserId,
@@ -193,7 +194,7 @@ class AnnouncementsQuery extends CallbackQuery
         AnnouncementsFeature::sendingAnnouncement($announcement, $page)->update();
     }
 
-    function announcementTargetSend(AnnouncementTarget $announcementTarget, int $page)
+    public function announcementTargetSend(AnnouncementTarget $announcementTarget, int $page)
     {
         dependsOn(
             $announcementTarget->status !== 'sent',
@@ -235,7 +236,7 @@ class AnnouncementsQuery extends CallbackQuery
     /**
      * @throws TelegramSDKException
      */
-    function announcementTargetDelete(AnnouncementTarget $announcementTarget, int $page)
+    public function announcementTargetDelete(AnnouncementTarget $announcementTarget, int $page)
     {
         dependsOn(
             $announcementTarget->status === 'sent',
@@ -271,7 +272,7 @@ class AnnouncementsQuery extends CallbackQuery
     /**
      * @throws TelegramSDKException
      */
-    function startSendingMessages(Announcement $announcement): void
+    public function startSendingMessages(Announcement $announcement): void
     {
         $statusMessage = wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
@@ -324,7 +325,7 @@ class AnnouncementsQuery extends CallbackQuery
     /**
      * @throws TelegramSDKException
      */
-    function deleteSentMessages(Announcement $announcement): void
+    public function deleteSentMessages(Announcement $announcement): void
     {
         $statusMessage = wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),

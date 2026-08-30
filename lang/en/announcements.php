@@ -4,65 +4,65 @@ return [
     'main' => [
         'text' => [
             'menu' => '📢 <b><i>Announcements</i></b>'
-                . "\r\n"
-                . "\r\nManage your announcements using the options below 👇",
+                ."\r\n"
+                ."\r\nManage your announcements using the options below 👇",
             'menu_empty' => '📢 <b><i>Announcements</i></b>'
-                . "\r\n"
-                . "\r\nNo announcements yet. Create your first one using the button below 👇",
+                ."\r\n"
+                ."\r\nNo announcements yet. Create your first one using the button below 👇",
             'show' => '📢 <b><i>Announcement Details</i></b>'
-                . "\r\n"
-                . "\r\n🏷 <b>Label:</b> <i>:label</i>"
-                . "\r\n💬 <b>Message:</b>"
-                . "\r\n<blockquote expandable>:message</blockquote>"
-                . "\r\n📡 <b>Method:</b> <i>:method</i>"
-                . "\r\n🕐 <b>Sent at:</b> <i>:sentAt</i>"
-                . "\r\n"
-                . "\r\n📊 <b>Statistics:</b>"
-                . "\r\n👥 <b>Total targets:</b> <code>:total</code>"
-                . "\r\n✅ <b>Sent:</b> <code>:sent</code>"
-                . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
-                . "\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
-                . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
-                . "\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
-                . "\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
-                . "\r\n"
-                . "\r\nManage this announcement using the options below 👇",
+                ."\r\n"
+                ."\r\n🏷 <b>Label:</b> <i>:label</i>"
+                ."\r\n💬 <b>Message:</b>"
+                ."\r\n<blockquote expandable>:message</blockquote>"
+                ."\r\n📡 <b>Method:</b> <i>:method</i>"
+                ."\r\n🕐 <b>Sent at:</b> <i>:sentAt</i>"
+                ."\r\n"
+                ."\r\n📊 <b>Statistics:</b>"
+                ."\r\n👥 <b>Total targets:</b> <code>:total</code>"
+                ."\r\n✅ <b>Sent:</b> <code>:sent</code>"
+                ."\r\n⏳ <b>Pending:</b> <code>:pending</code>"
+                ."\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
+                ."\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                ."\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
+                ."\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
+                ."\r\n"
+                ."\r\nManage this announcement using the options below 👇",
             'sendMessagePrompt' => '💬 Send the announcement message:',
             'enterField' => '✏️ Enter the new :field:',
             'enterPagePrompt' => '🔢 Enter page number:',
             'deleteConfirmation' => 'Are you sure you want to delete the announcement ":label"?',
             'messageRequiredForHtml' => '⚠️ You must set a message before previewing in HTML mode.',
             'sendingAnnouncement' => '📤 <b><i>Send Announcement</i></b>'
-                . "\r\n"
-                . "\r\n🏷 <b>Label:</b> <i>:label</i>"
-                . "\r\n"
-                . "\r\nManage target users and control send/delete status from the list below 👇",
+                ."\r\n"
+                ."\r\n🏷 <b>Label:</b> <i>:label</i>"
+                ."\r\n"
+                ."\r\nManage target users and control send/delete status from the list below 👇",
             'sendingProgressInitial' => '📤 Sending: 0/:total',
             'deletingProgressInitial' => '🗑 Deleting: 0/:total',
             'sendingProgressTemplate' => ':status'
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n🏷 <b>Label:</b> <i>:label</i>"
-                . "\r\n📊 <b>Progress:</b> :percent% [<code>:progressBar</code>]"
-                . "\r\n"
-                . "\r\n👥 <b>Total targets:</b> <code>:total</code>"
-                . "\r\n✅ <b>Sent:</b> <code>:sent</code>"
-                . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
-                . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
-                . "\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
-                . "\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n:footer",
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n🏷 <b>Label:</b> <i>:label</i>"
+                ."\r\n📊 <b>Progress:</b> :percent% [<code>:progressBar</code>]"
+                ."\r\n"
+                ."\r\n👥 <b>Total targets:</b> <code>:total</code>"
+                ."\r\n✅ <b>Sent:</b> <code>:sent</code>"
+                ."\r\n⏳ <b>Pending:</b> <code>:pending</code>"
+                ."\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                ."\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
+                ."\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n:footer",
             'deletingProgressTemplate' => ':status'
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n🏷 <b>Label:</b> <i>:label</i>"
-                . "\r\n📊 <b>Progress:</b> :percent% [<code>:progressBar</code>]"
-                . "\r\n"
-                . "\r\n👥 <b>Total targets:</b> <code>:total</code>"
-                . "\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
-                . "\r\n⏳ <b>Pending:</b> <code>:pending</code>"
-                . "\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n:footer",
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n🏷 <b>Label:</b> <i>:label</i>"
+                ."\r\n📊 <b>Progress:</b> :percent% [<code>:progressBar</code>]"
+                ."\r\n"
+                ."\r\n👥 <b>Total targets:</b> <code>:total</code>"
+                ."\r\n🗑 <b>Deleted:</b> <code>:deleted</code>"
+                ."\r\n⏳ <b>Pending:</b> <code>:pending</code>"
+                ."\r\n⛔ <b>Forbidden:</b> <code>:forbidden</code>"
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n:footer",
         ],
         'answers' => [
             'menuLoaded' => '📋 Announcements loaded.',

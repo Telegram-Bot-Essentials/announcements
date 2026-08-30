@@ -4,6 +4,7 @@ namespace TelegramBotEssentials\Announcements\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Cache;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
@@ -16,12 +17,11 @@ class DeleteAnnouncementJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param WebhookContext $context
-     * @param array<int> $targetIds
+     * @param  array<int>  $targetIds
      */
     public function __construct(
         private readonly WebhookContext $context,
-        private readonly array          $targetIds
+        private readonly array $targetIds
     ) {
         $this->queue = config('tbe-announcements.queue', 'announcements');
     }
@@ -43,7 +43,7 @@ class DeleteAnnouncementJob implements ShouldQueue
         }
 
         $announcement = $targets->first()->announcement;
-        if (!$announcement) {
+        if (! $announcement) {
             return;
         }
 
@@ -62,7 +62,7 @@ class DeleteAnnouncementJob implements ShouldQueue
                 $target->update([
                     'status' => 'forbidden',
                 ]);
-                tbeLog('announcements')->debug('Failed to delete announcement message: ' . $exception->getMessage(), [
+                tbeLog('announcements')->debug('Failed to delete announcement message: '.$exception->getMessage(), [
                     'announcement_id' => $announcement->getKey(),
                     'target_id' => $target->getKey(),
                     'peer_id' => $target->botUser->telegramUser->peer_id,
@@ -74,14 +74,14 @@ class DeleteAnnouncementJob implements ShouldQueue
             ->where('status', 'sent')
             ->exists();
 
-        if (!$hasPending) {
+        if (! $hasPending) {
             tbeLog('announcements')->info('Announcement deletion completed', [
                 'announcement_id' => $announcement->getKey(),
                 'deleted_count' => $announcement->targets()->where('status', 'deleted')->count(),
             ]);
         }
 
-        self::updateProgress($announcement, !$hasPending);
+        self::updateProgress($announcement, ! $hasPending);
     }
 
     /**
@@ -91,7 +91,7 @@ class DeleteAnnouncementJob implements ShouldQueue
     {
         $lockKey = "tbe-announcements:delete-progress-update:{$announcement->id}";
 
-        if ($force || \Illuminate\Support\Facades\Cache::add($lockKey, true, 3)) {
+        if ($force || Cache::add($lockKey, true, 3)) {
             try {
                 wHook()->api()->editMessageText([
                     'chat_id' => $announcement->action_status_chat_id,

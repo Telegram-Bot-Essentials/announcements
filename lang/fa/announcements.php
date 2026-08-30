@@ -4,65 +4,65 @@ return [
     'main' => [
         'text' => [
             'menu' => '📢 <b><i>اعلان‌ها</i></b>'
-                . "\r\n"
-                . "\r\nاز دکمه‌های پایین اعلان‌هاتون رو مدیریت کنید 👇",
+                ."\r\n"
+                ."\r\nاز دکمه‌های پایین اعلان‌هاتون رو مدیریت کنید 👇",
             'menu_empty' => '📢 <b><i>اعلان‌ها</i></b>'
-                . "\r\n"
-                . "\r\nهنوز اعلانی ندارید. با دکمه پایین اولین اعلانتون رو بسازید 👇",
+                ."\r\n"
+                ."\r\nهنوز اعلانی ندارید. با دکمه پایین اولین اعلانتون رو بسازید 👇",
             'show' => '📢 <b><i>جزئیات اعلان</i></b>'
-                . "\r\n"
-                . "\r\n🏷 <b>برچسب:</b> <i>:label</i>"
-                . "\r\n💬 <b>پیام:</b>"
-                . "\r\n<blockquote expandable>:message</blockquote>"
-                . "\r\n📡 <b>روش:</b> <i>:method</i>"
-                . "\r\n🕐 <b>زمان ارسال:</b> <i>:sentAt</i>"
-                . "\r\n"
-                . "\r\n📊 <b>آمار:</b>"
-                . "\r\n👥 <b>کل اهداف:</b> <code>:total</code>"
-                . "\r\n✅ <b>ارسال شده:</b> <code>:sent</code>"
-                . "\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
-                . "\r\n🗑 <b>حذف شده:</b> <code>:deleted</code>"
-                . "\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
-                . "\r\n🚫 <b>رد شده:</b> <code>:skipped</code>"
-                . "\r\n⚠️ <b>ناموفق:</b> <code>:failed</code>"
-                . "\r\n"
-                . "\r\nاز دکمه‌های پایین این اعلان رو مدیریت کنید 👇",
+                ."\r\n"
+                ."\r\n🏷 <b>برچسب:</b> <i>:label</i>"
+                ."\r\n💬 <b>پیام:</b>"
+                ."\r\n<blockquote expandable>:message</blockquote>"
+                ."\r\n📡 <b>روش:</b> <i>:method</i>"
+                ."\r\n🕐 <b>زمان ارسال:</b> <i>:sentAt</i>"
+                ."\r\n"
+                ."\r\n📊 <b>آمار:</b>"
+                ."\r\n👥 <b>کل اهداف:</b> <code>:total</code>"
+                ."\r\n✅ <b>ارسال شده:</b> <code>:sent</code>"
+                ."\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
+                ."\r\n🗑 <b>حذف شده:</b> <code>:deleted</code>"
+                ."\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
+                ."\r\n🚫 <b>رد شده:</b> <code>:skipped</code>"
+                ."\r\n⚠️ <b>ناموفق:</b> <code>:failed</code>"
+                ."\r\n"
+                ."\r\nاز دکمه‌های پایین این اعلان رو مدیریت کنید 👇",
             'sendMessagePrompt' => '💬 پیام اعلان رو بفرستید:',
             'enterField' => '✏️ مقدار جدید :field رو وارد کنید:',
             'enterPagePrompt' => '🔢 شماره صفحه را وارد کنید:',
             'deleteConfirmation' => 'مطمئنید می‌خواهید اعلان ":label" را حذف کنید؟',
             'messageRequiredForHtml' => '⚠️ برای پیش‌نمایش در حالت HTML باید پیام تنظیم شده باشد.',
             'sendingAnnouncement' => '📤 <b><i>ارسال اعلان</i></b>'
-                . "\r\n"
-                . "\r\n🏷 <b>برچسب:</b> <i>:label</i>"
-                . "\r\n"
-                . "\r\nکاربرهای هدف را مدیریت کنید و وضعیت ارسال/حذف را از لیست پایین کنترل کنید 👇",
+                ."\r\n"
+                ."\r\n🏷 <b>برچسب:</b> <i>:label</i>"
+                ."\r\n"
+                ."\r\nکاربرهای هدف را مدیریت کنید و وضعیت ارسال/حذف را از لیست پایین کنترل کنید 👇",
             'sendingProgressInitial' => '📤 در حال ارسال: 0/:total',
             'deletingProgressInitial' => '🗑 در حال حذف: 0/:total',
             'sendingProgressTemplate' => ':status'
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n🏷 <b>برچسب:</b> <i>:label</i>"
-                . "\r\n📊 <b>پیشرفت:</b> :percent% [<code>:progressBar</code>]"
-                . "\r\n"
-                . "\r\n👥 <b>کل اهداف:</b> <code>:total</code>"
-                . "\r\n✅ <b>ارسال شده:</b> <code>:sent</code>"
-                . "\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
-                . "\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
-                . "\r\n🚫 <b>رد شده:</b> <code>:skipped</code>"
-                . "\r\n⚠️ <b>ناموفق:</b> <code>:failed</code>"
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n:footer",
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n🏷 <b>برچسب:</b> <i>:label</i>"
+                ."\r\n📊 <b>پیشرفت:</b> :percent% [<code>:progressBar</code>]"
+                ."\r\n"
+                ."\r\n👥 <b>کل اهداف:</b> <code>:total</code>"
+                ."\r\n✅ <b>ارسال شده:</b> <code>:sent</code>"
+                ."\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
+                ."\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
+                ."\r\n🚫 <b>رد شده:</b> <code>:skipped</code>"
+                ."\r\n⚠️ <b>ناموفق:</b> <code>:failed</code>"
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n:footer",
             'deletingProgressTemplate' => ':status'
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n🏷 <b>برچسب:</b> <i>:label</i>"
-                . "\r\n📊 <b>پیشرفت:</b> :percent% [<code>:progressBar</code>]"
-                . "\r\n"
-                . "\r\n👥 <b>کل اهداف:</b> <code>:total</code>"
-                . "\r\n🗑 <b>حذف شده:</b> <code>:deleted</code>"
-                . "\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
-                . "\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
-                . "\r\n━━━━━━━━━━━━━━━━━━━━"
-                . "\r\n:footer",
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n🏷 <b>برچسب:</b> <i>:label</i>"
+                ."\r\n📊 <b>پیشرفت:</b> :percent% [<code>:progressBar</code>]"
+                ."\r\n"
+                ."\r\n👥 <b>کل اهداف:</b> <code>:total</code>"
+                ."\r\n🗑 <b>حذف شده:</b> <code>:deleted</code>"
+                ."\r\n⏳ <b>در انتظار:</b> <code>:pending</code>"
+                ."\r\n⛔ <b>بلاک شده:</b> <code>:forbidden</code>"
+                ."\r\n━━━━━━━━━━━━━━━━━━━━"
+                ."\r\n:footer",
         ],
         'answers' => [
             'menuLoaded' => '📋 اعلان‌ها بارگذاری شد.',

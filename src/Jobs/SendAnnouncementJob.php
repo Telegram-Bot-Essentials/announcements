@@ -4,6 +4,7 @@ namespace TelegramBotEssentials\Announcements\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Cache;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
@@ -16,12 +17,11 @@ class SendAnnouncementJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param WebhookContext $context
-     * @param array<int> $targetIds
+     * @param  array<int>  $targetIds
      */
     public function __construct(
         private readonly WebhookContext $context,
-        private readonly array          $targetIds
+        private readonly array $targetIds
     ) {
         $this->queue = config('tbe-announcements.queue', 'announcements');
     }
@@ -43,7 +43,7 @@ class SendAnnouncementJob implements ShouldQueue
         }
 
         $announcement = $targets->first()->announcement;
-        if (!$announcement) {
+        if (! $announcement) {
             return;
         }
 
@@ -52,7 +52,7 @@ class SendAnnouncementJob implements ShouldQueue
 
             // Checked here rather than when the targets were built, so that a
             // user who unblocked the bot in the meantime still receives this.
-            if (!$botUser?->isReachable()) {
+            if (! $botUser?->isReachable()) {
                 $target->update(['status' => 'skipped']);
 
                 continue;
@@ -77,7 +77,7 @@ class SendAnnouncementJob implements ShouldQueue
                     'status' => $status === null ? 'failed' : 'forbidden',
                 ]);
 
-                tbeLog('announcements')->debug('Failed to send announcement to user: ' . $exception->getMessage(), [
+                tbeLog('announcements')->debug('Failed to send announcement to user: '.$exception->getMessage(), [
                     'announcement_id' => $announcement->getKey(),
                     'target_id' => $target->getKey(),
                     'peer_id' => $botUser->telegramUser->peer_id,
@@ -90,7 +90,7 @@ class SendAnnouncementJob implements ShouldQueue
             ->whereNull('status')
             ->exists();
 
-        if (!$hasPending) {
+        if (! $hasPending) {
             $announcement->update(['sent_at' => now()]);
 
             tbeLog('announcements')->info('Announcement fully sent', [
@@ -102,7 +102,7 @@ class SendAnnouncementJob implements ShouldQueue
             ]);
         }
 
-        self::updateProgress($announcement, !$hasPending);
+        self::updateProgress($announcement, ! $hasPending);
     }
 
     /**
@@ -112,7 +112,7 @@ class SendAnnouncementJob implements ShouldQueue
     {
         $lockKey = "tbe-announcements:progress-update:{$announcement->id}";
 
-        if ($force || \Illuminate\Support\Facades\Cache::add($lockKey, true, 3)) {
+        if ($force || Cache::add($lockKey, true, 3)) {
             try {
                 wHook()->api()->editMessageText([
                     'chat_id' => $announcement->action_status_chat_id,
