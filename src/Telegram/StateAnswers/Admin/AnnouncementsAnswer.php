@@ -42,7 +42,7 @@ class AnnouncementsAnswer extends StateAnswer
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
 
-        $this->messageMeta()->updateAndContinueAction(
+        $this->requireMessageMeta()->updateAndContinueAction(
             AnnouncementsFeature::show($announcement, $lastPage)
         );
     }
@@ -60,7 +60,7 @@ class AnnouncementsAnswer extends StateAnswer
             'parse_mode' => 'HTML',
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
-        $this->messageMeta()->updateAndContinueAction(
+        $this->requireMessageMeta()->updateAndContinueAction(
             AnnouncementsFeature::show($announcement, $lastPage)
         );
     }
@@ -80,7 +80,7 @@ class AnnouncementsAnswer extends StateAnswer
             'parse_mode' => 'HTML',
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
-        $this->messageMeta()->updateAndContinueAction(
+        $this->requireMessageMeta()->updateAndContinueAction(
             AnnouncementsFeature::show($announcement, $lastPage)
         );
     }
@@ -107,7 +107,7 @@ class AnnouncementsAnswer extends StateAnswer
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
 
-        $this->messageMeta()->updateAndContinueAction($data);
+        $this->requireMessageMeta()->updateAndContinueAction($data);
     }
 
     /**
@@ -132,6 +132,6 @@ class AnnouncementsAnswer extends StateAnswer
             'reply_markup' => wHook()->user()->getKeyboard(),
         ]);
 
-        $this->messageMeta()->updateAndContinueAction($data);
+        $this->requireMessageMeta()->updateAndContinueAction($data);
     }
 }
