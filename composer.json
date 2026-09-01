@@ -1,12 +1,12 @@
 {
     "name": "telegram-bot-essentials/announcements",
-    "description": "Announcements feature built for telegram-bot-essentials/essence",
+    "description": "Bulk broadcast with live progress and retraction for telegram-bot-essentials/essence",
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "laravel/framework": ">=12.0",
-        "telegram-bot-essentials/essence": "0.12.x-dev"
+        "php": "^8.3",
+        "laravel/framework": "^12 || ^13",
+        "telegram-bot-essentials/essence": "^0.12"
     },
     "require-dev": {
         "larastan/larastan": "^3.0",
