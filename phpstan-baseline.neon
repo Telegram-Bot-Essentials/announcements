@@ -13,12 +13,6 @@ parameters:
 			path: database/factories/AnnouncementFactory.php
 
 		-
-			message: '#^Property TelegramBotEssentials\\Announcements\\Models\\AnnouncementTarget\:\:\$announcement_id \(int\<0, max\>\) does not accept int\.$#'
-			identifier: assign.propertyType
-			count: 1
-			path: database/factories/AnnouncementTargetFactory.php
-
-		-
 			message: '#^Cannot call method create\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1
@@ -284,12 +278,6 @@ parameters:
 			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
 
 		-
-			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:map\(\) expects callable\(mixed, int\|string\)\: array\{bot_id\: int, announcement_id\: int, bot_user_id\: int, created_at\: Illuminate\\Support\\Carbon, updated_at\: Illuminate\\Support\\Carbon\}, Closure\(int\)\: array\{bot_id\: int, announcement_id\: int, bot_user_id\: int, created_at\: Illuminate\\Support\\Carbon, updated_at\: Illuminate\\Support\\Carbon\} given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
 			message: '#^Parameter \#1 \$context of job class TelegramBotEssentials\\Announcements\\Jobs\\DeleteAnnouncementJob constructor expects TelegramBotEssentials\\Essence\\Support\\WebhookContext in TelegramBotEssentials\\Announcements\\Jobs\\DeleteAnnouncementJob\:\:dispatch\(\), TelegramBotEssentials\\Essence\\Support\\WebhookContext\|null given\.$#'
 			identifier: argument.type
 			count: 1
@@ -414,3 +402,9 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Telegram/StateAnswers/Admin/AnnouncementsAnswer.php
+
+		-
+			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:map\(\) expects callable\(mixed, int\|string\)\: array\{bot_id\: int, announcement_id\: int\<0, max\>, bot_user_id\: int, created_at\: Illuminate\\Support\\Carbon, updated_at\: Illuminate\\Support\\Carbon\}, Closure\(int\)\: array\{bot_id\: int, announcement_id\: int\<0, max\>, bot_user_id\: int, created_at\: Illuminate\\Support\\Carbon, updated_at\: Illuminate\\Support\\Carbon\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
