@@ -15,3 +15,6 @@
 
 # Testbench syncs the package migrations here for `serve`.
 /workbench/database/migrations
+
+# Testbench re-creates this symlink (absolute path) on every install.
+/workbench/storage
