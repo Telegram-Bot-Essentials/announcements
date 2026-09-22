@@ -69,7 +69,7 @@ class AnnouncementsFeature
             ]);
         }
 
-        $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcements->lastPage()));
+        TelegramPaginator::addNavigationRow($replyMarkup, self::$type, $page, $announcements->lastPage());
 
         return new TelegramResponse(
             text: $text,
@@ -236,7 +236,7 @@ class AnnouncementsFeature
                 ]);
             }
 
-            $replyMarkup->row(TelegramPaginator::makeNavigationButtonsRow(self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncementPage', customPageMethod: 'sendingSetPage', extraParams: [$announcement->id]));
+            TelegramPaginator::addNavigationRow($replyMarkup, self::$type, $page, $announcementTargets->lastPage(), 'sendingAnnouncementPage', customPageMethod: 'sendingSetPage', extraParams: [$announcement->id]);
         }
 
         $replyMarkup->row([
