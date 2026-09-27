@@ -77,7 +77,7 @@ class SendAnnouncementJob implements ShouldQueue
                     'status' => $status === null ? 'failed' : 'forbidden',
                 ]);
 
-                tbeLog('announcements')->debug('Failed to send announcement to user: '.$exception->getMessage(), [
+                tbeLog('announcements')->for($botUser)->debug('Announcement #{announcement_id} not delivered ({user_status}): '.$exception->getMessage(), [
                     'announcement_id' => $announcement->getKey(),
                     'target_id' => $target->getKey(),
                     'peer_id' => $botUser->telegramUser->peer_id,
@@ -93,7 +93,7 @@ class SendAnnouncementJob implements ShouldQueue
         if (! $hasPending) {
             $announcement->update(['sent_at' => now()]);
 
-            tbeLog('announcements')->info('Announcement fully sent', [
+            tbeLog('announcements')->info('Announcement #{announcement_id} finished: {sent_count} sent, {forbidden_count} blocked, {skipped_count} skipped, {failed_count} failed', [
                 'announcement_id' => $announcement->getKey(),
                 'sent_count' => $announcement->targets()->where('status', 'sent')->count(),
                 'forbidden_count' => $announcement->targets()->where('status', 'forbidden')->count(),
