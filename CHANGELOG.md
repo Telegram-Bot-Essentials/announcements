@@ -6,6 +6,13 @@ stabilizes at 1.0 a `0.0.x` bump may carry breaking changes.
 
 ## [Unreleased]
 
+### Changed
+
+- Requires essence `^0.15` for `tbeLog()->for()`.
+- Announcement log messages name the announcement and, for a finished
+  campaign, its outcome (`Announcement #4 finished: 120 sent, 3 blocked,
+  0 skipped, 1 failed`); a per-user delivery failure is bound to that user.
+
 ## [0.0.15] - 2026-09-22
 
 ### Changed
