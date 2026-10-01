@@ -5,11 +5,11 @@ return [
         'text' => [
             'menu' => '📢 <b><i>Announcements</i></b>'
                 ."\r\n"
-                ."\r\nManage your announcements using the options below 👇",
+                ."\r\nUse the buttons below to manage your announcements 👇",
             'menu_empty' => '📢 <b><i>Announcements</i></b>'
                 ."\r\n"
-                ."\r\nNo announcements yet. Create your first one using the button below 👇",
-            'show' => '📢 <b><i>Announcement Details</i></b>'
+                ."\r\nNo announcements yet. Tap the button below to create your first one 👇",
+            'show' => '📢 <b><i>Announcement details</i></b>'
                 ."\r\n"
                 ."\r\n🏷 <b>Label:</b> <i>:label</i>"
                 ."\r\n💬 <b>Message:</b>"
@@ -26,17 +26,17 @@ return [
                 ."\r\n🚫 <b>Skipped:</b> <code>:skipped</code>"
                 ."\r\n⚠️ <b>Failed:</b> <code>:failed</code>"
                 ."\r\n"
-                ."\r\nManage this announcement using the options below 👇",
+                ."\r\nUse the buttons below to manage this announcement 👇",
             'sendMessagePrompt' => '💬 Send the announcement message:',
-            'enterField' => '✏️ Enter the new :field:',
-            'enterPagePrompt' => '🔢 Enter page number:',
+            'enterField' => '✏️ Send the new :field:',
+            'enterPagePrompt' => '🔢 Enter the page number:',
             'deleteConfirmation' => 'Are you sure you want to delete the announcement ":label"?',
             'messageRequiredForHtml' => '⚠️ You must set a message before previewing in HTML mode.',
-            'sendingAnnouncement' => '📤 <b><i>Send Announcement</i></b>'
+            'sendingAnnouncement' => '📤 <b><i>Send announcement</i></b>'
                 ."\r\n"
                 ."\r\n🏷 <b>Label:</b> <i>:label</i>"
                 ."\r\n"
-                ."\r\nManage target users and control send/delete status from the list below 👇",
+                ."\r\nUse the list below to manage the target users and their send/delete status 👇",
             'sendingProgressInitial' => '📤 Sending: 0/:total',
             'deletingProgressInitial' => '🗑 Deleting: 0/:total',
             'sendingProgressTemplate' => ':status'
@@ -65,38 +65,38 @@ return [
                 ."\r\n:footer",
         ],
         'answers' => [
-            'menuLoaded' => '📋 Announcements loaded.',
-            'creatingAnnouncement' => '⏳ Creating announcement...',
+            'menuLoaded' => '📋 Announcements',
+            'creatingAnnouncement' => '⏳ Creating the announcement…',
             'previewSent' => '👁 Preview message sent.',
             'methodChanged' => '🔄 Method changed to :method.',
-            'created' => '✅ Announcement created successfully.',
-            'updated' => '✅ Announcement updated successfully.',
-            'deleted' => '🗑 Announcement deleted successfully.',
+            'created' => '✅ Announcement created.',
+            'updated' => '✅ Announcement updated.',
+            'deleted' => '🗑 Announcement deleted.',
             'targetSent' => '✅ Announcement sent to :user.',
             'targetDeleted' => '🗑 Announcement deleted for :user.',
             'targetForbidden' => '⛔ Action failed for :user (user blocked the bot).',
             'targetFailed' => '⚠️ Action failed for :user for a temporary reason. Try again.',
             'sendingStarted' => '📤 Sending process started.',
             'deletingStarted' => '🗑 Deleting process started.',
-            'settingPage' => '⏳ Waiting for page number...',
+            'settingPage' => '⏳ Waiting for the page number…',
             'pageLoaded' => '📄 Page :page loaded.',
             'sendingProgress' => '📤 Sent: :sent/:total | ⛔ Failed: :forbidden',
             'deletingProgress' => '🗑 Deleted: :deleted/:total | ⛔ Failed: :forbidden',
         ],
         'keys' => [
-            'create' => '➕ Create Announcement',
+            'create' => '➕ Create announcement',
             'columnLabel' => '🏷 Label',
             'columnStatus' => '📊 Status',
             'notSentYet' => '⏳ Not sent yet',
             'preview' => '👁 Preview',
-            'send' => '📤 Send Announcement',
-            'changeLabel' => '🏷 Change Label',
+            'send' => '📤 Send announcement',
+            'changeLabel' => '🏷 Change label',
             'method' => '📡 Method: :method',
-            'setMessage' => '✉️ Set Message',
-            'applyFilters' => '🔍 Apply Filters',
-            'reloadTargetUsers' => '🔄 Reload Target Users',
+            'setMessage' => '✉️ Set message',
+            'applyFilters' => '🔍 Apply filters',
+            'reloadTargetUsers' => '🔄 Reload target users',
             'startSendingMessages' => '📤 Start Sending',
-            'deleteSentMessages' => '🗑 Delete Sent Messages',
+            'deleteSentMessages' => '🗑 Delete sent messages',
             'targetStatus' => [
                 'pending' => '➕ Send',
                 'sent' => '🗑 Delete',
@@ -122,21 +122,21 @@ return [
             'creatingAnnouncement' => 'Creating announcement',
             'changingField' => 'Changing :field',
             'settingMessage' => 'Setting announcement message',
-            'settingPage' => 'Waiting for page number',
+            'settingPage' => 'Waiting for the page number',
         ],
         'status' => [
-            'sendingInProgress' => '📤 <b>Sending Announcement...</b>',
-            'sendingCompleted' => '✅ <b>Sending Completed!</b>',
-            'sendingFooterProgress' => '⏳ Processing batches, please wait...',
+            'sendingInProgress' => '📤 <b>Sending announcement…</b>',
+            'sendingCompleted' => '✅ <b>Sending completed!</b>',
+            'sendingFooterProgress' => '⏳ Processing batches — hang tight…',
             'sendingFooterCompleted' => '✨ All messages have been processed.',
-            'deletingInProgress' => '🗑 <b>Deleting Announcement...</b>',
-            'deletingCompleted' => '✅ <b>Deleting Completed!</b>',
-            'deletingFooterProgress' => '⏳ Deleting sent messages, please wait...',
+            'deletingInProgress' => '🗑 <b>Deleting announcement…</b>',
+            'deletingCompleted' => '✅ <b>Deleting completed!</b>',
+            'deletingFooterProgress' => '⏳ Deleting the sent messages — hang tight…',
             'deletingFooterCompleted' => '✨ All target messages have been deleted.',
         ],
         'errors' => [
-            'alreadySent' => '⚠️ Announcement has already been sent to this user.',
-            'cannotDelete' => '⚠️ Announcement cannot be deleted (either not sent or already deleted).',
+            'alreadySent' => '⚠️ This user already received the announcement.',
+            'cannotDelete' => '⚠️ This announcement can\'t be deleted (it was never sent, or it\'s already deleted).',
         ],
     ],
     'reply_key' => '📢 Announcements',
