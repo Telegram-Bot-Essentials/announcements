@@ -8,7 +8,6 @@ use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
-use TelegramBotEssentials\Essence\Enums\Roles;
 use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
 use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Models\MessageMeta;
@@ -19,7 +18,7 @@ class AnnouncementsQuery extends CallbackQuery
 {
     protected string $type = 'ANNOUNCEMENTS';
 
-    protected int $perm = Roles::ADMIN->value;
+    protected ?string $permission = 'announcements.manage';
 
     /**
      * @throws InvalidPageNumber
@@ -42,7 +41,7 @@ class AnnouncementsQuery extends CallbackQuery
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.text.sendMessagePrompt'),
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
             'parse_mode' => 'HTML',
         ]);
 
@@ -83,7 +82,7 @@ class AnnouncementsQuery extends CallbackQuery
                 'field' => __('tbe-announcements::announcements.main.fields.'.$target),
             ]),
             'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
     }
 
@@ -103,7 +102,7 @@ class AnnouncementsQuery extends CallbackQuery
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.text.sendMessagePrompt'),
             'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
     }
 
@@ -166,7 +165,7 @@ class AnnouncementsQuery extends CallbackQuery
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.text.enterPagePrompt'),
             'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
 
         $this->answer(__('tbe-announcements::announcements.main.answers.settingPage'));
@@ -316,7 +315,7 @@ class AnnouncementsQuery extends CallbackQuery
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.text.enterPagePrompt'),
             'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
 
         $this->answer(__('tbe-announcements::announcements.main.answers.settingPage'));
