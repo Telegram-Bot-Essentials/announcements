@@ -33,7 +33,7 @@ class AnnouncementsAnswer extends StateAnswer
             'label' => Str::limit(wHook()->update()->message->text, 8),
         ])->refresh();
 
-        wHook()->user()->changeState();
+        wHook()->conversation()->changeState();
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->user()->telegramUser->peer_id,
@@ -51,7 +51,7 @@ class AnnouncementsAnswer extends StateAnswer
         $answer = wHook()->update()->message->text;
         $announcement->$target = $answer;
         $announcement->save();
-        wHook()->user()->changeState();
+        wHook()->conversation()->changeState();
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
@@ -71,7 +71,7 @@ class AnnouncementsAnswer extends StateAnswer
         $announcement->message_text = wHook()->update()->message->text;
         $announcement->save();
 
-        wHook()->user()->changeState();
+        wHook()->conversation()->changeState();
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
@@ -99,7 +99,7 @@ class AnnouncementsAnswer extends StateAnswer
 
         $data = AnnouncementsFeature::menu(intval($page));
 
-        wHook()->user()->changeState();
+        wHook()->conversation()->changeState();
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.answers.pageLoaded', ['page' => $page]),
@@ -124,7 +124,7 @@ class AnnouncementsAnswer extends StateAnswer
 
         $data = AnnouncementsFeature::sendingAnnouncement($announcement, intval($page));
 
-        wHook()->user()->changeState();
+        wHook()->conversation()->changeState();
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.answers.pageLoaded', ['page' => $page]),
