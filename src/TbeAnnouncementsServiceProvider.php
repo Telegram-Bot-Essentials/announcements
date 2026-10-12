@@ -26,6 +26,8 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'tbe-announcements');
 
+        permissionRegistry()->register('announcements.manage', fn () => __('tbe-announcements::permissions.manage'), 'announcements');
+
         callbackQueryBus()->addCallbackQueries([
             AnnouncementsQuery::class,
         ]);
