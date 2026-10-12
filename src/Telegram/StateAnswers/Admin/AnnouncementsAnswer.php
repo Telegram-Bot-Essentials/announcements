@@ -8,7 +8,6 @@ use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Enums\AllowableFields;
-use TelegramBotEssentials\Essence\Enums\Roles;
 use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
 use TelegramBotEssentials\Essence\Exceptions\LogicException;
 use TelegramBotEssentials\Essence\Services\TelegramPaginator;
@@ -18,7 +17,7 @@ class AnnouncementsAnswer extends StateAnswer
 {
     protected string $type = 'ANNOUNCEMENTS';
 
-    protected int $perm = Roles::ADMIN->value;
+    protected ?string $permission = 'announcements.manage';
 
     protected array $allowedFields = [
         AllowableFields::TEXT->value,
@@ -39,7 +38,7 @@ class AnnouncementsAnswer extends StateAnswer
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->user()->telegramUser->peer_id,
             'text' => __('tbe-announcements::announcements.main.answers.created'),
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
 
         $this->requireMessageMeta()->updateAndContinueAction(
@@ -58,7 +57,7 @@ class AnnouncementsAnswer extends StateAnswer
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.answers.updated'),
             'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
         $this->requireMessageMeta()->updateAndContinueAction(
             AnnouncementsFeature::show($announcement, $lastPage)
@@ -78,7 +77,7 @@ class AnnouncementsAnswer extends StateAnswer
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.answers.updated'),
             'parse_mode' => 'HTML',
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
         $this->requireMessageMeta()->updateAndContinueAction(
             AnnouncementsFeature::show($announcement, $lastPage)
@@ -104,7 +103,7 @@ class AnnouncementsAnswer extends StateAnswer
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.answers.pageLoaded', ['page' => $page]),
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
 
         $this->requireMessageMeta()->updateAndContinueAction($data);
@@ -129,7 +128,7 @@ class AnnouncementsAnswer extends StateAnswer
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
             'text' => __('tbe-announcements::announcements.main.answers.pageLoaded', ['page' => $page]),
-            'reply_markup' => wHook()->user()->getKeyboard(),
+            'reply_markup' => replyKeyboard(),
         ]);
 
         $this->requireMessageMeta()->updateAndContinueAction($data);
