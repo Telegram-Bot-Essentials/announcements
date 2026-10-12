@@ -84,7 +84,7 @@ class Announcement extends Model
                     'chat_id' => $chatId,
                     'text' => $this->message_text,
                     'parse_mode' => 'HTML',
-                    'reply_markup' => wHook()->user()->getKeyboard(),
+                    'reply_markup' => replyKeyboard(),
                 ]);
                 break;
             default:
