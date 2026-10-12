@@ -51,5 +51,5 @@ it('tells an admin the step expired when the message meta was pruned mid-flow', 
             && str_contains((string) $request['text'], __('tbe::general.alerts.contextExpired'))
     );
 
-    expect($bot->botUsers()->where('telegram_user_peer_id', 7000)->sole()->state)->toBeNull();
+    expect($bot->botUsers()->where('telegram_user_peer_id', 7000)->sole()->privateConversation()->state)->toBeNull();
 });
