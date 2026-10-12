@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
-use TelegramBotEssentials\Essence\Enums\Roles;
 use TelegramBotEssentials\Essence\Exceptions\FeatureIsDisabled;
 
 it('shows the empty-state text until an announcement exists', function () {
@@ -41,10 +40,9 @@ it('tells an admin the step expired when the message meta was pruned mid-flow', 
     // flow reaches requireMessageMeta().
     Announcement::factory()->count(15)->create(['bot_id' => $bot->id]);
 
-    $this->makeBotUser($bot, 7000, [
-        'power' => Roles::ADMIN->value,
+    $this->grant($this->makeBotUser($bot, 7000, [
         'state' => encodeAnswerState('ANNOUNCEMENTS', 'setStartPage', ['message_meta_id' => 999999]),
-    ]);
+    ]), 'announcements.manage');
 
     $this->postWebhookUpdate($bot, $this->makeMessageUpdate('2', peerId: 7000))->assertOk();
 

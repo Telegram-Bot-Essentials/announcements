@@ -7,7 +7,6 @@ use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin\AnnouncementsQuery;
 use TelegramBotEssentials\Announcements\Telegram\ReplyKeys\Admin\AnnouncementsKey;
 use TelegramBotEssentials\Announcements\Telegram\StateAnswers\Admin\AnnouncementsAnswer;
-use TelegramBotEssentials\Essence\Enums\Roles;
 
 it('registers the announcements callback query and state answer with essence', function () {
     expect(callbackQueryBus()->getCallbackQueryTypes()['ANNOUNCEMENTS'] ?? null)->toBeInstanceOf(AnnouncementsQuery::class)
@@ -30,5 +29,5 @@ it('resolves the reply-key label in the locale active at read time', function ()
     app()->setLocale('fa');
 
     expect($key->getText())->not->toBe($en)
-        ->and($key->getPerm())->toBe(Roles::ADMIN->value);
+        ->and($key->getPermission())->toBe('announcements.manage');
 });
