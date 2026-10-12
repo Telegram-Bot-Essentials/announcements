@@ -33,7 +33,7 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
         $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.creatingAnnouncement'));
-        wHook()->user()->changeState(encodeAnswerState($this->type, 'createAnnouncement', [
+        wHook()->conversation()->changeState(encodeAnswerState($this->type, 'createAnnouncement', [
             'lastPage' => $lastPage,
             'message_meta' => $messageMeta->id,
         ]));
@@ -66,7 +66,7 @@ class AnnouncementsQuery extends CallbackQuery
     public function change(Announcement $announcement, string $target, int $lastPage = 1): void
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
-        wHook()->user()->changeState(encodeAnswerState($this->type, 'change', [
+        wHook()->conversation()->changeState(encodeAnswerState($this->type, 'change', [
             'announcement' => $announcement->id,
             'target' => $target,
             'lastPage' => $lastPage,
@@ -90,7 +90,7 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
 
-        wHook()->user()->changeState(encodeAnswerState($this->type, 'setMessage', [
+        wHook()->conversation()->changeState(encodeAnswerState($this->type, 'setMessage', [
             'announcement' => $announcement->id,
             'lastPage' => $lastPage,
             'message_meta' => $messageMeta->id,
@@ -156,7 +156,7 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
         $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.settingPage'));
-        wHook()->user()->changeState(encodeAnswerState($this->type, 'sendingSetPage', [
+        wHook()->conversation()->changeState(encodeAnswerState($this->type, 'sendingSetPage', [
             'message_meta' => $messageMeta->id,
             'announcement' => $announcement->id,
         ]));
@@ -307,7 +307,7 @@ class AnnouncementsQuery extends CallbackQuery
     {
         $messageMeta = MessageMeta::makeWithCurrentMessage();
         $messageMeta->lockAction(__('tbe-announcements::announcements.main.lock-keys.settingPage'));
-        wHook()->user()->changeState(encodeAnswerState($this->type, 'setStartPage', [
+        wHook()->conversation()->changeState(encodeAnswerState($this->type, 'setStartPage', [
             'message_meta' => $messageMeta->id,
         ]));
 
