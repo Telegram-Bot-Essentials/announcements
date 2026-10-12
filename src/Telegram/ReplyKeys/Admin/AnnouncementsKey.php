@@ -3,12 +3,11 @@
 namespace TelegramBotEssentials\Announcements\Telegram\ReplyKeys\Admin;
 
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
-use TelegramBotEssentials\Essence\Enums\Roles;
 use TelegramBotEssentials\Essence\Telegram\ReplyKeys\ReplyKey;
 
 class AnnouncementsKey extends ReplyKey
 {
-    protected int $perm = Roles::ADMIN->value;
+    protected ?string $permission = 'announcements.manage';
 
     protected function text(): string
     {
