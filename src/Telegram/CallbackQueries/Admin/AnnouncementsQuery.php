@@ -18,7 +18,7 @@ class AnnouncementsQuery extends CallbackQuery
 {
     protected string $type = 'ANNOUNCEMENTS';
 
-    protected ?string $permission = 'announcements.manage';
+    protected ?string $ability = 'announcements.manage';
 
     /**
      * @throws InvalidPageNumber
