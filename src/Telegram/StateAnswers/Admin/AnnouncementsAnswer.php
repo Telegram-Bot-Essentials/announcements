@@ -17,7 +17,7 @@ class AnnouncementsAnswer extends StateAnswer
 {
     protected string $type = 'ANNOUNCEMENTS';
 
-    protected ?string $permission = 'announcements.manage';
+    protected ?string $ability = 'announcements.manage';
 
     protected array $allowedFields = [
         AllowableFields::TEXT->value,
