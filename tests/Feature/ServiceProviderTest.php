@@ -29,5 +29,5 @@ it('resolves the reply-key label in the locale active at read time', function ()
     app()->setLocale('fa');
 
     expect($key->getText())->not->toBe($en)
-        ->and($key->getPermission())->toBe('announcements.manage');
+        ->and($key->getAbility())->toBe('announcements.manage');
 });
