@@ -12,6 +12,7 @@ use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Web\Manage\ListAnnouncements;
 use TelegramBotEssentials\Announcements\Web\Manage\ViewAnnouncement;
+use TelegramBotEssentials\Announcements\Web\Widgets\DeliveryChart;
 use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Testing\TestAccount;
 use TelegramBotEssentials\Essence\Web\WebAccounts;
@@ -111,6 +112,19 @@ it('does not open another bot\'s announcement', function () {
     signIn($this, $this->admin);
 
     $this->get('/manage/'.$this->bot->unique_id.'/announcements/'.$theirs->id)->assertNotFound();
+});
+
+it('charts the delivery of one announcement, live', function () {
+    $announcement = textAnnouncement($this->admin);
+    AnnouncementTarget::query()->create(['bot_id' => $this->bot->id, 'announcement_id' => $announcement->id, 'bot_user_id' => $this->customer->id, 'status' => 'sent', 'message_id' => 5]);
+    AnnouncementTarget::query()->create(['bot_id' => $this->bot->id, 'announcement_id' => $announcement->id, 'bot_user_id' => $this->admin->id]);
+    $this->enterPanel('manage', $this->bot, $this->admin);
+
+    $chart = Livewire::test(DeliveryChart::class, ['record' => $announcement]);
+    $data = (fn () => $this->getCachedData())->call($chart->instance());
+
+    expect($data['datasets'][0]['data'])->toBe([1, 1])
+        ->and($data['labels'][1])->toContain(__('tbe-announcements::web.status.sent'));
 });
 
 describe('over real requests', function () {
