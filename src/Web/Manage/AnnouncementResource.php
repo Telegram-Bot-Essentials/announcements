@@ -9,6 +9,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
+use TelegramBotEssentials\Announcements\Web\Widgets\DeliveryChart;
 use TelegramBotEssentials\Essence\Web\Filament\PanelResource;
 
 class AnnouncementResource extends PanelResource
@@ -59,6 +60,11 @@ class AnnouncementResource extends PanelResource
             ])
             ->defaultSort('created_at', 'desc')
             ->recordUrl(fn (Announcement $record): string => ViewAnnouncement::getUrl(['record' => $record]));
+    }
+
+    public static function getWidgets(): array
+    {
+        return [DeliveryChart::class];
     }
 
     public static function getPages(): array

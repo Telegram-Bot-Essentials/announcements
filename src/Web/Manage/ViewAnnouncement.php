@@ -10,6 +10,7 @@ use Filament\Support\Icons\Heroicon;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Services\Broadcasts;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
+use TelegramBotEssentials\Announcements\Web\Widgets\DeliveryChart;
 use TelegramBotEssentials\Essence\Web\Filament\Concerns\GuardsResourcePage;
 use Throwable;
 
@@ -50,6 +51,11 @@ class ViewAnnouncement extends Page
     public function counts(): array
     {
         return app(Broadcasts::class)->counts($this->announcement());
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [DeliveryChart::class];
     }
 
     /** @return array<Action> */
