@@ -3,13 +3,11 @@
 namespace TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin;
 
 use Telegram\Bot\Exceptions\TelegramSDKException;
-use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
-use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
+use TelegramBotEssentials\Announcements\Services\Broadcasts;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
-use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Models\MessageMeta;
 use TelegramBotEssentials\Essence\Telegram\CallbackQueries\CallbackQuery;
 use Throwable;
@@ -173,22 +171,7 @@ class AnnouncementsQuery extends CallbackQuery
 
     public function reloadTargetUsers(Announcement $announcement, int $page = 1): void
     {
-        $now = now();
-
-        $rows = BotUser::query()
-            ->pluck('id')
-            ->map(fn (int $botUserId) => [
-                'bot_id' => $announcement->bot_id,
-                'announcement_id' => $announcement->id,
-                'bot_user_id' => $botUserId,
-                'created_at' => $now,
-                'updated_at' => $now,
-            ])
-            ->all();
-
-        if ($rows !== []) {
-            AnnouncementTarget::query()->insertOrIgnore($rows);
-        }
+        app(Broadcasts::class)->addAllUsers($announcement);
 
         AnnouncementsFeature::sendingAnnouncement($announcement, $page)->update();
     }
@@ -273,29 +256,7 @@ class AnnouncementsQuery extends CallbackQuery
      */
     public function startSendingMessages(Announcement $announcement): void
     {
-        $statusMessage = wHook()->api()->sendMessage([
-            'chat_id' => wHook()->peerId(),
-            'text' => AnnouncementsFeature::getSendingProgressText($announcement),
-            'parse_mode' => 'HTML',
-        ]);
-
-        $announcement->update([
-            'action_status_chat_id' => $statusMessage->chat->id,
-            'action_status_message_id' => $statusMessage->messageId,
-        ]);
-
-        $targetIds = $announcement->targets()
-            ->where(fn ($query) => $query->whereNull('status')->orWhere('status', '!=', 'forbidden'))
-            ->pluck('id')
-            ->toArray();
-
-        $batchSize = config('tbe-announcements.batch_size', 100);
-        $chunks = array_chunk($targetIds, $batchSize);
-
-        $context = wHook()->exportContext();
-        foreach ($chunks as $chunk) {
-            SendAnnouncementJob::dispatch($context, $chunk);
-        }
+        app(Broadcasts::class)->send($announcement, wHook()->peerId());
 
         $this->answer(__('tbe-announcements::announcements.main.answers.sendingStarted'));
     }
@@ -326,29 +287,7 @@ class AnnouncementsQuery extends CallbackQuery
      */
     public function deleteSentMessages(Announcement $announcement): void
     {
-        $statusMessage = wHook()->api()->sendMessage([
-            'chat_id' => wHook()->peerId(),
-            'text' => AnnouncementsFeature::getDeletingProgressText($announcement),
-            'parse_mode' => 'HTML',
-        ]);
-
-        $announcement->update([
-            'action_status_chat_id' => $statusMessage->chat->id,
-            'action_status_message_id' => $statusMessage->messageId,
-        ]);
-
-        $targetIds = $announcement->targets()
-            ->where('status', 'sent')
-            ->pluck('id')
-            ->toArray();
-
-        $batchSize = config('tbe-announcements.batch_size', 100);
-        $chunks = array_chunk($targetIds, $batchSize);
-
-        $context = wHook()->exportContext();
-        foreach ($chunks as $chunk) {
-            DeleteAnnouncementJob::dispatch($context, $chunk);
-        }
+        app(Broadcasts::class)->retract($announcement, wHook()->peerId());
 
         $this->answer(__('tbe-announcements::announcements.main.answers.deletingStarted'));
     }
