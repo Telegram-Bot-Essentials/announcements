@@ -277,45 +277,9 @@ parameters:
 			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
 
 		-
-			message: '#^Parameter \#1 \$callback of method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:map\(\) expects callable\(mixed, int\|string\)\: array\{bot_id\: int, announcement_id\: int\<0, max\>, bot_user_id\: int, created_at\: Illuminate\\Support\\Carbon, updated_at\: Illuminate\\Support\\Carbon\}, Closure\(int\)\: array\{bot_id\: int, announcement_id\: int\<0, max\>, bot_user_id\: int, created_at\: Illuminate\\Support\\Carbon, updated_at\: Illuminate\\Support\\Carbon\} given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
-			message: '#^Parameter \#1 \$context of job class TelegramBotEssentials\\Announcements\\Jobs\\DeleteAnnouncementJob constructor expects TelegramBotEssentials\\Essence\\Support\\WebhookContext in TelegramBotEssentials\\Announcements\\Jobs\\DeleteAnnouncementJob\:\:dispatch\(\), TelegramBotEssentials\\Essence\\Support\\WebhookContext\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
-			message: '#^Parameter \#1 \$context of job class TelegramBotEssentials\\Announcements\\Jobs\\SendAnnouncementJob constructor expects TelegramBotEssentials\\Essence\\Support\\WebhookContext in TelegramBotEssentials\\Announcements\\Jobs\\SendAnnouncementJob\:\:dispatch\(\), TelegramBotEssentials\\Essence\\Support\\WebhookContext\|null given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
-			message: '#^Parameter \#2 \$length of function array_chunk expects int\<1, max\>, mixed given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
 			message: '#^Parameter \#2 \$replace of function __ expects array\<string, bool\|\(Closure\(string\)\: string\)\|float\|int\|string\|null\>, array\{user\: mixed\} given\.$#'
 			identifier: argument.type
 			count: 4
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
-			message: '#^Parameter \#2 \$targetIds of job class TelegramBotEssentials\\Announcements\\Jobs\\DeleteAnnouncementJob constructor expects array\<int\> in TelegramBotEssentials\\Announcements\\Jobs\\DeleteAnnouncementJob\:\:dispatch\(\), list\<mixed\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
-
-		-
-			message: '#^Parameter \#2 \$targetIds of job class TelegramBotEssentials\\Announcements\\Jobs\\SendAnnouncementJob constructor expects array\<int\> in TelegramBotEssentials\\Announcements\\Jobs\\SendAnnouncementJob\:\:dispatch\(\), list\<mixed\> given\.$#'
-			identifier: argument.type
-			count: 1
 			path: src/Telegram/CallbackQueries/Admin/AnnouncementsQuery.php
 
 		-
