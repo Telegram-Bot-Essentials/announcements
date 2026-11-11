@@ -37,4 +37,7 @@ return [
         'failed' => 'Failed',
         'deleted' => 'Retracted',
     ],
+    'empty' => [
+        'announcements' => 'No announcements yet',
+    ],
 ];
