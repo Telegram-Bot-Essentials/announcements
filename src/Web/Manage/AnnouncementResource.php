@@ -10,7 +10,10 @@ use Illuminate\Database\Eloquent\Builder;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Announcements\Web\Widgets\DeliveryChart;
+use TelegramBotEssentials\Essence\Web\Filament\PanelDates;
+use TelegramBotEssentials\Essence\Web\Filament\PanelGroup;
 use TelegramBotEssentials\Essence\Web\Filament\PanelResource;
+use UnitEnum;
 
 class AnnouncementResource extends PanelResource
 {
@@ -23,6 +26,8 @@ class AnnouncementResource extends PanelResource
     protected static ?string $tenantOwnershipRelationshipName = 'bot';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
+
+    protected static string|UnitEnum|null $navigationGroup = PanelGroup::Marketing;
 
     public static function getNavigationLabel(): string
     {
@@ -55,10 +60,13 @@ class AnnouncementResource extends PanelResource
                     ->formatStateUsing(fn (string $state): string => AnnouncementsFeature::methodLabel($state)),
                 TextColumn::make('targets_count')->label((string) __('tbe-announcements::web.recipients'))->numeric(),
                 TextColumn::make('sent_count')->label((string) __('tbe-announcements::web.sent'))->numeric(),
-                TextColumn::make('sent_at')->label((string) __('tbe-announcements::web.finished'))->since()->placeholder('—'),
-                TextColumn::make('created_at')->label((string) __('tbe-announcements::web.created'))->since()->sortable(),
+                PanelDates::since(TextColumn::make('sent_at'))->label((string) __('tbe-announcements::web.finished'))->placeholder('—'),
+                PanelDates::since(TextColumn::make('created_at'))->label((string) __('tbe-announcements::web.created'))->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
+            ->persistFiltersInSession()
+            ->persistSearchInSession()
+            ->emptyStateHeading((string) __('tbe-announcements::web.empty.announcements'))
             ->recordUrl(fn (Announcement $record): string => ViewAnnouncement::getUrl(['record' => $record]));
     }
 
