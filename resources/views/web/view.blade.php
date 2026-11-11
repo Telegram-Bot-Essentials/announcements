@@ -2,7 +2,7 @@
     @php($announcement = $this->announcement())
     <div class="grid gap-6">
         @if ($announcement->sent_at)
-            <p style="font-size:.875rem;opacity:.7;">{{ __('tbe-announcements::web.finished_at', ['time' => $announcement->sent_at->diffForHumans()]) }}</p>
+            <p style="font-size:.875rem;opacity:.7;margin:0;" title="{{ \TelegramBotEssentials\Essence\Web\PanelCalendar::format($announcement->sent_at) }}">{{ __('tbe-announcements::web.finished_at', ['time' => $announcement->sent_at->diffForHumans()]) }}</p>
         @endif
 
         <x-filament::section>
@@ -11,7 +11,7 @@
             @if ($announcement->method === 'html')
                 <pre style="white-space:pre-wrap;font-family:inherit;margin:0;">{{ $announcement->message_text }}</pre>
             @else
-                <p style="opacity:.75;">{{ __('tbe-announcements::web.from_telegram') }}</p>
+                <x-tbe::empty>{{ __('tbe-announcements::web.from_telegram') }}</x-tbe::empty>
             @endif
         </x-filament::section>
     </div>
