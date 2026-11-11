@@ -6,6 +6,28 @@ stabilizes at 1.0 a `0.0.x` bump may carry breaking changes.
 
 ## [Unreleased]
 
+## [0.0.24] - 2026-11-11
+
+### Added
+
+- List announcements, create text ones and send.
+- Add the announcements panel plugin.
+- Add the announcement view.
+- Register the plugin and its views.
+- Translate the screens to english.
+- Translate the screens to persian.
+- Chart an announcement's delivery live.
+- Show the delivery chart on the announcement.
+- Add empty-list messages.
+- Group, date and tidy the panel screens.
+- Show when an announcement finished in the viewer's calendar.
+
+### Changed
+
+- Move sending into a service.
+- Send from the bot through the service.
+- Drop the counts grid from the view.
+
 ## [0.0.23] - 2026-11-01
 
 ### Added
