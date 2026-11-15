@@ -10,6 +10,7 @@ use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
 use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
+use TelegramBotEssentials\Announcements\Services\Broadcasts;
 use TelegramBotEssentials\Announcements\Web\Manage\ListAnnouncements;
 use TelegramBotEssentials\Announcements\Web\Manage\ViewAnnouncement;
 use TelegramBotEssentials\Announcements\Web\Widgets\DeliveryChart;
@@ -148,4 +149,33 @@ describe('over real requests', function () {
 
         expect(Announcement::query()->find($announcement->id))->not->toBeNull();
     });
+});
+
+it('refuses a text with a placeholder nothing can fill in', function () {
+    $this->enterPanel('manage', $this->bot, $this->admin);
+
+    Livewire::test(ListAnnouncements::class)
+        ->callAction('create', ['label' => 'Typo', 'text' => 'Hi {$nmae}'])
+        ->assertHasActionErrors(['text']);
+
+    expect(Announcement::query()->where('label', 'Typo')->exists())->toBeFalse();
+});
+
+it('sends each recipient the text filled in for them', function () {
+    $this->customer->telegramUser->update(['first_name' => 'Ali', 'last_name' => null]);
+    $this->admin->telegramUser->update(['first_name' => 'Sara', 'last_name' => null]);
+    $this->enterPanel('manage', $this->bot, $this->admin);
+
+    $announcement = app(Broadcasts::class)->createText($this->admin, 'Hello', 'Hi {$first_name}!');
+    app(Broadcasts::class)->addAllUsers($announcement);
+
+    (new SendAnnouncementJob(wHook()->exportContext(), $announcement->targets()->pluck('id')->all()))->handle();
+
+    $texts = collect(Http::recorded())
+        ->map(fn (array $pair) => $pair[0])
+        ->filter(fn ($request) => str_contains((string) $request->url(), '/sendMessage'))
+        ->map(fn ($request) => $request['text']);
+
+    expect($texts)->toContain('Hi Sara!', 'Hi Ali!')
+        ->and($announcement->targets()->where('status', 'sent')->count())->toBe(2);
 });
