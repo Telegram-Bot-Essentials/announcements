@@ -97,7 +97,7 @@ class AnnouncementsAnswer extends StateAnswer
     public function setStartPage(): void
     {
         $page = wHook()->update()->message->text;
-        $lastPage = Announcement::query()->paginate(perPage: 10)->lastPage();
+        $lastPage = Announcement::query()->whereNull('alert_key')->paginate(perPage: 10)->lastPage();
 
         TelegramPaginator::validatePageInput($page, $lastPage);
 
