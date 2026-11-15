@@ -95,7 +95,9 @@ return [
             'changeLabel' => '🏷 تغییر برچسب',
             'method' => '📡 روش: :method',
             'setMessage' => '✉️ تنظیم پیام',
-            'applyFilters' => '🔍 اعمال فیلترها',
+            'audience' => '🎯 به: :audience',
+            'mutedIncluded' => '🔕 کاربران بی‌صدا: شامل',
+            'mutedExcluded' => '🔕 کاربران بی‌صدا: کنار گذاشته',
             'reloadTargetUsers' => '🔄 بارگذاری دوباره‌ی کاربران هدف',
             'startSendingMessages' => '📤 شروع ارسال',
             'deleteSentMessages' => '🗑 حذف پیام‌های ارسال‌شده',
@@ -118,6 +120,7 @@ return [
         ],
         'values' => [
             'notSentYet' => 'هنوز ارسال نشده',
+            'everyone' => 'همه',
             'noMessage' => 'پیامی تنظیم نشده',
         ],
         'lock-keys' => [
