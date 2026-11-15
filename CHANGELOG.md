@@ -6,6 +6,8 @@ stabilizes at 1.0 a `0.0.x` bump may carry breaking changes.
 
 ## [Unreleased]
 
+## [0.0.26] - 2026-11-15
+
 ### Added
 
 - Send automatic alerts registered by packages, once an admin switches them on.
