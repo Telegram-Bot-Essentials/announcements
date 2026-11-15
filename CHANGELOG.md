@@ -6,6 +6,21 @@ stabilizes at 1.0 a `0.0.x` bump may carry breaking changes.
 
 ## [Unreleased]
 
+### Added
+
+- Send automatic alerts registered by packages, once an admin switches them on.
+- Sweep the alerts every hour, with a repeat period, a cap per user and sending hours.
+- Let packages describe audiences, and aim a written announcement at one.
+- Let users stop automatic alerts with `/mute` or the key under each one.
+- Choose whether a written announcement also goes to users who muted alerts.
+- Show the alerts with their delivery counts and a preview in the bot, and as cards in the web panel.
+- Keep the announcements alerts made out of the list unless asked for.
+
+### Changed
+
+- Require `telegram-bot-essentials/settings`: what an admin chooses for alerts lives there.
+- Stop editing a status message nobody asked for after each batch.
+
 ## [0.0.25] - 2026-11-15
 
 ### Added

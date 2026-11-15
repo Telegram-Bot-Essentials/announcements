@@ -84,6 +84,67 @@ if (class_exists(Placeholder::class)) { // only for a package that does not requ
   key whose package was removed or switched off since is sent as an empty string and
   logged once.
 
+## Audiences
+
+A package can describe a group of users as a constraint on the bot's users. An admin can
+aim a written announcement at one (and choose whether users who muted automatic messages
+are included), and an automatic alert is sent to one.
+
+```php
+use Illuminate\Database\Eloquent\Builder;
+use TelegramBotEssentials\Announcements\DTOs\Audience;
+
+announcementAudiences()->add(new Audience(
+    key: 'wallet.has_credit',                  // prefix with your package; never rename it
+    label: fn () => __('my-package::audiences.has_credit'),
+    apply: fn (Builder $query) => $query->whereIn('bot_users.id', $walletsWithCredit),
+    active: fn () => (bool) settings()->get('billing.user_wallet.status'),
+));
+```
+
+`apply` runs in the bot's context with no current user. Qualify columns (`bot_users.id`):
+other constraints are added to the same query.
+
+## Automatic alerts
+
+An alert is a message the bot sends on its own to the users of an audience: "you have
+credit to spend", "you never took your free test". The package that knows the subject
+registers it; nothing is sent until an admin switches it on for their bot.
+
+```php
+use TelegramBotEssentials\Announcements\DTOs\Alert;
+use TelegramBotEssentials\Announcements\DTOs\AlertParam;
+
+announcementAlerts()->register(new Alert(
+    key: 'wallet.idle_credit',                 // never rename it: it remembers who got it
+    label: fn () => __('my-package::alerts.idle_credit.label'),
+    audience: 'wallet.idle_credit',
+    text: fn () => __('my-package::alerts.idle_credit.text'), // {$placeholders} and {$alert.<param>}
+    params: [new AlertParam('min_balance', fn () => __('...'), default: 50000)],
+    repeatDays: 30,                            // 0 sends it once ever
+    priority: 20,                              // lowest goes first when a user matches several
+    keyboard: fn (BotUser $user) => [[['text' => '🛒', 'callback_data' => '...']]],
+));
+```
+
+- In a lang file, write the text in single quotes or escape the dollar (`{\$name}`): PHP
+  reads `{$name}` inside double quotes as a variable.
+- The audience reads its numbers with `announcementAlerts()->param('wallet.idle_credit', 'min_balance')`.
+- Every hour `tbe:announcements:sweep-alerts` (scheduled by the package; run Laravel's
+  scheduler) finds who is due for each alert that is on and queues it as an announcement
+  of its own, so delivery tracking, the chart and retraction work as for any other.
+- A user gets an alert once, or again after its repeat period while they still match; at
+  most one automatic alert per cap period (24 hours by default) whatever they match; and
+  only within the sending hours (10 to 22 by default). A message that failed is tried
+  again on the next pass.
+- Every alert carries a key to stop them, and `/mute` turns them off and on. One switch
+  covers all alerts; muted users are never targeted.
+- An admin switches alerts on, rewords them, and tunes their numbers, the repeat period,
+  the cap and the sending hours in settings under **Announcements → Automatic alerts**
+  (this package requires `telegram-bot-essentials/settings`). The announcements menu has
+  an **Automatic alerts** screen with each alert's delivery counts and a preview, and
+  the web panel shows a card per alert.
+
 ## Documentation
 
 Full documentation — the data model, sending and retraction flows, and the `WebhookContext`

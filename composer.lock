@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c5909c61f8607ab4ad801bb54badf7d",
+    "content-hash": "8b586e6339983360a52a1472365907de",
     "packages": [
         {
             "name": "brick/math",
@@ -6121,6 +6121,66 @@
                 "source": "https://github.com/Telegram-Bot-Essentials/essence/tree/v0.19.0-beta.9"
             },
             "time": "2026-11-11T13:07:49+00:00"
+        },
+        {
+            "name": "telegram-bot-essentials/settings",
+            "version": "v0.0.34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Telegram-Bot-Essentials/settings.git",
+                "reference": "7fff4179b54432bf475a484430bbf8fd67282677"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Telegram-Bot-Essentials/settings/zipball/7fff4179b54432bf475a484430bbf8fd67282677",
+                "reference": "7fff4179b54432bf475a484430bbf8fd67282677",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^12 || ^13",
+                "php": "^8.3",
+                "telegram-bot-essentials/essence": "^0.19.0-beta.9@beta"
+            },
+            "require-dev": {
+                "filament/filament": "^5.11",
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.18",
+                "orchestra/testbench": "^10.0 || ^11.0",
+                "pestphp/pest": "^3.7 || ^4.0",
+                "pestphp/pest-plugin-laravel": "^3.1 || ^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TelegramBotEssentials\\Settings\\TbeSettingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "TelegramBotEssentials\\Settings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elyar",
+                    "email": "elyareranjbar@gmail.com"
+                }
+            ],
+            "description": "Per-bot typed key/value settings for telegram-bot-essentials/essence",
+            "support": {
+                "issues": "https://github.com/Telegram-Bot-Essentials/settings/issues",
+                "source": "https://github.com/Telegram-Bot-Essentials/settings/tree/v0.0.34"
+            },
+            "time": "2026-11-11T13:10:47+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
