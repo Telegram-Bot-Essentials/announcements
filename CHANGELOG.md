@@ -6,6 +6,8 @@ stabilizes at 1.0 a `0.0.x` bump may carry breaking changes.
 
 ## [Unreleased]
 
+## [0.0.25] - 2026-11-15
+
 ### Added
 
 - Fill in `{$key}` placeholders for each recipient of a text announcement.
