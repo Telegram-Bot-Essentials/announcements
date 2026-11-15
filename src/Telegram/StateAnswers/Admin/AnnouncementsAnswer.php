@@ -25,6 +25,8 @@ class AnnouncementsAnswer extends StateAnswer
 
     public function createAnnouncement(int $lastPage): void
     {
+        AnnouncementsFeature::assertPlaceholdersKnown(wHook()->update()->message?->text);
+
         $announcement = Announcement::create([
             'bot_user_id' => wHook()->user()->id,
             'from_chat_id' => wHook()->update()->message->from->id,
@@ -66,6 +68,8 @@ class AnnouncementsAnswer extends StateAnswer
 
     public function setMessage(Announcement $announcement, int $lastPage = 1): void
     {
+        AnnouncementsFeature::assertPlaceholdersKnown(wHook()->update()->message?->text);
+
         $announcement->message_id = wHook()->update()->message->messageId;
         $announcement->from_chat_id = wHook()->update()->message->from->id;
         $announcement->message_text = wHook()->update()->message->text;
