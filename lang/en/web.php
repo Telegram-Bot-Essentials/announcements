@@ -12,6 +12,8 @@ return [
     'create' => 'New text announcement',
     'text' => 'Text',
     'text_help' => 'Telegram HTML: <b>, <i>, <a href="...">, <code>. To copy or forward a message, start from the bot.',
+    'placeholders_help' => 'Filled in for each user: :list',
+    'unknown_placeholders' => 'Unknown placeholders: :keys',
     'delivery' => 'Delivery',
     'message' => 'Message',
     'from_telegram' => 'A message sent to the bot. Use Preview to see it in Telegram.',

@@ -28,6 +28,8 @@ return [
                 ."\r\n"
                 ."\r\nUse the buttons below to manage this announcement 👇",
             'sendMessagePrompt' => '💬 Send the announcement message:',
+            'placeholders' => "🧩 These are filled in for each user (text announcements only):\n:list",
+            'placeholdersIgnored' => '⚠️ Placeholders are only filled in with the text method; this one sends them as written.',
             'enterField' => '✏️ Send the new :field:',
             'enterPagePrompt' => '🔢 Enter the page number:',
             'deleteConfirmation' => 'Are you sure you want to delete the announcement ":label"?',
@@ -136,8 +138,17 @@ return [
         ],
         'errors' => [
             'alreadySent' => '⚠️ This user already received the announcement.',
+            'unknownPlaceholders' => "⚠️ Unknown placeholders: :keys\nFix them and send the message again.",
             'cannotDelete' => '⚠️ This announcement can\'t be deleted (it was never sent, or it\'s already deleted).',
         ],
+    ],
+    'placeholders' => [
+        'name' => 'Full name',
+        'first_name' => 'First name',
+        'username' => 'Username',
+        'user_id' => 'Telegram ID',
+        'joined_at' => 'Joined on',
+        'last_interaction' => 'Last active',
     ],
     'reply_key' => '📢 Announcements',
 ];
