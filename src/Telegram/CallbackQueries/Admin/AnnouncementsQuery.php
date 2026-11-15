@@ -6,6 +6,7 @@ use Telegram\Bot\Exceptions\TelegramSDKException;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Services\Broadcasts;
+use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AlertsFeature;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Exceptions\InvalidPageNumber;
 use TelegramBotEssentials\Essence\Models\MessageMeta;
@@ -171,9 +172,52 @@ class AnnouncementsQuery extends CallbackQuery
 
     public function reloadTargetUsers(Announcement $announcement, int $page = 1): void
     {
-        app(Broadcasts::class)->addAllUsers($announcement);
+        app(Broadcasts::class)->addUsers($announcement);
 
         AnnouncementsFeature::sendingAnnouncement($announcement, $page)->update();
+    }
+
+    /** The automatic alerts: which are on, and how each one did. */
+    public function alerts(int $lastPage = 1): void
+    {
+        AlertsFeature::menu($lastPage)->update();
+    }
+
+    /** Sends the admin an alert as they would get it themselves. */
+    public function alertPreview(int $index): void
+    {
+        $alert = array_values(announcementAlerts()->all())[$index] ?? null;
+        if ($alert === null) {
+            return;
+        }
+
+        (new Announcement)->forceFill([
+            'method' => 'html',
+            'message_text' => announcementAlerts()->text($alert),
+            'alert_key' => $alert->key,
+        ])->sendTo(wHook()->peerId(), wHook()->user());
+
+        $this->answer(__('tbe-announcements::announcements.main.answers.previewSent'));
+    }
+
+    /** Moves on to the next audience (everyone first), and reloads who gets it. */
+    public function nextAudience(Announcement $announcement): void
+    {
+        $keys = [null, ...array_keys(announcementAudiences()->all())];
+        $current = array_search($announcement->audience_key, $keys, true);
+        $next = $keys[($current === false ? 0 : $current + 1) % count($keys)];
+
+        app(Broadcasts::class)->aim($announcement, $next, (bool) $announcement->include_muted);
+
+        AnnouncementsFeature::sendingAnnouncement($announcement)->update();
+    }
+
+    /** Includes or leaves out the users who muted automatic messages. */
+    public function toggleMuted(Announcement $announcement): void
+    {
+        app(Broadcasts::class)->aim($announcement, $announcement->audience_key, ! $announcement->include_muted);
+
+        AnnouncementsFeature::sendingAnnouncement($announcement)->update();
     }
 
     public function announcementTargetSend(AnnouncementTarget $announcementTarget, int $page)
