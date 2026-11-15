@@ -95,7 +95,9 @@ return [
             'changeLabel' => '🏷 Change label',
             'method' => '📡 Method: :method',
             'setMessage' => '✉️ Set message',
-            'applyFilters' => '🔍 Apply filters',
+            'audience' => '🎯 To: :audience',
+            'mutedIncluded' => '🔕 Muted users: included',
+            'mutedExcluded' => '🔕 Muted users: left out',
             'reloadTargetUsers' => '🔄 Reload target users',
             'startSendingMessages' => '📤 Start Sending',
             'deleteSentMessages' => '🗑 Delete sent messages',
@@ -118,6 +120,7 @@ return [
         ],
         'values' => [
             'notSentYet' => 'Not sent yet',
+            'everyone' => 'Everyone',
             'noMessage' => 'No message set',
         ],
         'lock-keys' => [
