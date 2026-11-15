@@ -4,6 +4,8 @@ namespace TelegramBotEssentials\Announcements;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
+use TelegramBotEssentials\Announcements\Services\Placeholders;
+use TelegramBotEssentials\Announcements\Support\UserPlaceholders;
 use TelegramBotEssentials\Announcements\Telegram\CallbackQueries\Admin\AnnouncementsQuery;
 use TelegramBotEssentials\Announcements\Telegram\StateAnswers\Admin\AnnouncementsAnswer;
 use TelegramBotEssentials\Announcements\Web\AnnouncementsManagePlugin;
@@ -14,6 +16,8 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/tbe-announcements.php', 'tbe-announcements');
+
+        $this->app->singleton(Placeholders::class);
 
         // Class names only: Filament is loaded only where the app installed it.
         webPanels()->manage(AnnouncementsManagePlugin::class);
@@ -38,6 +42,8 @@ class TbeAnnouncementsServiceProvider extends ServiceProvider
         stateAnswerBus()->addStateAnswers([
             AnnouncementsAnswer::class,
         ]);
+
+        UserPlaceholders::register(announcementPlaceholders());
     }
 
     protected function registerPublishing(): void
