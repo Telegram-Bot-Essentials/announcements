@@ -29,7 +29,7 @@ class AnnouncementFactory extends Factory
             }
 
             if (! $announcement->bot_user_id) {
-                $announcement->bot_user_id = $this->createBotUser($announcement->bot_id)->id;
+                $announcement->setAttribute('bot_user_id', $this->createBotUser($announcement->bot_id)->id);
             }
         });
     }
