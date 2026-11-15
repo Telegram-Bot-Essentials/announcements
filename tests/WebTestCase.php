@@ -6,12 +6,14 @@ namespace TelegramBotEssentials\Announcements\Tests;
 
 use TelegramBotEssentials\Announcements\TbeAnnouncementsServiceProvider;
 use TelegramBotEssentials\Essence\Testing\WebTestCase as EssenceWebTestCase;
+use TelegramBotEssentials\Settings\TbeSettingsServiceProvider;
 
 abstract class WebTestCase extends EssenceWebTestCase
 {
     protected function getPackageProviders($app): array
     {
         return array_merge(parent::getPackageProviders($app), [
+            TbeSettingsServiceProvider::class,
             TbeAnnouncementsServiceProvider::class,
         ]);
     }

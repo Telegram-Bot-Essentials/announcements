@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
+use TelegramBotEssentials\Announcements\DTOs\Audience;
 use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
 use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
 use TelegramBotEssentials\Announcements\Models\Announcement;
@@ -178,4 +179,33 @@ it('sends each recipient the text filled in for them', function () {
 
     expect($texts)->toContain('Hi Sara!', 'Hi Ali!')
         ->and($announcement->targets()->where('status', 'sent')->count())->toBe(2);
+});
+
+it('lists announcements an admin wrote, and automatic ones only when asked', function () {
+    $written = textAnnouncement($this->admin, 'By hand');
+    $automatic = Announcement::query()->create([
+        'bot_id' => $this->bot->id, 'method' => 'html', 'message_text' => 'Auto', 'label' => 'On its own', 'alert_key' => 'test.alert',
+    ]);
+    $this->enterPanel('manage', $this->bot, $this->admin);
+
+    Livewire::test(ListAnnouncements::class)
+        ->assertCanSeeTableRecords([$written])
+        ->assertCanNotSeeTableRecords([$automatic])
+        ->filterTable('automatic', true)
+        ->assertCanSeeTableRecords([$automatic])
+        ->assertCanNotSeeTableRecords([$written]);
+});
+
+it('chooses who gets an announcement: an audience, with or without muted users', function () {
+    announcementAudiences()->add(new Audience('test.customers', 'Customers', fn ($query) => $query->where('bot_users.id', $this->customer->id)));
+    $announcement = textAnnouncement($this->admin);
+    $this->enterPanel('manage', $this->bot, $this->admin);
+
+    Livewire::test(ViewAnnouncement::class, ['record' => $announcement->getKey()])
+        ->callAction('addRecipients', ['audience' => 'test.customers', 'include_muted' => false])
+        ->assertHasNoActionErrors();
+
+    expect($announcement->targets()->pluck('bot_user_id')->all())->toBe([$this->customer->id])
+        ->and($announcement->refresh()->audience_key)->toBe('test.customers')
+        ->and($announcement->include_muted)->toBeFalse();
 });
