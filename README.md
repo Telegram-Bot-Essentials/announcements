@@ -43,6 +43,47 @@ users can't starve interactive responses sharing the worker pool.
 - The live progress message is edited with an ASCII progress bar, throttled via a 3-second
   cache lock so concurrent job completions don't hit a rate limit.
 
+## Placeholders
+
+A text (`html`) announcement can address each recipient by what the bot knows about
+them. The admin writes `{$key}`; it is filled in when the message is sent:
+
+```
+Hi {$first_name}, you have {$wallet.balance} in your wallet.
+```
+
+Built in: `{$name}`, `{$first_name}`, `{$username}`, `{$user_id}`, `{$joined_at}`,
+`{$last_interaction}`. The compose prompt in the bot and the web panel list every
+placeholder available, and a text using an unknown one is refused. Copies and forwards
+re-send Telegram's own message, so they are never filled in.
+
+A package or the app adds its own from a service provider's `boot()`:
+
+```php
+use TelegramBotEssentials\Announcements\DTOs\Placeholder;
+use TelegramBotEssentials\Essence\Models\BotUser;
+
+if (class_exists(Placeholder::class)) { // only for a package that does not require announcements
+    announcementPlaceholders()->add(new Placeholder(
+        key: 'wallet.balance',                 // prefix with your package; never rename it
+        label: fn () => __('my-package::placeholders.balance'),
+        resolve: fn (BotUser $user) => currency()->priceFormat($balanceOf($user)),
+        fallback: '0',                         // used when the value is null or empty
+        example: '50,000',
+        active: fn () => (bool) settings()->get('billing.user_wallet.status'),
+        with: [],                              // BotUser relations to eager load per batch
+        raw: false,                            // true when the value is Telegram HTML
+    ));
+}
+```
+
+- `resolve` runs on the queue in the **sender's** context: read from the `$user` it is
+  given, never from `wHook()->user()` or helpers that act on the current user.
+- Values are HTML-escaped unless `raw`. Format them yourself (money, dates).
+- A send never fails over a placeholder: a value that throws becomes its fallback, and a
+  key whose package was removed or switched off since is sent as an empty string and
+  logged once.
+
 ## Documentation
 
 Full documentation — the data model, sending and retraction flows, and the `WebhookContext`

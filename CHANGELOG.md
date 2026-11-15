@@ -6,6 +6,15 @@ stabilizes at 1.0 a `0.0.x` bump may carry breaking changes.
 
 ## [Unreleased]
 
+### Added
+
+- Fill in `{$key}` placeholders for each recipient of a text announcement.
+- Let packages and the app register their own placeholders.
+- Offer the recipient's name, username, Telegram ID, join date and last activity.
+- List the available placeholders when composing, in the bot and the web panel.
+- Refuse a text that uses a placeholder nothing can fill in.
+- Warn when a copied or forwarded announcement holds placeholders.
+
 ## [0.0.24] - 2026-11-11
 
 ### Added
