@@ -18,11 +18,12 @@ class AnnouncementsFeature
      */
     public static function menu(int $page = 1, int $currentPage = 0): TelegramResponse
     {
-        $announcements = Announcement::query()->orderByDesc('id')->paginate(perPage: 10, page: $page);
+        // Automatic alerts make an announcement each time they go out: they have their own screen.
+        $announcements = Announcement::query()->whereNull('alert_key')->orderByDesc('id')->paginate(perPage: 10, page: $page);
 
         TelegramPaginator::validatePageNumber($page, $currentPage, $announcements);
 
-        $text = Announcement::count() === 0
+        $text = $announcements->total() === 0
             ? __('tbe-announcements::announcements.main.text.menu_empty')
             : __('tbe-announcements::announcements.main.text.menu');
 
@@ -36,7 +37,16 @@ class AnnouncementsFeature
             ]),
         ]);
 
-        if (Announcement::count() == 0) {
+        if (announcementAlerts()->all() !== []) {
+            $replyMarkup->row([
+                Keyboard::inlineButton([
+                    'text' => __('tbe-announcements::alerts.admin.keys.open'),
+                    'callback_data' => encodeCallback(self::$type, 'alerts', [$page]),
+                ]),
+            ]);
+        }
+
+        if ($announcements->total() === 0) {
             return new TelegramResponse(
                 text: $text,
                 replyMarkup: $replyMarkup,
@@ -222,9 +232,19 @@ class AnnouncementsFeature
 
         $replyMarkup->row([
             Keyboard::inlineButton([
-                'text' => __('tbe-announcements::announcements.main.keys.applyFilters'),
-                'callback_data' => encodeCallback(self::$type, 'soon', [$announcement->id]),
+                'text' => __('tbe-announcements::announcements.main.keys.audience', [
+                    'audience' => announcementAudiences()->get($announcement->audience_key)?->label()
+                        ?? __('tbe-announcements::announcements.main.values.everyone'),
+                ]),
+                'callback_data' => encodeCallback(self::$type, 'nextAudience', [$announcement->id]),
             ]),
+            Keyboard::inlineButton([
+                'text' => __('tbe-announcements::announcements.main.keys.'.($announcement->include_muted ? 'mutedIncluded' : 'mutedExcluded')),
+                'callback_data' => encodeCallback(self::$type, 'toggleMuted', [$announcement->id]),
+            ]),
+        ]);
+
+        $replyMarkup->row([
             Keyboard::inlineButton([
                 'text' => __('tbe-announcements::announcements.main.keys.reloadTargetUsers'),
                 'callback_data' => encodeCallback(self::$type, 'reloadTargetUsers', [$announcement->id, $page]),
