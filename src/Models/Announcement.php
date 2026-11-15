@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
+use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Objects\Message;
 use TelegramBotEssentials\Announcements\Database\Factories\AnnouncementFactory;
+use TelegramBotEssentials\Announcements\DTOs\Alert;
+use TelegramBotEssentials\Announcements\Telegram\Features\Member\MuteFeature;
 use TelegramBotEssentials\Essence\Exceptions\LogicException;
 use TelegramBotEssentials\Essence\Models\Bot;
 use TelegramBotEssentials\Essence\Models\BotUser;
@@ -26,6 +29,7 @@ class Announcement extends Model
 
     protected $casts = [
         'sent_at' => 'datetime',
+        'include_muted' => 'boolean',
     ];
 
     public static function newFactory(): AnnouncementFactory
@@ -46,6 +50,31 @@ class Announcement extends Model
     public function targets(): HasMany
     {
         return $this->hasMany(AnnouncementTarget::class);
+    }
+
+    /** Sent by the bot on its own, for an automatic alert, rather than by an admin. */
+    public function isAlert(): bool
+    {
+        return $this->alert_key !== null;
+    }
+
+    /**
+     * The alert's own buttons, then the key that turns alerts off: every
+     * automatic message must offer the way out.
+     *
+     * @return Keyboard<string, mixed>
+     */
+    private function alertKeyboard(?Alert $alert, ?BotUser $recipient): Keyboard
+    {
+        $keyboard = Keyboard::make()->inline();
+
+        if ($alert?->keyboard !== null && $recipient !== null) {
+            foreach (($alert->keyboard)($recipient) as $row) {
+                $keyboard->row(array_map(fn (array $button) => Keyboard::inlineButton($button), $row));
+            }
+        }
+
+        return $keyboard->row([Keyboard::inlineButton(MuteFeature::muteButton())]);
     }
 
     /**
@@ -92,13 +121,19 @@ class Announcement extends Model
                     __('tbe-announcements::announcements.main.text.messageRequiredForHtml')
                 );
 
+                $alert = announcementAlerts()->get($this->alert_key);
+
                 return wHook()->api()->sendMessage([
                     'chat_id' => $chatId,
                     'text' => $recipient === null
                         ? $this->message_text
-                        : announcementPlaceholders()->render($this->message_text ?? '', $recipient),
+                        : announcementPlaceholders()->render(
+                            $this->message_text ?? '',
+                            $recipient,
+                            $alert === null ? [] : announcementAlerts()->values($alert),
+                        ),
                     'parse_mode' => 'HTML',
-                    'reply_markup' => replyKeyboard(),
+                    'reply_markup' => $this->isAlert() ? $this->alertKeyboard($alert, $recipient) : replyKeyboard(),
                 ]);
                 break;
             default:
