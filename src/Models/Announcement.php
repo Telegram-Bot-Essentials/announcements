@@ -49,9 +49,21 @@ class Announcement extends Model
     }
 
     /**
+     * Whether the text is filled in for each recipient. Copies and forwards
+     * re-send Telegram's own message, which cannot be changed.
+     */
+    public function usesPlaceholders(): bool
+    {
+        return $this->method === 'html' && announcementPlaceholders()->keysIn($this->message_text) !== [];
+    }
+
+    /**
+     * With $recipient, an HTML announcement's placeholders are filled in for
+     * that user; without, the text goes out as written.
+     *
      * @throws LogicException
      */
-    public function sendTo(int $chatId): Message
+    public function sendTo(int $chatId, ?BotUser $recipient = null): Message
     {
         switch ($this->method) {
             case 'copy':
@@ -82,7 +94,9 @@ class Announcement extends Model
 
                 return wHook()->api()->sendMessage([
                     'chat_id' => $chatId,
-                    'text' => $this->message_text,
+                    'text' => $recipient === null
+                        ? $this->message_text
+                        : announcementPlaceholders()->render($this->message_text ?? '', $recipient),
                     'parse_mode' => 'HTML',
                     'reply_markup' => replyKeyboard(),
                 ]);
