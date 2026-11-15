@@ -105,6 +105,10 @@ class AnnouncementsFeature
             'failed' => $failed,
         ]);
 
+        if ($announcement->method !== 'html' && announcementPlaceholders()->keysIn($announcement->message_text) !== []) {
+            $text .= "\n\n".__('tbe-announcements::announcements.main.text.placeholdersIgnored');
+        }
+
         $replyMarkup = Keyboard::make()
             ->inline();
 
@@ -163,6 +167,42 @@ class AnnouncementsFeature
             replyMarkup: $replyMarkup,
             parseMode: 'HTML'
         );
+    }
+
+    /** The "send the message" prompt, with the placeholders the text may use. */
+    public static function messagePrompt(): string
+    {
+        $prompt = __('tbe-announcements::announcements.main.text.sendMessagePrompt');
+
+        $lines = [];
+        foreach (announcementPlaceholders()->all() as $placeholder) {
+            $line = '<code>{$'.$placeholder->key.'}</code> — '.htmlspecialchars($placeholder->label());
+            if ($placeholder->example() !== null) {
+                $line .= ' ('.htmlspecialchars($placeholder->example()).')';
+            }
+            $lines[] = $line;
+        }
+
+        if ($lines === []) {
+            return $prompt;
+        }
+
+        return $prompt."\n\n".__('tbe-announcements::announcements.main.text.placeholders', [
+            'list' => implode("\n", $lines),
+        ]);
+    }
+
+    /**
+     * Refuses a text that uses a placeholder nothing can fill in, so a typo
+     * is caught while writing rather than sent to everyone as a blank.
+     */
+    public static function assertPlaceholdersKnown(?string $text): void
+    {
+        $unknown = announcementPlaceholders()->unknownIn($text);
+
+        dependsOn($unknown === [], __('tbe-announcements::announcements.main.errors.unknownPlaceholders', [
+            'keys' => implode(', ', array_map(fn (string $key) => '{$'.$key.'}', $unknown)),
+        ]));
     }
 
     public static function methodLabel(string $method): string
