@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Icons\Heroicon;
 use TelegramBotEssentials\Announcements\Services\Broadcasts;
+use TelegramBotEssentials\Announcements\Web\Widgets\AlertStats;
 use TelegramBotEssentials\Essence\Web\Filament\Concerns\GuardsResourcePage;
 
 class ListAnnouncements extends ListRecords
@@ -49,6 +50,12 @@ class ListAnnouncements extends ListRecords
                     $this->redirect(ViewAnnouncement::getUrl(['record' => $announcement]));
                 }),
         ];
+    }
+
+    /** @return array<class-string> */
+    protected function getHeaderWidgets(): array
+    {
+        return announcementAlerts()->all() === [] ? [] : [AlertStats::class];
     }
 
     /** The HTML hint, then the placeholders the text may use. */

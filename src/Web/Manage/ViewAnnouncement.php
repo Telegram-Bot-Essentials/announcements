@@ -3,10 +3,13 @@
 namespace TelegramBotEssentials\Announcements\Web\Manage;
 
 use Filament\Actions\Action;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
 use Filament\Support\Icons\Heroicon;
+use TelegramBotEssentials\Announcements\DTOs\Audience;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Services\Broadcasts;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
@@ -78,8 +81,24 @@ class ViewAnnouncement extends Page
                 ->label((string) __('tbe-announcements::web.add_all'))
                 ->icon(Heroicon::OutlinedUserPlus)
                 ->color('gray')
-                ->action(function (Broadcasts $broadcasts): void {
-                    $added = $broadcasts->addAllUsers($this->announcement());
+                ->schema([
+                    Select::make('audience')
+                        ->label((string) __('tbe-announcements::web.audience'))
+                        ->options(fn (): array => array_map(fn (Audience $audience) => $audience->label(), announcementAudiences()->all()))
+                        ->placeholder((string) __('tbe-announcements::web.everyone'))
+                        ->default(fn (): ?string => $this->announcement()->audience_key),
+                    Toggle::make('include_muted')
+                        ->label((string) __('tbe-announcements::web.include_muted'))
+                        ->helperText((string) __('tbe-announcements::web.include_muted_help'))
+                        ->default(fn (): bool => (bool) $this->announcement()->include_muted),
+                ])
+                ->action(function (array $data, Broadcasts $broadcasts): void {
+                    $audience = $data['audience'] ?? null;
+                    $added = $broadcasts->aim(
+                        $this->announcement(),
+                        is_string($audience) && $audience !== '' ? $audience : null,
+                        (bool) ($data['include_muted'] ?? true),
+                    );
                     Notification::make()->title((string) __('tbe-announcements::web.added', ['count' => $added]))->success()->send();
                 }),
             Action::make('send')

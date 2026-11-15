@@ -5,10 +5,12 @@ namespace TelegramBotEssentials\Announcements\Web\Manage;
 use BackedEnum;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
+use TelegramBotEssentials\Announcements\Web\Widgets\AlertStats;
 use TelegramBotEssentials\Announcements\Web\Widgets\DeliveryChart;
 use TelegramBotEssentials\Essence\Web\Filament\PanelDates;
 use TelegramBotEssentials\Essence\Web\Filament\PanelGroup;
@@ -63,6 +65,19 @@ class AnnouncementResource extends PanelResource
                 PanelDates::since(TextColumn::make('sent_at'))->label((string) __('tbe-announcements::web.finished'))->placeholder('—'),
                 PanelDates::since(TextColumn::make('created_at'))->label((string) __('tbe-announcements::web.created'))->sortable(),
             ])
+            ->filters([
+                // Automatic alerts make an announcement each time they go out: hidden until asked for.
+                TernaryFilter::make('automatic')
+                    ->label((string) __('tbe-announcements::web.source'))
+                    ->placeholder((string) __('tbe-announcements::web.source_manual'))
+                    ->trueLabel((string) __('tbe-announcements::web.source_automatic'))
+                    ->falseLabel((string) __('tbe-announcements::web.source_all'))
+                    ->queries(
+                        true: fn (Builder $query): Builder => $query->whereNotNull('alert_key'),
+                        false: fn (Builder $query): Builder => $query,
+                        blank: fn (Builder $query): Builder => $query->whereNull('alert_key'),
+                    ),
+            ])
             ->defaultSort('created_at', 'desc')
             ->persistFiltersInSession()
             ->persistSearchInSession()
@@ -72,7 +87,7 @@ class AnnouncementResource extends PanelResource
 
     public static function getWidgets(): array
     {
-        return [DeliveryChart::class];
+        return [DeliveryChart::class, AlertStats::class];
     }
 
     public static function getPages(): array
