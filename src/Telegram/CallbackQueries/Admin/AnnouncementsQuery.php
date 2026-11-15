@@ -38,7 +38,7 @@ class AnnouncementsQuery extends CallbackQuery
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => __('tbe-announcements::announcements.main.text.sendMessagePrompt'),
+            'text' => AnnouncementsFeature::messagePrompt(),
             'reply_markup' => replyKeyboard(),
             'parse_mode' => 'HTML',
         ]);
@@ -56,7 +56,7 @@ class AnnouncementsQuery extends CallbackQuery
 
     public function preview(Announcement $announcement): void
     {
-        $announcement->sendTo(wHook()->peerId());
+        $announcement->sendTo(wHook()->peerId(), wHook()->user());
 
         $this->answer(__('tbe-announcements::announcements.main.answers.previewSent'));
     }
@@ -98,7 +98,7 @@ class AnnouncementsQuery extends CallbackQuery
 
         wHook()->api()->sendMessage([
             'chat_id' => wHook()->peerId(),
-            'text' => __('tbe-announcements::announcements.main.text.sendMessagePrompt'),
+            'text' => AnnouncementsFeature::messagePrompt(),
             'parse_mode' => 'HTML',
             'reply_markup' => replyKeyboard(),
         ]);
@@ -186,7 +186,7 @@ class AnnouncementsQuery extends CallbackQuery
         // Deliberately attempted even for a skipped target: forcing one send is
         // how an admin overrules, or re-tests, what we believe about a user.
         try {
-            $message = $announcementTarget->announcement->sendTo($announcementTarget->botUser->telegramUser->peer_id);
+            $message = $announcementTarget->announcement->sendTo($announcementTarget->botUser->telegramUser->peer_id, $announcementTarget->botUser);
             $announcementTarget->update([
                 'message_id' => $message->messageId,
                 'status' => 'sent',
