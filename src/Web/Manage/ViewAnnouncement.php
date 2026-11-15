@@ -68,7 +68,7 @@ class ViewAnnouncement extends Page
                 ->color('gray')
                 ->action(function (): void {
                     try {
-                        inBotLocale(fn () => $this->announcement()->sendTo(wHook()->user()->peerId()));
+                        inBotLocale(fn () => $this->announcement()->sendTo(wHook()->user()->peerId(), wHook()->user()));
                         Notification::make()->title((string) __('tbe-announcements::web.preview_sent'))->success()->send();
                     } catch (Throwable $e) {
                         Notification::make()->title((string) __('tbe-announcements::web.preview_failed'))->body($e->getMessage())->danger()->send();

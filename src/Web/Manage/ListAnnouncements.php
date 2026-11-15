@@ -2,6 +2,7 @@
 
 namespace TelegramBotEssentials\Announcements\Web\Manage;
 
+use Closure;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -28,7 +29,15 @@ class ListAnnouncements extends ListRecords
                     TextInput::make('label')->label((string) __('tbe-announcements::web.label'))->required()->maxLength(255),
                     Textarea::make('text')
                         ->label((string) __('tbe-announcements::web.text'))
-                        ->helperText((string) __('tbe-announcements::web.text_help'))
+                        ->helperText($this->textHelp())
+                        ->rule(fn (): Closure => function (string $attribute, mixed $value, Closure $fail): void {
+                            $unknown = announcementPlaceholders()->unknownIn(is_string($value) ? $value : null);
+                            if ($unknown !== []) {
+                                $fail((string) __('tbe-announcements::web.unknown_placeholders', [
+                                    'keys' => implode(', ', array_map(fn (string $key) => '{$'.$key.'}', $unknown)),
+                                ]));
+                            }
+                        })
                         ->required()
                         ->maxLength(4096)
                         ->rows(6),
@@ -40,5 +49,20 @@ class ListAnnouncements extends ListRecords
                     $this->redirect(ViewAnnouncement::getUrl(['record' => $announcement]));
                 }),
         ];
+    }
+
+    /** The HTML hint, then the placeholders the text may use. */
+    private function textHelp(): string
+    {
+        $help = (string) __('tbe-announcements::web.text_help');
+
+        $list = [];
+        foreach (announcementPlaceholders()->all() as $placeholder) {
+            $list[] = '{$'.$placeholder->key.'} ('.$placeholder->label().')';
+        }
+
+        return $list === []
+            ? $help
+            : $help.' '.__('tbe-announcements::web.placeholders_help', ['list' => implode(', ', $list)]);
     }
 }
