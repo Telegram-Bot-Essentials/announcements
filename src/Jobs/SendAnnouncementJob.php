@@ -3,11 +3,13 @@
 namespace TelegramBotEssentials\Announcements\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Cache;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
+use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Support\WebhookContext;
 
 class SendAnnouncementJob implements ShouldQueue
@@ -47,6 +49,10 @@ class SendAnnouncementJob implements ShouldQueue
             return;
         }
 
+        if ($announcement instanceof Announcement && $announcement->usesPlaceholders()) {
+            $this->preparePlaceholders($announcement, $targets);
+        }
+
         foreach ($targets as $target) {
             $botUser = $target->botUser;
 
@@ -59,7 +65,7 @@ class SendAnnouncementJob implements ShouldQueue
             }
 
             try {
-                $message = $announcement->sendTo($botUser->telegramUser->peer_id);
+                $message = $announcement->sendTo($botUser->telegramUser->peer_id, $botUser);
 
                 $target->update([
                     'message_id' => $message->messageId,
@@ -103,6 +109,40 @@ class SendAnnouncementJob implements ShouldQueue
         }
 
         self::updateProgress($announcement, ! $hasPending);
+    }
+
+    /**
+     * Loads what the text's placeholders read for the whole chunk at once,
+     * and says once per announcement which keys nothing can fill in any more
+     * (their package was removed or switched off after the text was written).
+     *
+     * @param  Collection<int, AnnouncementTarget>  $targets
+     */
+    private function preparePlaceholders(Announcement $announcement, Collection $targets): void
+    {
+        $relations = announcementPlaceholders()->relationsFor($announcement->message_text);
+        if ($relations !== []) {
+            $users = new Collection;
+            foreach ($targets as $target) {
+                if ($target->botUser instanceof BotUser) {
+                    $users->push($target->botUser);
+                }
+            }
+            $users->loadMissing($relations);
+        }
+
+        $unknown = announcementPlaceholders()->unknownIn($announcement->message_text);
+        if ($unknown === []) {
+            return;
+        }
+
+        $id = $announcement->getKey();
+        if (Cache::add('tbe-announcements:unknown-placeholders:'.(is_scalar($id) ? $id : ''), true, now()->addHour())) {
+            tbeLog('announcements')->warning('Announcement #{announcement_id} uses placeholders nothing can fill in, sent as empty: {keys}', [
+                'announcement_id' => $announcement->getKey(),
+                'keys' => implode(', ', $unknown),
+            ]);
+        }
     }
 
     /**
