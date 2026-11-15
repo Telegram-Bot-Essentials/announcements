@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use TelegramBotEssentials\Announcements\Models\Announcement;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
+use TelegramBotEssentials\Essence\Models\Bot;
 use TelegramBotEssentials\Essence\Models\BotUser;
 use TelegramBotEssentials\Essence\Support\WebhookContext;
 
@@ -22,7 +23,7 @@ class SendAnnouncementJob implements ShouldQueue
      * @param  array<int>  $targetIds
      */
     public function __construct(
-        private readonly WebhookContext $context,
+        private readonly WebhookContext|int $context,
         private readonly array $targetIds
     ) {
         $this->queue = config('tbe-announcements.queue', 'announcements');
@@ -33,8 +34,24 @@ class SendAnnouncementJob implements ShouldQueue
      */
     public function handle(): void
     {
+        // A bot id instead of a context: an automatic alert, sent as the bot
+        // alone, with no admin behind it.
+        if (is_int($this->context)) {
+            $bot = Bot::query()->find($this->context);
+            if ($bot instanceof Bot) {
+                wHook()->runInContext($bot, null, null, null, fn () => $this->deliver());
+            }
+
+            return;
+        }
+
         wHook()->importContext($this->context);
 
+        $this->deliver();
+    }
+
+    private function deliver(): void
+    {
         if (empty($this->targetIds)) {
             return;
         }
@@ -150,6 +167,11 @@ class SendAnnouncementJob implements ShouldQueue
      */
     public static function updateProgress(Announcement $announcement, bool $force = false): void
     {
+        // Sent from the web panel or by an alert: nobody is watching a status message.
+        if ($announcement->action_status_message_id === null) {
+            return;
+        }
+
         $lockKey = "tbe-announcements:progress-update:{$announcement->id}";
 
         if ($force || Cache::add($lockKey, true, 3)) {

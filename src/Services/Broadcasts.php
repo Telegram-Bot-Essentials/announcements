@@ -6,6 +6,7 @@ use LogicException;
 use TelegramBotEssentials\Announcements\Jobs\DeleteAnnouncementJob;
 use TelegramBotEssentials\Announcements\Jobs\SendAnnouncementJob;
 use TelegramBotEssentials\Announcements\Models\Announcement;
+use TelegramBotEssentials\Announcements\Models\AnnouncementMute;
 use TelegramBotEssentials\Announcements\Models\AnnouncementTarget;
 use TelegramBotEssentials\Announcements\Telegram\Features\Admin\AnnouncementsFeature;
 use TelegramBotEssentials\Essence\Models\BotUser;
@@ -29,23 +30,62 @@ class Broadcasts
         ]);
     }
 
-    /** Everyone in the bot now; users who join later need another call. */
-    public function addAllUsers(Announcement $announcement): int
+    /**
+     * Makes the announcement's pending recipients match who it is aimed at
+     * now: its audience (everyone without one), with or without the users
+     * who muted automatic messages. Users already tried keep their row;
+     * those who join or start to match later need another call.
+     *
+     * @return int how many recipients were added
+     */
+    public function addUsers(Announcement $announcement): int
     {
-        $now = now();
+        $query = BotUser::query()->where('bot_users.bot_id', $announcement->bot_id);
 
-        $rows = [];
-        foreach (self::ids(BotUser::query()->pluck('id')->all()) as $botUserId) {
-            $rows[] = [
+        if ($announcement->audience_key !== null) {
+            $audience = announcementAudiences()->get($announcement->audience_key);
+            if ($audience === null) {
+                $query->whereRaw('1 = 0');
+            } else {
+                $audience->applyTo($query);
+            }
+        }
+
+        if (! $announcement->include_muted) {
+            $query->whereNotIn('bot_users.id', AnnouncementMute::query()->select('bot_user_id'));
+        }
+
+        $userIds = self::ids($query->pluck('bot_users.id')->all());
+
+        $announcement->targets()->whereNull('status')->whereNotIn('bot_user_id', $userIds)->delete();
+
+        $now = now();
+        $added = 0;
+        foreach (array_chunk($userIds, 500) as $chunk) {
+            $added += AnnouncementTarget::query()->insertOrIgnore(array_map(fn (int $botUserId) => [
                 'bot_id' => $announcement->bot_id,
                 'announcement_id' => $announcement->id,
                 'bot_user_id' => $botUserId,
                 'created_at' => $now,
                 'updated_at' => $now,
-            ];
+            ], $chunk));
         }
 
-        return $rows === [] ? 0 : AnnouncementTarget::query()->insertOrIgnore($rows);
+        return $added;
+    }
+
+    /** Kept for callers written before audiences: the same as addUsers(). */
+    public function addAllUsers(Announcement $announcement): int
+    {
+        return $this->addUsers($announcement);
+    }
+
+    /** Aims the announcement at an audience (null for everyone) and reloads its recipients. */
+    public function aim(Announcement $announcement, ?string $audienceKey, bool $includeMuted): int
+    {
+        $announcement->update(['audience_key' => $audienceKey, 'include_muted' => $includeMuted]);
+
+        return $this->addUsers($announcement);
     }
 
     /**
@@ -63,7 +103,8 @@ class Broadcasts
             ->pluck('id')
             ->all());
 
-        $context = $this->context();
+        // An automatic alert has no sender to replay: its jobs get the bot alone, by id.
+        $context = $announcement->isAlert() ? $announcement->bot_id : $this->context();
         foreach (array_chunk($targetIds, $this->batchSize()) as $chunk) {
             SendAnnouncementJob::dispatch($context, $chunk);
         }

@@ -62,13 +62,17 @@ class Placeholders
 
     /**
      * The keys in a text that nothing can fill in: never registered, or
-     * switched off.
+     * switched off. $extraKeys are values the caller fills in itself.
      *
+     * @param  array<int, string>  $extraKeys
      * @return array<int, string>
      */
-    public function unknownIn(?string $text): array
+    public function unknownIn(?string $text, array $extraKeys = []): array
     {
-        return array_values(array_filter($this->keysIn($text), fn (string $key) => $this->get($key) === null));
+        return array_values(array_filter(
+            $this->keysIn($text),
+            fn (string $key) => $this->get($key) === null && ! in_array($key, $extraKeys, true),
+        ));
     }
 
     /**
@@ -92,10 +96,12 @@ class Placeholders
      * throws: a key nothing can fill in becomes an empty string, and one whose
      * package failed becomes its fallback, so one broken value does not stop
      * a broadcast.
+     *
+     * @param  array<string, string>  $values  ready-made values by key, which
+     *                                         win over a registered placeholder; put in as given, so escape them
      */
-    public function render(string $text, BotUser $user): string
+    public function render(string $text, BotUser $user, array $values = []): string
     {
-        $values = [];
 
         return (string) preg_replace_callback(self::PATTERN, function (array $match) use ($user, &$values): string {
             $key = $match[1];
